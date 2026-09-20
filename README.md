@@ -186,6 +186,7 @@ It posts to the same web app with `type: "survey0913"` and lands in its own spre
 | GET action | What it does |
 |---|---|
 | `?action=survey0913Info` | Sheet URL, response count, per-slot tally (test rows excluded) |
+| `?action=survey0913Find&q=` | "Did X fill it out?" — matches name substring or email (case-insensitive), returns name/email/when (Mountain time)/times |
 | `?action=survey0913Times` | Per-response requested-times strings + timestamps only (no names/emails), test rows excluded — for offline analysis such as unique-people reach per slot |
 | `?action=survey0913ClearTests` | Deletes rows whose name/email matches /test/i |
 | `?action=survey0913RebuildTally` | Recreates the Tally tab and re-applies text formats on Responses (if someone breaks the formulas) |
