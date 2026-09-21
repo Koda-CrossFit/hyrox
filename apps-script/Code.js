@@ -1175,6 +1175,26 @@ function survey0913Find(q) {
   return { status: "ok", q: q, matches: hits.length, hits: hits.slice(0, 20) };
 }
 
+// All responses as name + requested times (NO emails), test rows excluded —
+// for member / non-member splits against a Zen Planner name list.
+function survey0913Roster() {
+  var ss = getOrCreateSurvey0913Spreadsheet();
+  var sheet = ss.getSheetByName("Responses") || ss.getSheets()[0];
+  var hm = survey0913HeaderMap(sheet);
+  var iName = hm["name"], iEmail = hm["email"], iTimes = hm["requested class times"];
+  var last = sheet.getLastRow();
+  var vals = last >= 2 ? sheet.getRange(2, 1, last - 1, sheet.getLastColumn()).getValues() : [];
+  var rows = [];
+  vals.forEach(function(r, i) {
+    var nm = String(iName != null ? r[iName] : "").trim();
+    var em = String(iEmail != null ? r[iEmail] : "").trim();
+    if (!nm && !em) return;
+    if (/test/i.test(nm) || /test/i.test(em)) return;
+    rows.push({ row: i + 2, name: nm, times: String(iTimes != null ? r[iTimes] : "") });
+  });
+  return { status: "ok", count: rows.length, rows: rows };
+}
+
 function survey0913ClearTests() {
   var ss = getOrCreateSurvey0913Spreadsheet();
   var sheet = ss.getSheetByName("Responses") || ss.getSheets()[0];
@@ -2344,6 +2364,9 @@ function doGet(e) {
         shirtsRows: ssH.getSheetByName("Shirts").getLastRow() - 1
       }))
       .setMimeType(ContentService.MimeType.JSON);
+  }
+  if (action === "survey0913Roster") {
+    return survey0913Out(survey0913Roster());
   }
   if (action === "survey0913Find") {
     return survey0913Out(survey0913Find(e.parameter.q));
