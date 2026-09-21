@@ -12,3 +12,4 @@ Re-run when more survey responses land.
 4. `node tools/survey/render.js survey-results survey-results` — renders
    `Hyrox Class Times - Members.png/.jpg` and `... - Non-Members.png/.jpg` (1200px wide @2x)
    with Puppeteer from `hyrox_pdf/node_modules`.
+5. `node tools/survey/mwf.js survey-results` — Mon/Wed/Fri vs Tue/Thu breakdown per time slot for members, non-members and everyone (people reached in each block, people who want ALL days of the block, average checks per class day). Writes `mwf.json`.

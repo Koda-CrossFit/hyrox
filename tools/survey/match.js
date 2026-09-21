@@ -96,7 +96,8 @@ function tally(group) {
   };
 }
 
-const results = { generated: new Date().toISOString(), members: tally('member'), nonmembers: tally('nonmember'), log, review };
+const peopleSets = [...people.values()].map(p => ({ group: p.group, as: p.as, slots: [...p.set] }));
+const results = { generated: new Date().toISOString(), peopleSets, members: tally('member'), nonmembers: tally('nonmember'), log, review };
 fs.writeFileSync(path.join(SP, 'results.json'), JSON.stringify(results, null, 2));
 
 const pad = (s, n) => String(s).padEnd(n);
