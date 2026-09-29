@@ -4,7 +4,7 @@ Re-run when more survey responses land.
 
 1. Export the current member list from Zen Planner (one full name per line) to
    `survey-results/members.txt` (that folder is git-ignored — never commit member names).
-2. Pull the responses: `curl -sL "<exec URL>?action=survey0913Roster" > survey-results/survey-roster.json`
+2. Pull the responses: `curl -sL "<exec URL>?action=survey0913Roster&key=<admin key>" > survey-results/survey-roster.json`
 3. `node tools/survey/match.js survey-results` — classifies each respondent by name
    (exact, first+last, nickname, initial, first-name-only), de-dupes people who submitted
    twice, tallies both groups, writes `results.json` and prints a review list. Fix any

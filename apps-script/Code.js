@@ -162,6 +162,12 @@ function doPost(e) {
       return handleSim0913(data);
     }
 
+    // October 25, 2026 simulation (headband-or-hat gear, Men's Pro every
+    // other heat) — type:"sim1025", lives in Sim1025.js.
+    if (data.type === "sim1025") {
+      return handleSim1025(data);
+    }
+
     // Auto-create the spreadsheet on first submission if it doesn't exist yet.
     var ss = getOrCreateSpreadsheet();
     PropertiesService.getScriptProperties().setProperty("SHEET_ID", ss.getId());
@@ -2198,6 +2204,18 @@ function sim0913FixHeaders() {
 // ── GET: Health check + on-demand actions ──
 function doGet(e) {
   var action = e && e.parameter ? e.parameter.action : "";
+  if (action && action.indexOf("sim1025") === 0) {
+    return sim1025Get(action, e);
+  }
+  // Every other named action (Sept sim0913 / survey0913 / feedback0913 admin
+  // tools — rosters with emails, cancels, gear/shirt edits) needs the same
+  // admin key as the sim1025 actions (see Sim1025.js). Only the public
+  // lane-count feed and the bare health check stay open.
+  if (action && action !== "sim0913Slots" && !sim1025Authorized(e.parameter.key)) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: "error", error: "forbidden" }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
   if (action === "shirtTally0913") {
     return ContentService
       .createTextOutput(JSON.stringify(sim0913ShirtTally()))

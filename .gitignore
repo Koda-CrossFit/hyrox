@@ -5,3 +5,10 @@ node_modules/
 *.log
 
 survey-results/
+
+# Oct 25 gear sources (large originals; built assets live in assets/gear)
+gear-source/
+
+# local-only files that must never be published on Pages
+*.pdf
+flyer/

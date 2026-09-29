@@ -3,297 +3,542 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hyrox Simulation — Koda CrossFit Iron View — September 13, 2026</title>
-  <meta name="description" content="Sign up for the Hyrox Simulation at Koda CrossFit Iron View on September 13, 2026. $25 entry includes a custom event shirt — pick your logo color. Heats every 10 minutes, 9:00–11:50 AM.">
+  <title>Hyrox Simulation — Koda CrossFit Iron View — October 25, 2026</title>
+  <meta name="description" content="Sign up for the Hyrox Simulation at Koda CrossFit Iron View on Sunday, October 25, 2026 — presented by Centr Equipment and Box Basics. $25 entry includes a custom headband or trucker hat. Heats every 10 minutes, 9:00–11:50 AM.">
+  <meta name="theme-color" content="#1A1818">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hyrox Simulation — Sunday, Oct 25 · Koda CrossFit Iron View">
+  <meta property="og:description" content="Presented by Centr Equipment &amp; Box Basics. $25 entry — every athlete gets a custom headband or trucker hat. Pick your heat, 9:00–11:50 AM.">
+  <meta property="og:image" content="https://kevschuetz3-lgtm.github.io/koda-hyrox-signup/assets/og-oct25.jpg">
+  <meta property="og:url" content="https://kevschuetz3-lgtm.github.io/koda-hyrox-signup/">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="assets/koda-mark.png">
   <link rel="apple-touch-icon" href="assets/koda-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* Look & feel borrowed from centr.com (presenting sponsor): charcoal
+       #1A1818 bands, sand #EDEBE7 light bands, one electric-yellow accent
+       #FFFF33, heavy uppercase display type with a yellow highlight block,
+       mono eyebrows, square corners. */
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0b0c0f;
-      --panel: #14161a;
-      --panel-2: #1d2026;
-      --border: #2f323b;
-      --text: #f7f8fa;
-      --muted: #b7bcc5;
-      --accent: #d6ff3f;       /* Hyrox lime/yellow */
-      --accent-dark: #a8cc1f;
-      --error: #f87171;
+      --ink: #1A1818;          /* dark bands + text on light */
+      --ink-2: #222121;        /* top bar */
+      --ink-0: #0E0C0C;        /* darkest (buttons on light, text on yellow) */
+      --charcoal: #2F2C2C;
+      --yellow: #FFFF33;
+      --sand: #EDEBE7;
+      --sand-2: #E5DDCF;
+      --sand-3: #DFD5C3;
+      --line: #D9D4CB;         /* borders on light */
+      --line-dark: rgba(223,213,195,0.22);
+      --muted: #5E5954;        /* secondary text on light (≥5.5:1 on sand) */
+      --muted-dark: #BDB6AC;   /* secondary text on ink */
+      --white: #FFFFFF;
+      --error: #B42318;
+      --warn: #9A5B00;
+      --display: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
-    html, body { background: var(--bg); }
+    /* scroll-padding keeps scrolled-to sections and focused fields clear of the sticky top bar */
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    @media (max-width: 640px) { html { scroll-padding-top: 72px; } }
+    html, body { background: var(--ink); }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+    .signup a:focus-visible, .signup button:focus-visible, .signup [role="button"]:focus-visible { outline-color: var(--ink); }
+
+    .preview-banner {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 200;
+      background: #B42318;
+      color: #fff;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+    }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: var(--text);
-      min-height: 100vh;
+      color: var(--ink);
       line-height: 1.6;
-      font-size: 1.0625rem;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ── Shirt-timing notice banner (top of page) ── */
-    .notice-banner {
-      background: #f3c34c;
-      color: #111;
-      padding: 22px 24px;
-      border-bottom: 3px solid #b88a1a;
+    img { max-width: 100%; }
+    a { color: inherit; }
+
+    .mono {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .notice-inner {
-      max-width: 980px;
+    .hl {
+      background: linear-gradient(var(--yellow), var(--yellow));
+      color: var(--ink);
+      padding: 0 0.12em 0 0.08em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Floating top bar (Centr-style inset header) ── */
+    .topbar {
+      position: sticky;
+      top: 10px;
+      z-index: 50;
+      margin: 10px 16px 0;
+      background: var(--ink-2);
+      border: 1px solid var(--line-dark);
+      color: #fff;
+    }
+
+    .topbar-inner {
+      max-width: 1180px;
       margin: 0 auto;
+      height: 58px;
+      padding: 0 18px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 18px;
-      text-align: left;
+      justify-content: space-between;
+      gap: 14px;
     }
 
-    .notice-ico {
-      flex: 0 0 auto;
-      width: 44px;
-      height: 44px;
-      color: #111;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      min-width: 0;
     }
 
-    .notice-head {
-      display: block;
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: 400;
-      font-size: clamp(1.6rem, 3.2vw, 2.1rem);
-      letter-spacing: 0.08em;
-      line-height: 1.05;
-      margin-bottom: 4px;
+    .brand img {
+      width: 30px;
+      height: auto;
+      filter: brightness(0) invert(1);
+      flex-shrink: 0;
     }
 
-    .notice-body {
-      display: block;
-      font-size: 1.1rem;
-      line-height: 1.45;
-      font-weight: 500;
+    .brand span {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .notice-body strong { font-weight: 800; }
+    .presented {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
 
-    @media (max-width: 560px) {
-      .notice-banner { padding: 18px 16px; }
-      .notice-inner { flex-direction: column; gap: 10px; text-align: center; }
-      .notice-ico { width: 36px; height: 36px; }
-      .notice-body { font-size: 1rem; }
+    .presented .mono { color: var(--muted-dark); font-size: 0.7rem; white-space: nowrap; }
+
+    .presented a { display: flex; align-items: center; padding: 12px 0; margin: -12px 0; }
+    .brand { padding: 7px 0; margin: -7px 0; }
+    .presented img { height: 17px; width: auto; display: block; }
+    .presented .sep { width: 1px; height: 20px; background: var(--line-dark); }
+
+    .topbar .cta-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--yellow);
+      color: var(--ink-0);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 8px 14px;
+      border-radius: 2px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 860px) { .topbar .cta-mini { display: none; } }
+    @media (max-width: 640px) {
+      .brand span, .presented .mono { display: none; }
+      .topbar { margin: 8px 10px 0; top: 8px; }
+      .topbar-inner { height: 52px; padding: 0 12px; }
+      .presented { gap: 10px; }
+      .presented img { height: 16px; }
     }
 
     /* ── Hero ── */
     .hero {
       position: relative;
-      padding: 64px 20px 56px;
-      text-align: center;
-      background:
-        radial-gradient(ellipse at top, rgba(214,255,63,0.10) 0%, transparent 60%),
-        linear-gradient(180deg, #000 0%, #0a0a0a 100%);
-      border-bottom: 1px solid var(--border);
+      color: #fff;
+      padding: 64px 0 0;
       overflow: hidden;
+      background:
+        radial-gradient(900px 480px at 85% 30%, rgba(255,255,51,0.07), transparent 60%),
+        var(--ink);
     }
 
-    .hero::before {
-      content: '';
+    .hero-bgword {
       position: absolute;
-      inset: auto 0 0 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(214,255,63,0.35), transparent);
+      right: -2vw;
+      bottom: 64px;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(8rem, 26vw, 22rem);
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(223,213,195,0.09);
       pointer-events: none;
+      user-select: none;
     }
 
-    .koda-mark {
-      display: block;
-      width: 78px;
-      height: auto;
-      margin: 0 auto 22px;
-      /* The PNG is dark navy on transparent — invert to white for the dark hero */
-      filter: brightness(0) invert(1);
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 40px;
+      align-items: center;
     }
 
-    .eyebrow {
-      display: inline-block;
-      font-family: 'Bebas Neue', sans-serif;
-      letter-spacing: 0.25em;
-      font-size: 0.95rem;
-      color: var(--accent);
-      padding: 6px 14px;
-      border: 1px solid var(--accent);
-      border-radius: 999px;
-      margin-bottom: 18px;
-    }
+    .hero .eyebrow { color: var(--sand-2); margin-bottom: 18px; display: block; }
 
     h1.hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: 400;
-      font-size: clamp(2.6rem, 6vw, 4.5rem);
-      letter-spacing: 0.04em;
-      line-height: 1.0;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(2.9rem, 8vw, 6.1rem);
+      line-height: 0.9;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1.hero-title .hl { display: inline-block; padding: 0.02em 0.12em 0 0.06em; margin-left: -0.06em; }
+
+    .hero-date {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
       margin-bottom: 14px;
-      color: #fff;
-    }
-
-    h1.hero-title .accent { color: var(--accent); }
-
-    /* ── Price badge ── */
-    .price-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--accent);
-      color: #000;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.16em;
-      padding: 9px 22px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 18px rgba(214,255,63,0.22);
-    }
-
-    .price-badge .dot {
-      width: 7px;
-      height: 7px;
-      background: #000;
-      border-radius: 50%;
     }
 
     .hero-sub {
-      max-width: 640px;
-      margin: 0 auto 28px;
-      color: var(--muted);
-      font-size: 1.1rem;
+      max-width: 540px;
+      color: var(--sand);
+      font-size: 1.08rem;
+      line-height: 1.65;
+      margin-bottom: 26px;
     }
 
-    .hero-sub .shirt-text {
-      color: var(--accent);
+    .hero-sub strong { color: #fff; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
       font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 15px 34px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
     }
 
-    .event-meta {
+    .btn .arr { font-size: 1.1em; line-height: 1; }
+    .btn-yellow { background: var(--yellow); color: var(--ink-0); }
+    .btn-yellow:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,255,51,0.18); }
+    .btn-dark { background: var(--ink-0); color: #fff; }
+    .btn-dark:hover:not(:disabled) { background: #000; transform: translateY(-1px); }
+    .btn-dark .arr { color: var(--yellow); }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-bottom: 34px; }
+
+    .hero-facts {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px 28px;
-      margin: 0 auto 8px;
-      max-width: 760px;
+      gap: 12px 30px;
     }
 
-    .meta-item {
+    .fact .mono { display: block; color: var(--muted-dark); font-size: 0.7rem; margin-bottom: 2px; }
+    .fact strong { display: block; font-size: 0.98rem; font-weight: 600; color: #fff; white-space: nowrap; }
+
+    /* "Presented by" lockup right under the title — phones/tablets only
+       (desktop shows the full-width strip at the bottom of the hero) */
+    .hero-presented { display: none; }
+
+    /* gear collage */
+    .collage {
+      position: relative;
+      height: auto;
+      aspect-ratio: 1.09;
+    }
+
+    .collage .card {
+      position: absolute;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .collage .card img { display: block; width: 100%; height: auto; }
+
+    /* flat product tiles (Centr style): the tag sits above the hat's top-left
+       corner, clear of the patch; only the two headbands overlap, on purpose */
+    .collage .hat { width: 76%; right: 0; top: 22px; }
+    .collage .band { width: 60%; left: 0; bottom: 0; padding: 10px; }
+    .collage .band2 { width: 44%; right: 2%; bottom: 26px; padding: 8px; }
+
+    .collage .tag {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--yellow);
+      color: var(--ink-0);
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 8px 12px 7px;
+      border-radius: 2px;
+      z-index: 2;
+    }
+
+    .collage .tag strong { font-family: var(--display); font-weight: 900; font-size: 1.4rem; letter-spacing: -0.02em; display: block; line-height: 1; }
+
+    /* presented-by strip */
+    .presented-strip {
+      position: relative;
+      margin-top: 56px;
+      border-top: 1px solid var(--line-dark);
+      padding: 26px 0 30px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 18px 30px;
+      flex-wrap: wrap;
+    }
+
+    .presented-strip .mono { color: var(--sand-2); font-size: 0.78rem; }
+
+    .strip-logos { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .strip-logos a { display: block; opacity: 0.96; transition: opacity 0.15s; padding: 10px 0; margin: -10px 0; }
+    .strip-logos a:hover { opacity: 1; }
+    .strip-logos img { display: block; height: 36px; width: auto; }
+    .strip-logos .x { font-family: var(--display); font-weight: 800; color: var(--muted-dark); font-size: 1.3rem; }
+
+    @media (max-width: 900px) {
+      .hero { padding: 40px 0 40px; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+      .collage { height: auto; aspect-ratio: 1.14; max-width: 520px; width: 100%; margin: 0 auto; }
+      .collage .band { width: 50%; bottom: 0; }
+      .collage .band2 { width: 36%; bottom: 8px; }
+      .hero-bgword { display: none; }
+    }
+
+    /* "Presented by" lockup under the title wherever the hero strip would be
+       below the fold: phones/tablets, and short laptop screens */
+    @media (max-width: 900px), (min-width: 901px) and (max-height: 860px) {
+      .presented-strip { display: none; }
+      .hero-presented { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin: -4px 0 22px; }
+      .hero-presented .mono { color: var(--sand-2); font-size: 0.7rem; flex-basis: 100%; }
+      .hero-presented a { display: block; padding: 8px 0; margin: -8px 0; }
+      .hero-presented img { height: 26px; width: auto; display: block; }
+      .hero-presented .x { font-family: var(--display); font-weight: 800; color: var(--muted-dark); }
+    }
+
+    @media (max-width: 600px) {
+      .collage .tag { padding: 6px 10px 5px; }
+      .collage .tag strong { font-size: 1.15rem; }
+    }
+
+    @media (max-width: 520px) {
+      .wrap { padding: 0 16px; }
+      .hero-presented img { height: 22px; }
+      .btn { width: 100%; }
+    }
+
+    @media (max-width: 359px) {
+      .hero-presented { gap: 8px 10px; }
+      .hero-presented img { height: 17px; }
+    }
+
+    /* ── Sponsor band (full yellow block) ── */
+    .sponsors {
+      background: var(--yellow);
+      color: var(--ink-0);
+      padding: 64px 0 70px;
+    }
+
+    .sponsors .mono { display: block; margin-bottom: 12px; }
+
+    .sponsors h2 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(2.3rem, 6vw, 4.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+      margin-bottom: 34px;
+      max-width: 900px;
+    }
+
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .sponsor-card {
+      background: var(--ink);
+      color: #fff;
+      padding: 34px 32px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .sponsor-card .logo { height: 44px; display: flex; align-items: center; margin: 0; }
+    .sponsor-card .logo a { display: block; }
+    .sponsor-card .logo img { height: 40px; width: auto; max-width: 100%; display: block; }
+    .sponsor-card .role { color: var(--yellow); }
+    .sponsor-card p { color: var(--sand); font-size: 1rem; line-height: 1.6; }
+
+    .pill-link {
+      align-self: flex-start;
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.12s, color 0.12s;
     }
 
-    .meta-item .ico {
-      width: 18px;
-      height: 18px;
-      color: var(--accent);
-      flex-shrink: 0;
+    .pill-link:hover { background: var(--yellow); color: var(--ink-0); }
+
+    @media (max-width: 760px) {
+      .sponsors { padding: 48px 0 52px; }
+      .sponsor-grid { grid-template-columns: minmax(0, 1fr); }
+      .sponsor-card { padding: 26px 22px 24px; }
+      .sponsor-card .logo img { height: 32px; }
     }
 
-    /* ── Container ── */
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 40px 20px 64px;
+    /* ── Sign-up section (sand band) ── */
+    .signup {
+      background: var(--sand);
+      padding: 70px 0 80px;
     }
+
+    .signup-head { max-width: 780px; margin: 0 auto 26px; padding: 0 20px; }
+    .signup-head .mono { color: var(--muted); display: block; margin-bottom: 10px; }
+
+    .signup-head h2 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6.4vw, 4.2rem);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+    }
+
+    .container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
 
     .info-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 8px 22px;
-      margin-bottom: 26px;
-      font-size: 1rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 6px 24px;
+      margin-bottom: 18px;
     }
 
-    .info-card .info-row {
+    .info-row {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 14px 0;
+      padding: 15px 0;
     }
 
-    .info-card .info-row + .info-row { border-top: 1px solid var(--border); }
+    .info-row + .info-row { border-top: 1px solid var(--line); }
 
-    .info-card .info-ico {
-      width: 20px;
-      height: 20px;
-      color: var(--accent);
+    .info-ico {
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
-      margin-top: 3px;
+      margin-top: 1px;
+      color: var(--ink);
     }
 
-    .info-card .info-row strong { color: var(--text); font-weight: 700; }
+    .info-row strong { font-weight: 700; }
+    .info-row span { color: var(--muted); }
 
-    .info-card .info-row span { color: var(--muted); }
-
-    /* ── Step progress ── */
-    .progress-wrap {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
-      padding: 0 4px;
+    /* gear teaser */
+    .gear-teaser {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 26px;
     }
 
-    .progress-label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--muted);
-      white-space: nowrap;
-    }
+    /* display-only product strip (the real picker is step 05) */
+    .teaser { min-width: 0; }
+    .teaser-imgs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-bottom: 8px; height: 72px; align-items: center; }
+    .teaser-imgs img { width: 100%; height: 72px; object-fit: cover; display: block; background: #fff; }
+    .teaser-imgs.bands img { height: auto; aspect-ratio: 2 / 1; }
+    .teaser .t { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .teaser .s { color: var(--muted); font-size: 0.86rem; }
 
-    .progress-label strong { color: var(--text); }
+    @media (max-width: 560px) { .gear-teaser { display: none; } }
 
-    .progress-track {
-      flex: 1;
-      display: flex;
-      gap: 5px;
-    }
-
-    .progress-seg {
-      flex: 1;
-      height: 5px;
-      border-radius: 3px;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      transition: background 0.25s ease, border-color 0.25s ease;
-    }
-
-    .progress-seg.on {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
+    /* progress */
+    .progress-wrap { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+    .progress-label { font-size: 0.88rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .progress-label strong { color: var(--ink); }
+    .progress-track { flex: 1; display: flex; gap: 4px; }
+    .progress-seg { flex: 1; height: 6px; background: #A8A092; transition: background 0.25s ease; }
+    .progress-seg.on { background: var(--ink); }
 
     /* ── Form ── */
-    form {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 24px;
-    }
+    form { display: block; }
 
-    /* ── Accordion sections ── */
     .acc {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 14px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.015);
-      transition: border-color 0.15s ease;
+      background: #fff;
+      border: 1px solid var(--line);
+      margin-bottom: 10px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .acc.open { border-color: #3d3d3d; }
+    .acc.open { border-color: var(--ink); box-shadow: 0 1px 0 var(--ink); }
 
     .acc-head {
       width: 100%;
@@ -306,15 +551,16 @@
       cursor: pointer;
       text-align: left;
       font-family: inherit;
+      color: var(--ink);
     }
 
-    .acc-head:hover .acc-title { color: var(--accent); }
+    .acc-head:focus-visible { outline: none; box-shadow: inset 0 0 0 3px var(--yellow), inset 0 0 0 4px var(--ink); }
 
     .acc-check {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      border: 1px solid var(--border);
+      border: 1.5px solid #948E85;
       color: transparent;
       display: flex;
       align-items: center;
@@ -325,23 +571,19 @@
       transition: all 0.15s ease;
     }
 
-    .acc.done .acc-check {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #000;
-    }
-
+    .acc.done .acc-check { background: var(--yellow); border-color: var(--ink); color: var(--ink); }
     .acc[data-sec="extra"] .acc-check { visibility: hidden; }
 
     .acc-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.32rem;
-      letter-spacing: 0.09em;
-      color: var(--text);
-      transition: color 0.15s ease;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.12rem;
+      letter-spacing: -0.005em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .acc.open .acc-title { color: var(--accent); }
+    .acc-num { font-family: var(--mono); font-weight: 500; font-size: 0.8rem; color: var(--muted); margin-right: 2px; }
 
     .acc-sum {
       margin-left: auto;
@@ -353,1059 +595,744 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      max-width: 48%;
+      max-width: 50%;
     }
 
-    .acc.done .acc-sum { color: var(--accent); }
-
-    .acc-chev {
-      color: var(--muted);
-      font-size: 0.8rem;
-      transition: transform 0.2s ease;
-      flex-shrink: 0;
-    }
-
+    .acc.done .acc-sum { color: var(--ink); font-weight: 600; }
+    .acc-chev { color: var(--muted); font-size: 0.75rem; transition: transform 0.2s ease; flex-shrink: 0; }
     .acc.open .acc-chev { transform: rotate(180deg); }
-
-    .acc-body {
-      display: none;
-      padding: 10px 20px 22px;
-      border-top: 1px solid var(--border);
-    }
-
+    .acc-body { display: none; padding: 6px 20px 24px; border-top: 1px solid var(--line); }
     .acc.open .acc-body { display: block; }
 
     @media (max-width: 480px) {
-      .acc-head { padding: 13px 14px; }
-      .acc-body { padding: 6px 14px 16px; }
-      .acc-sum { max-width: 40%; }
+      .acc-head { padding: 14px 14px; gap: 4px 10px; flex-wrap: wrap; }
+      .acc-body { padding: 4px 14px 18px; }
+      .acc-title { font-size: 1rem; }
+      .acc-chev { order: 4; margin-left: auto; }
+      .acc-sum { order: 5; flex-basis: 100%; max-width: none; margin-left: 0; padding-left: 34px; text-align: left; white-space: normal; font-size: 0.82rem; }
+      .acc-sum:empty { display: none; }
     }
 
-    .section-hint {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin: -2px 0 16px;
-    }
+    .section-hint { font-size: 0.95rem; color: var(--muted); margin: 12px 0 16px; }
+    .section-hint strong { color: var(--ink); }
 
-    .field { margin-bottom: 16px; }
+    .field { margin-top: 16px; }
+    .field-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .field-row .field { flex: 1; min-width: 200px; }
 
-    .field-row {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .field-row .field { flex: 1; min-width: 200px; margin-bottom: 0; }
-
-    label {
+    label, .label {
       display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 6px;
+      color: var(--ink);
+      margin-bottom: 7px;
     }
 
-    label .req { color: var(--accent); margin-left: 2px; }
+    .req { color: var(--error); margin-left: 2px; }
 
-    label .optional-tag {
+    .optional-tag {
       margin-left: 6px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-size: 0.68rem;
       color: var(--muted);
-      background: var(--panel-2);
-      border: 1px solid var(--border);
+      border: 1px solid var(--line);
       border-radius: 999px;
       padding: 1px 8px;
-      text-transform: uppercase;
     }
 
-    input[type="text"],
-    input[type="email"],
-    textarea,
-    select {
+    input[type="text"], input[type="email"], textarea, select {
       width: 100%;
-      padding: 13px 15px;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
+      padding: 13px 14px;
+      background: #fff;
+      border: 1px solid #8C867F;
+      border-radius: 2px;
+      color: var(--ink);
       font-family: inherit;
       font-size: 1rem;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
 
-    ::placeholder { color: #8a8f99; opacity: 1; }
+    ::placeholder { color: #767069; opacity: 1; }
 
-    select {
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23d6ff3f' stroke-width='2.5'><polyline points='6 9 12 15 18 9'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 40px;
-      cursor: pointer;
-    }
-
-    select option { background: var(--panel-2); color: var(--text); }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
+    input:focus, textarea:focus, select:focus {
       outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(214,255,63,0.15);
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(255,255,51,0.9), 0 0 0 4px var(--ink);
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
+    textarea { resize: vertical; min-height: 96px; }
 
-    /* ── Radio Cards ── */
-    .radio-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-    }
-
-    .radio-card {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .radio-card input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
+    /* radio cards */
+    .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+    .radio-card { position: relative; cursor: pointer; margin: 0; font-family: inherit; text-transform: none; letter-spacing: normal; }
+    .radio-card input { position: absolute; opacity: 0; pointer-events: none; }
 
     .radio-card .card-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       padding: 15px 12px;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 9px;
+      background: #fff;
+      border: 1.5px solid #948E85;
+      border-radius: 2px;
       text-align: center;
-      transition: all 0.15s ease;
-      min-height: 76px;
+      transition: all 0.12s ease;
+      min-height: 74px;
+      color: var(--ink);
     }
 
-    .radio-card .card-title {
-      font-family: 'Bebas Neue', sans-serif;
-      letter-spacing: 0.08em;
-      font-size: 1.2rem;
-      color: var(--text);
-    }
+    .radio-card .card-title { font-family: var(--display); font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0; }
+    .radio-card .card-sub { font-size: 0.82rem; color: var(--muted); }
+    .radio-card:hover .card-inner { border-color: var(--ink); }
+    .radio-card input:focus-visible + .card-inner { box-shadow: 0 0 0 3px var(--yellow), 0 0 0 4px var(--ink); }
+    .radio-card input:checked + .card-inner { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .radio-card input:checked + .card-inner .card-sub { color: var(--sand-3); }
+    .radio-card input:checked + .card-inner .card-title::after { content: ' ✓'; color: var(--yellow); }
 
-    .radio-card .card-sub {
-      font-size: 0.84rem;
-      color: var(--muted);
-    }
-
-    .radio-card:hover .card-inner {
-      border-color: #555;
-    }
-
-    .radio-card input:checked + .card-inner {
-      border-color: var(--accent);
-      background: rgba(214,255,63,0.08);
-      box-shadow: 0 0 0 1px var(--accent) inset;
-    }
-
-    .radio-card input:checked + .card-inner .card-title {
-      color: var(--accent);
-    }
-
-    /* ── Athlete shirt cards ── */
-    .athlete-card {
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px 16px;
-      margin-bottom: 18px;
-    }
-
-    .athlete-card:last-child { margin-bottom: 0; }
-
-    .athlete-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-
-    .athlete-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-    }
-
-    .athlete-you {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .shirt-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-      gap: 18px;
-      align-items: start;
-    }
-
-    @media (max-width: 640px) {
-      .shirt-grid { grid-template-columns: minmax(0, 1fr); }
-    }
-
-    /* mockup preview */
-    .mock-wrap {
+    /* weights reference */
+    .weights-ref {
       position: relative;
-      border-radius: 10px;
+      margin-top: 14px;
       overflow: hidden;
-      background: #f5f5f5;
-      border: 1px solid var(--border);
+      border: 1px solid var(--line);
+      background: #000;
+      cursor: zoom-in;
     }
 
-    .mock {
-      position: relative;
-      width: 100%;
-    }
+    .weights-ref img { display: block; width: 100%; height: auto; }
 
-    .mock img.base {
+    /* a bar under the chart (the chart's own title fills every corner) */
+    .zoom-hint {
       display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    /* while a newly picked garment's layers are still downloading */
-    .mock.loading { opacity: 0.5; transition: opacity 0.15s ease; }
-
-    .mock .ink {
-      position: absolute;
-      inset: 0;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      -webkit-mask-size: 100% 100%;
-      mask-size: 100% 100%;
-      pointer-events: none;
-    }
-
-    /* moving glint over metallic (chrome) logo colors — live preview only */
-    .mock .sheen {
-      position: absolute;
-      inset: 0;
-      display: none;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      -webkit-mask-size: 100% 100%;
-      mask-size: 100% 100%;
-      pointer-events: none;
-      background-image: linear-gradient(100deg,
-        rgba(255,255,255,0) 42%,
-        rgba(255,255,255,0.65) 50%,
-        rgba(255,255,255,0) 58%);
-      background-size: 240% 100%;
-      background-repeat: no-repeat;
-      animation: sheen-sweep 5.5s ease-in-out infinite;
-    }
-
-    .mock .sheen.on { display: block; }
-
-    @keyframes sheen-sweep {
-      0%   { background-position: 180% 0; }
-      45%  { background-position: -80% 0; }
-      100% { background-position: -80% 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .mock .sheen { animation: none; display: none !important; }
-    }
-
-    .mock-caption {
-      position: absolute;
-      left: 8px;
-      bottom: 8px;
-      background: rgba(0,0,0,0.78);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.07em;
+      background: var(--yellow);
+      color: var(--ink-0);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 5px 10px;
-      border-radius: 6px;
+      text-align: center;
+      padding: 7px 9px 6px;
       pointer-events: none;
     }
 
-    .shirt-controls .field { margin-bottom: 14px; }
+    .weights-ref-caption { font-size: 0.86rem; color: var(--muted); text-align: center; margin-top: 8px; }
 
-    .garment-group {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    /* color swatches */
-    .swatch-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
-
-    .swatch {
-      position: relative;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid rgba(255,255,255,0.18);
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
-    }
-
-    .swatch:hover { transform: scale(1.08); }
-
-    .swatch.sel {
-      box-shadow: 0 0 0 2px #0a0a0a, 0 0 0 4px var(--accent);
-      border-color: transparent;
-    }
-
-    .swatch .tick {
-      position: absolute;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 15px;
-    }
-
-    .swatch.sel .tick { display: flex; }
-
-    .swatch-name {
-      margin-top: 9px;
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    .swatch-name strong { color: var(--text); font-weight: 600; }
-
-    /* ── Heat slot picker ── */
-    .slot-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 9px;
-    }
+    /* heat picker */
+    .slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 7px; }
+    @media (min-width: 340px) and (max-width: 400px) { .slot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
     .slot {
-      padding: 12px 6px 10px;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 9px;
+      padding: 11px 6px 9px;
+      background: #fff;
+      border: 1.5px solid #948E85;
+      border-radius: 2px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.12s ease;
+      color: var(--ink);
+      user-select: none;
     }
 
-    .slot:hover:not(.full) { border-color: #555; }
-
-    .slot.sel {
-      border-color: var(--accent);
-      background: rgba(214,255,63,0.08);
-      box-shadow: 0 0 0 1px var(--accent) inset;
-    }
-
-    .slot.full {
-      opacity: 0.45;
-      cursor: not-allowed;
-      filter: grayscale(1);
-    }
-
-    .slot .t {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
-      letter-spacing: 0.06em;
-      color: var(--text);
-    }
-
-    .slot.sel .t { color: var(--accent); }
+    .slot:hover:not(.full):not(.locked) { border-color: var(--ink); }
+    .slot:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--yellow), 0 0 0 4px var(--ink); }
+    .slot .t { font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; }
 
     .slot .left {
       display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 500;
       color: var(--muted);
-      margin-top: 3px;
+      margin-top: 2px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
 
-    .slot .left.warn { color: #f3c34c; }
+    .slot .left.warn { color: var(--warn); }
+    .slot.sel { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .slot.sel .left { color: var(--yellow); }
 
+    .slot.full { cursor: not-allowed; background: #F1EFEB; color: #857E75; border-color: #D9D3C9; }
+    .slot.full .t { text-decoration: line-through; }
     .slot.full .left { color: var(--error); }
 
-    .slot-status {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 12px;
-      text-align: center;
+    .slot.locked {
+      cursor: not-allowed;
+      background: repeating-linear-gradient(135deg, #F4F2EE 0 6px, #ECE9E3 6px 12px);
+      color: #857E75;
+      border-style: dashed;
+      border-color: #B5AEA4;
     }
 
-    /* ── Payment cards ── */
+    .slot.locked .left { color: #6B645C; }
+
+    .slot-status { font-size: 0.9rem; color: var(--muted); margin-top: 12px; text-align: center; }
+    .slot-status strong { color: var(--ink); }
+
+    .pro-note {
+      display: none;
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      background: var(--yellow);
+      color: var(--ink-0);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .pro-note.show { display: block; }
+
+    /* ── Gear picker ── */
+    .athlete-card { border: 1px solid var(--line); padding: 18px 16px 20px; margin-top: 16px; background: #FCFBF9; }
+
+    .athlete-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .athlete-num { font-family: var(--display); font-weight: 900; font-size: 1.08rem; text-transform: uppercase; letter-spacing: -0.005em; }
+    .athlete-you { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .gear-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+
+    .gear-opt {
+      position: relative;
+      border: 1.5px solid #948E85;
+      background: #fff;
+      padding: 12px 12px 14px;
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.12s, box-shadow 0.12s, background 0.12s;
+      min-width: 0;
+    }
+
+    .gear-opt:hover { border-color: var(--ink); }
+    .gear-opt:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--yellow), 0 0 0 4px var(--ink); }
+    .gear-opt.sel { border-color: var(--ink); box-shadow: 0 0 0 1.5px var(--ink) inset; }
+
+    .gear-opt.sel::after {
+      content: '✓ SELECTED';
+      position: absolute;
+      top: -10px;
+      right: 8px;
+      background: var(--yellow);
+      color: var(--ink-0);
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.05em;
+      padding: 3px 6px 2px;
+      border-radius: 2px;
+    }
+
+    .gear-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-bottom: 10px; }
+    .gear-thumbs img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: #f4f3f0; }
+    .gear-thumbs.bands img { object-fit: contain; background: #fff; }
+    .gear-opt .nm { font-family: var(--display); font-weight: 900; font-size: 1.25rem; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.05; }
+    .gear-opt .sb { font-size: 0.84rem; color: var(--muted); margin-top: 3px; }
+
+    .gear-sub { margin-top: 14px; }
+    .gear-sub:empty { display: none; }
+
+    .gear-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+    @media (max-width: 680px) { .gear-layout { grid-template-columns: minmax(0, 1fr); } }
+
+    .gear-preview { position: relative; background: #fff; border: 1px solid var(--line); overflow: hidden; }
+    .gear-preview img { display: block; width: 100%; height: auto; transition: opacity 0.15s ease; }
+    .gear-preview img.loading { opacity: 0.35; }
+    .gear-preview .side { border-top: 1px solid var(--line); }
+    .gear-preview.empty { display: flex; align-items: center; justify-content: center; min-height: 180px; color: var(--muted); font-size: 0.9rem; padding: 20px; text-align: center; }
+
+    /* caption bar under the preview (never over the product) */
+    .gear-cap {
+      display: block;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 6px 9px 5px;
+    }
+
+    .pick-grid { display: grid; gap: 7px; }
+    .pick-grid.hb { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pick-grid.patch { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .pick-grid.color { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .pick {
+      position: relative;
+      border: 1.5px solid #948E85;
+      background: #fff;
+      cursor: pointer;
+      padding: 5px 5px 7px;
+      text-align: center;
+      transition: border-color 0.12s, box-shadow 0.12s;
+      min-width: 0;
+    }
+
+    .pick:hover { border-color: var(--ink); }
+    .pick:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--yellow), 0 0 0 4px var(--ink); }
+    .pick.sel { border-color: var(--ink); box-shadow: 0 0 0 1.5px var(--ink) inset; }
+    .gear-opt.sel:focus-visible, .pick.sel:focus-visible { box-shadow: inset 0 0 0 1.5px var(--ink), 0 0 0 3px var(--yellow), 0 0 0 4px var(--ink); }
+    .pick.sel .pnm::before { content: '✓ '; }
+    .pick.sel .pnm { background: var(--yellow); }
+    .pick img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: contain; background: #fff; }
+    .pick-grid.patch img { aspect-ratio: 1 / 1; object-fit: cover; }
+    .pick-grid.color img { aspect-ratio: 4 / 3; object-fit: cover; }
+    .pick .pnm { display: inline-block; margin-top: 5px; font-weight: 700; font-size: 0.8rem; line-height: 1.25; padding: 1px 4px; }
+    .pick .psb { display: block; font-size: 0.72rem; color: var(--muted); line-height: 1.3; }
+
+    .sub-label { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 2px 0 7px; display: flex; justify-content: space-between; gap: 8px; }
+    .sub-label small { color: var(--muted); font-size: 0.7rem; text-transform: none; letter-spacing: 0; font-family: 'Inter', sans-serif; }
+    .sub-block + .sub-block { margin-top: 14px; }
+    .one-size { font-size: 0.82rem; color: var(--muted); margin-top: 9px; }
+
+    .gear-next { width: 100%; margin-top: 16px; }
+    @media (max-width: 480px) { .gear-next { padding-left: 12px; padding-right: 12px; font-size: 0.88rem; letter-spacing: 0.02em; } }
+    .gear-next[hidden] { display: none; }
+
+    /* payment */
+    .bill-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      background: var(--ink);
+      color: #fff;
+      padding: 14px 18px;
+      margin-top: 12px;
+    }
+
+    .bill-line span:first-child { font-size: 0.95rem; }
+    .bill-line .amt { font-family: var(--display); font-weight: 900; font-size: 1.7rem; color: var(--yellow); letter-spacing: -0.02em; }
+
     .pay-note {
       margin-top: 12px;
-      padding: 14px 16px;
-      background: rgba(214,255,63,0.07);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      font-size: 0.95rem;
-      color: var(--text);
+      padding: 13px 15px;
+      background: #FBFAF7;
+      border-left: 4px solid var(--yellow);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 0.94rem;
       display: none;
     }
 
     .pay-note.show { display: block; }
 
-    .pay-note code {
-      background: #000;
-      padding: 1px 7px;
-      border-radius: 5px;
-      color: var(--accent);
-      font-size: 0.85em;
+    /* handles/emails never split; the payment memo (code.memo) may wrap */
+    code {
+      white-space: nowrap;
+      font-family: var(--mono);
+      background: var(--sand);
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-size: 0.88em;
     }
+    code.memo { white-space: normal; overflow-wrap: anywhere; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    .success-pay code { background: #fff; }
 
-    .bill-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 13px 17px;
-      margin-bottom: 14px;
-      font-size: 1rem;
-    }
-
-    .bill-line .amt {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-    }
-
-    /* ── Weights reference graphic ── */
-    .weights-ref {
-      position: relative;
-      margin-top: 14px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #000;
-      cursor: zoom-in;
-      transition: border-color 0.15s ease, transform 0.15s ease;
-    }
-
-    .weights-ref:hover {
-      border-color: var(--accent);
-    }
-
-    .weights-ref img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .zoom-hint {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(4px);
-      color: var(--accent);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 5px 9px;
-      border-radius: 6px;
-      pointer-events: none;
-      border: 1px solid rgba(214,255,63,0.3);
-    }
-
-    .zoom-hint svg {
-      width: 12px;
-      height: 12px;
-    }
-
-    .weights-ref-caption {
-      font-size: 0.88rem;
-      color: var(--muted);
-      text-align: center;
-      margin-top: 9px;
-      letter-spacing: 0.03em;
-    }
-
-    /* ── Lightbox ── */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(6px);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      overflow: auto;
-      cursor: zoom-out;
-      animation: lb-fade 0.18s ease;
-    }
-
-    .lightbox.show { display: flex; }
-
-    @keyframes lb-fade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    .lightbox-img {
-      max-width: 95vw;
-      max-height: 90vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-      cursor: default;
-    }
-
-    @media (max-width: 700px) {
-      .lightbox-img {
-        max-width: none;
-        width: 180vw;
-        max-height: none;
-      }
-    }
-
-    .lightbox-close {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      width: 44px;
-      height: 44px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      color: #fff;
-      font-size: 22px;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s, border-color 0.15s;
-      z-index: 1001;
-    }
-
-    .lightbox-close:hover {
-      background: rgba(214,255,63,0.2);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* ── Submit ── */
-    .submit-btn {
-      display: block;
-      width: 100%;
-      margin-top: 26px;
-      padding: 17px;
-      background: var(--accent);
-      color: #000;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      font-weight: 400;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.15s;
-      box-shadow: 0 4px 16px rgba(214,255,63,0.18);
-    }
-
-    .submit-btn:hover:not(:disabled) {
-      background: var(--accent-dark);
-      transform: translateY(-1px);
-    }
-
-    .submit-btn:disabled {
-      background: #444;
-      color: #888;
-      cursor: not-allowed;
-    }
+    .submit-btn { width: 100%; margin-top: 20px; padding: 19px; font-size: 1.05rem; }
+    .submit-btn:disabled { background: #8f8a84; color: #eee; cursor: not-allowed; transform: none; }
 
     .form-error {
       display: none;
       margin-top: 14px;
-      padding: 10px 14px;
-      background: rgba(248,113,113,0.1);
+      padding: 12px 14px;
+      background: #FDECEA;
       border: 1px solid var(--error);
-      border-radius: 8px;
       color: var(--error);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-align: center;
+      font-weight: 500;
     }
 
     .form-error.show { display: block; }
 
-    /* ── Success ── */
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 48px 24px;
-      background: var(--panel);
-      border: 1px solid var(--accent);
-      border-radius: 14px;
-    }
-
+    /* success */
+    .success-msg { display: none; background: #fff; border: 1px solid var(--ink); padding: 42px 26px 36px; text-align: center; }
     .success-msg.show { display: block; }
 
     .success-check {
       width: 64px;
       height: 64px;
-      margin: 0 auto 20px;
+      margin: 0 auto 18px;
+      background: var(--yellow);
+      border: 2px solid var(--ink);
       border-radius: 50%;
-      background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #000;
-      font-size: 32px;
-      font-weight: bold;
+      font-size: 30px;
+      font-weight: 800;
     }
 
-    .success-msg h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      letter-spacing: 0.06em;
-      color: #fff;
-      margin-bottom: 8px;
+    .success-msg h2 { font-family: var(--display); font-weight: 900; font-size: 2.6rem; letter-spacing: -0.03em; text-transform: uppercase; line-height: 1; margin-bottom: 10px; }
+    .success-msg > p { color: var(--muted); margin-bottom: 22px; }
+
+    .success-pay { background: var(--sand); border-left: 4px solid var(--yellow); padding: 18px 20px; margin: 0 auto 20px; max-width: 520px; text-align: left; }
+    .success-pay h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 6px; }
+    .success-pay p { margin-bottom: 6px; }
+
+    .success-details { background: #FBFAF7; border: 1px solid var(--line); padding: 16px 18px; margin: 0 auto 18px; max-width: 520px; text-align: left; font-size: 0.94rem; }
+    .success-details .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 14px; padding: 5px 0; align-items: center; }
+    .success-details .row + .row { border-top: 1px solid var(--line); }
+    .success-details .label-k { font-family: var(--mono); color: var(--muted); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.05em; white-space: nowrap; }
+    .success-details .val { text-align: right; margin-left: auto; }
+    @media (max-width: 400px) {
+      .success-msg { padding: 34px 16px 28px; }
+      .success-pay { padding: 16px; }
+      .success-pay .btn { padding-left: 16px; padding-right: 16px; }
+      .success-details { padding: 12px 14px; }
     }
+    /* programmatic focus target only — no ring around the headline */
+    #successMsg h2:focus { outline: none; }
+    .success-details .gear-row { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
+    .success-details .gear-row img { width: 64px; height: 44px; object-fit: contain; background: #fff; border: 1px solid var(--line); flex-shrink: 0; }
 
-    .success-msg > p {
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
+    .dup-note { display: none; max-width: 520px; margin: 0 auto 18px; padding: 12px 14px; background: var(--yellow); font-size: 0.92rem; text-align: left; }
+    .dup-note.show { display: block; }
 
-    .success-details {
-      background: var(--panel-2);
-      border-radius: 8px;
-      padding: 18px;
-      margin: 0 auto 20px;
-      max-width: 460px;
-      text-align: left;
-      font-size: 0.95rem;
-    }
+    .success-sponsors { margin: 22px auto 22px; padding-top: 18px; border-top: 1px solid var(--line); max-width: 520px; }
+    .success-sponsors .mono { color: var(--muted); display: block; margin-bottom: 10px; }
+    .success-sponsors .logos { display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap; }
+    .success-sponsors img { height: 24px; width: auto; }
 
-    .success-details .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 4px 0;
-    }
-
-    .success-details .row .label-k {
-      color: var(--muted);
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-    }
-
-    .success-details .row .val { text-align: right; }
-
-    .success-pay {
-      background: rgba(214,255,63,0.07);
-      border: 1px solid var(--accent-dark);
-      border-radius: 10px;
-      padding: 20px;
-      margin: 0 auto 24px;
-      max-width: 460px;
-      text-align: left;
-      font-size: 0.98rem;
-    }
-
-    .success-pay h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      letter-spacing: 0.08em;
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .success-pay code {
-      background: #000;
-      padding: 1px 7px;
-      border-radius: 5px;
-      color: var(--accent);
-      font-size: 0.85em;
-    }
-
-    .pay-btn {
-      display: inline-block;
-      margin-top: 12px;
-      background: var(--accent);
-      color: #000;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.05rem;
-      letter-spacing: 0.1em;
-      padding: 10px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-    }
-
-    .pay-btn:hover { background: var(--accent-dark); }
-
-    .submit-another-btn {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 10px 24px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-    }
-
-    .submit-another-btn:hover {
-      background: rgba(214,255,63,0.1);
-    }
+    .submit-another-btn { background: transparent; border: 1.5px solid var(--ink); color: var(--ink); padding: 11px 24px; border-radius: 2px; font-size: 0.9rem; cursor: pointer; font-family: inherit; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+    .submit-another-btn:hover { background: var(--ink); color: #fff; }
 
     /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 26px 20px 42px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      border-top: 1px solid var(--border);
-    }
+    footer { background: var(--ink-0); color: var(--sand-3); padding: 44px 0 50px; font-size: 0.92rem; }
+    .foot-grid { display: flex; justify-content: space-between; gap: 26px; flex-wrap: wrap; align-items: flex-end; }
+    footer .mono { color: var(--muted-dark); display: block; margin-bottom: 12px; }
+    .foot-logos { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .foot-logos a { display: block; padding: 10px 0; margin: -10px 0; }
+    .foot-logos img { height: 26px; width: auto; display: block; }
+    footer a { color: var(--yellow); }
 
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    /* ── Loading ── */
-    .loading {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      gap: 16px;
-    }
-
+    /* loading overlay */
+    .loading { display: none; position: fixed; inset: 0; background: rgba(26,24,24,0.9); z-index: 100; justify-content: center; align-items: center; flex-direction: column; gap: 16px; color: #fff; }
     .loading.active { display: flex; }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
+    .spinner { width: 42px; height: 42px; border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--yellow); border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Mobile ── */
+    /* lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(14,12,12,0.94); z-index: 1000; display: none; align-items: flex-start; justify-content: flex-start; padding: 24px; overflow: auto; cursor: zoom-out; }
+    .lightbox.show { display: flex; }
+    /* auto margins centre the chart when it fits and let it scroll from its left edge when it doesn't */
+    .lightbox-img { margin: auto; max-width: min(95vw, 100%); max-height: 90vh; object-fit: contain; cursor: default; }
+    @media (max-width: 700px) { .lightbox-img { max-width: none; width: 160vw; max-height: none; } }
+    .lightbox-close { position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; background: var(--yellow); border: none; border-radius: 2px; color: var(--ink-0); font-size: 24px; line-height: 1; cursor: pointer; z-index: 1001; }
+
     @media (max-width: 480px) {
-      .hero { padding: 48px 16px 40px; }
-      .container { padding: 28px 14px 48px; }
-      form { padding: 22px 18px; }
-      .event-meta { gap: 10px 18px; }
-      .swatch { width: 36px; height: 36px; }
+      .signup { padding: 48px 0 60px; }
+      .container, .signup-head { padding: 0 16px; }
+      .info-card { padding: 4px 16px; }
+      .athlete-card { padding: 14px 12px 16px; }
+      .gear-opts { gap: 8px; }
+      .gear-opt { padding: 10px 8px 12px; }
+      .gear-opt .nm { font-size: 1.05rem; }
+      .gear-opt.sel::after { top: -9px; right: 6px; font-size: 0.58rem; }
+      .gear-thumbs { grid-template-columns: minmax(0, 1fr); }
+      .gear-thumbs img:not(:first-child) { display: none; }
+      .gear-thumbs img { aspect-ratio: 4 / 3; }
+      .gear-thumbs.bands img { aspect-ratio: 2 / 1; object-fit: cover; }
+      .pick-grid.hb { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══ SHIRT-TIMING NOTICE ═══ -->
-  <div class="notice-banner" role="note" aria-label="Shirt delivery notice">
-    <div class="notice-inner">
-      <svg class="notice-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <div>
-        <span class="notice-head">Sign-ups are still open!</span>
-        <span class="notice-body">Heads up: we can't guarantee your shirt will be here by Sunday. If it isn't, <strong>no problem — you can pick up your shirt at the gym after the event.</strong></span>
+  <!-- ═══ TOP BAR ═══ -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Koda CrossFit Iron View">
+        <img src="assets/koda-mark.png" alt="">
+        <span>Koda CrossFit Iron View</span>
+      </a>
+      <div class="presented">
+        <span class="mono">Presented by</span>
+        <a href="https://centr.com/" target="_blank" rel="noopener" aria-label="Centr Equipment (opens in a new tab)"><img src="assets/sponsors/centr-logo-white.svg" alt="Centr"></a>
+        <span class="sep" aria-hidden="true"></span>
+        <a href="https://www.shopboxbasics.com/" target="_blank" rel="noopener" aria-label="Box Basics (opens in a new tab)"><img src="assets/sponsors/boxbasics-logo-white.png" alt="Box Basics"></a>
+        <a class="cta-mini" href="#signup">Sign up →</a>
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- ═══ HERO ═══ -->
-  <section class="hero">
-    <img class="koda-mark" src="assets/koda-mark.png" alt="Koda">
-    <span class="eyebrow">KODA CROSSFIT IRON VIEW</span>
-    <h1 class="hero-title">HYROX <span class="accent">SIMULATION</span></h1>
-    <div class="price-badge"><span class="dot"></span>$25 — SHIRT INCLUDED<span class="dot"></span></div>
-    <p class="hero-sub">Race-day conditions, real format. <span class="shirt-text">Every entry includes a custom event shirt</span> — pick your logo color when you sign up.</p>
+  <section class="hero" id="top">
+    <div class="hero-bgword" aria-hidden="true">HYROX</div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow mono">Koda CrossFit Iron View · Louisville,&nbsp;CO</span>
+          <h1 class="hero-title">Hyrox<br><span class="hl">Simulation</span></h1>
+          <div class="hero-presented">
+            <span class="mono">Presented by</span>
+            <a href="https://centr.com/" target="_blank" rel="noopener" aria-label="Centr Equipment (opens in a new tab)"><img src="assets/sponsors/centr-logo-white.svg" alt="Centr"></a>
+            <span class="x" aria-hidden="true">×</span>
+            <a href="https://www.shopboxbasics.com/" target="_blank" rel="noopener" aria-label="Box Basics (opens in a new tab)"><img src="assets/sponsors/boxbasics-logo-white.png" alt="Box Basics"></a>
+          </div>
+          <p class="hero-date">Sunday, October 25</p>
+          <p class="hero-sub">Race the full HYROX format — 8 km of running and all 8 stations — on race-day loads. <strong>$25 entry, and every athlete takes home a custom Koda HYROX headband or trucker hat.</strong></p>
+          <div class="hero-actions">
+            <a class="btn btn-yellow" href="#signup">Pick your heat <span class="arr">→</span></a>
+          </div>
+          <div class="hero-facts">
+            <div class="fact"><span class="mono">Heats</span><strong id="heroHeats">Every 10 min · 9:00–11:50 AM</strong></div>
+            <div class="fact"><span class="mono">Entry</span><strong>$25 · gear included</strong></div>
+            <div class="fact"><span class="mono">Where</span><strong>740 S Pierce Ave, Louisville</strong></div>
+          </div>
+        </div>
+        <div class="collage" aria-hidden="true">
+          <div class="card hat"><img src="assets/gear/hat-sunset-moss.jpg" alt=""></div>
+          <div class="card band"><img src="assets/gear/headband-camo-front.jpg" alt=""></div>
+          <div class="card band2"><img src="assets/gear/headband-black-blue-front.jpg" alt=""></div>
+          <div class="tag">Your pick<strong>Headband or hat</strong></div>
+        </div>
+      </div>
 
-    <div class="event-meta">
-      <div class="meta-item">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Sunday, September 13, 2026
-      </div>
-      <div class="meta-item">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span id="heroHeats">Heats every 10 min &middot; 9:00 – 11:50 AM</span>
-      </div>
-      <div class="meta-item">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        740 S Pierce Ave, Louisville, CO
+      <div class="presented-strip">
+        <span class="mono">Presented by our event partners</span>
+        <div class="strip-logos">
+          <a href="https://centr.com/" target="_blank" rel="noopener" aria-label="Centr Equipment (opens in a new tab)"><img src="assets/sponsors/centr-logo-white.svg" alt="Centr"></a>
+          <span class="x" aria-hidden="true">×</span>
+          <a href="https://www.shopboxbasics.com/" target="_blank" rel="noopener" aria-label="Box Basics (opens in a new tab)"><img src="assets/sponsors/boxbasics-logo-white.png" alt="Box Basics"></a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ FORM ═══ -->
-  <main class="container">
-    <div class="info-card" id="infoCard">
-      <div class="info-row">
-        <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <div><strong>$25 per athlete — event shirt included.</strong> <span>Pick your shirt style and logo color when you sign up.</span></div>
-      </div>
-      <div class="info-row">
-        <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <div><strong>Singles, Doubles, or 4-person Relay.</strong> <span>On a team, every athlete pays $25 and every athlete gets a shirt.</span></div>
-      </div>
-      <div class="info-row">
-        <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <div><strong>You choose your heat time.</strong> <span id="infoHeats">Heats go off every 10 minutes, 9:00–11:50 AM — live availability as you book.</span></div>
+  <!-- ═══ SPONSORS ═══ -->
+  <section class="sponsors" id="sponsors">
+    <div class="wrap">
+      <span class="mono">Official event partners</span>
+      <h2>Thank you to our sponsors</h2>
+      <div class="sponsor-grid">
+        <div class="sponsor-card">
+          <h3 class="logo"><a href="https://centr.com/" target="_blank" rel="noopener" aria-label="Centr Equipment (opens in a new tab)"><img src="assets/sponsors/centr-logo-white.svg" alt="Centr"></a></h3>
+          <span class="mono role">Presenting sponsor · Centr Equipment</span>
+          <p>Official HYROX competition equipment — sleds, sandbags, wall balls and more, built so you can train like you race.</p>
+          <a class="pill-link" href="https://centr.com/" target="_blank" rel="noopener">Shop Centr <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="sponsor-card">
+          <h3 class="logo"><a href="https://www.shopboxbasics.com/" target="_blank" rel="noopener" aria-label="Box Basics (opens in a new tab)"><img src="assets/sponsors/boxbasics-logo-white.png" alt="Box Basics"></a></h3>
+          <span class="mono role">Presenting sponsor · Box Basics</span>
+          <p>Training shoes, apparel and gear for your box — everything you need to show up ready on race day.</p>
+          <a class="pill-link" href="https://www.shopboxbasics.com/" target="_blank" rel="noopener">Shop Box Basics <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="progress-wrap" id="progressWrap" aria-hidden="true">
-      <span class="progress-label" id="progressLabel"></span>
-      <div class="progress-track" id="progressTrack"></div>
+  <!-- ═══ SIGN UP ═══ -->
+  <section class="signup" id="signup">
+    <div class="signup-head">
+      <span class="mono">Registration · Sunday, Oct 25</span>
+      <h2>Lock in <span class="hl">your heat</span></h2>
     </div>
 
-    <form id="signupForm" novalidate>
-
-      <div class="acc open" data-sec="info">
-      <button type="button" class="acc-head" data-sec="info"><span class="acc-check">✓</span><span class="acc-title">1) Athlete Info</span><span class="acc-sum" id="sum-info"></span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-
-      <div class="field-row">
-        <div class="field">
-          <label for="firstName">First Name <span class="req">*</span></label>
-          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+    <main class="container">
+      <div class="info-card" id="infoCard">
+        <div class="info-row">
+          <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div><strong>$25 per athlete — headband or hat included.</strong> <span>Pick a custom Koda HYROX headband or a patch trucker hat when you sign up.</span></div>
         </div>
-        <div class="field">
-          <label for="lastName">Last Name <span class="req">*</span></label>
-          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+        <div class="info-row">
+          <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div><strong>Singles, Doubles, or 4-person Relay.</strong> <span>On a team, every athlete pays $25 and every athlete picks their own gear.</span></div>
         </div>
-      </div>
-
-      <div class="field">
-        <label for="email">Email <span class="req">*</span></label>
-        <input type="email" id="email" name="email" required autocomplete="email">
-      </div>
-
-      </div></div>
-
-      <div class="acc" data-sec="division">
-      <button type="button" class="acc-head" data-sec="division"><span class="acc-check">✓</span><span class="acc-title">2) Division &amp; Category</span><span class="acc-sum" id="sum-division"></span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-      <div class="field">
-        <div class="radio-group" role="radiogroup" aria-label="Division">
-          <label class="radio-card">
-            <input type="radio" name="division" value="Singles" required>
-            <div class="card-inner">
-              <span class="card-title">SINGLES</span>
-              <span class="card-sub">Solo athlete</span>
-            </div>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="division" value="Doubles" required>
-            <div class="card-inner">
-              <span class="card-title">DOUBLES</span>
-              <span class="card-sub">2-person team &middot; $25 each</span>
-            </div>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="division" value="Team of 4 Relay" required>
-            <div class="card-inner">
-              <span class="card-title">TEAM RELAY</span>
-              <span class="card-sub">4-person relay &middot; $25 each</span>
-            </div>
-          </label>
-        </div>
-      </div>
-      <div class="field">
-        <label>Category <span class="req">*</span></label>
-        <div class="radio-group" role="radiogroup" aria-label="Category" id="sexGroup">
-          <label class="radio-card">
-            <input type="radio" name="sex" value="Men's" required>
-            <div class="card-inner">
-              <span class="card-title">MEN'S</span>
-            </div>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="sex" value="Women's" required>
-            <div class="card-inner">
-              <span class="card-title">WOMEN'S</span>
-            </div>
-          </label>
-          <label class="radio-card" id="mixedCard">
-            <input type="radio" name="sex" value="Mixed" required>
-            <div class="card-inner">
-              <span class="card-title">MIXED</span>
-              <span class="card-sub">Doubles &amp; relay only</span>
-            </div>
-          </label>
+        <div class="info-row">
+          <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><strong>You choose your heat time.</strong> <span id="infoHeats">Heats go off every 10 minutes, 9:00–11:50 AM — live availability as you book.</span></div>
         </div>
       </div>
 
-      </div></div>
-
-      <div class="acc" data-sec="weights">
-      <button type="button" class="acc-head" data-sec="weights"><span class="acc-check">✓</span><span class="acc-title">3) Weight Category</span><span class="acc-sum" id="sum-weights"></span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-      <div class="field">
-        <div class="radio-group" role="radiogroup" aria-label="Weight Category">
-          <label class="radio-card">
-            <input type="radio" name="weights" value="Pro" required>
-            <div class="card-inner">
-              <span class="card-title">PRO</span>
-              <span class="card-sub">RX weights</span>
-            </div>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="weights" value="Open" required>
-            <div class="card-inner">
-              <span class="card-title">OPEN</span>
-              <span class="card-sub">Standard</span>
-            </div>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="weights" value="Scaled" required>
-            <div class="card-inner">
-              <span class="card-title">SCALED</span>
-              <span class="card-sub">Modified loads</span>
-            </div>
-          </label>
+      <div class="gear-teaser" aria-hidden="true">
+        <div class="teaser">
+          <div class="teaser-imgs bands">
+            <img src="assets/gear/headband-camo-front.jpg" alt="" loading="lazy">
+            <img src="assets/gear/headband-black-pink-front.jpg" alt="" loading="lazy">
+            <img src="assets/gear/headband-mint-front.jpg" alt="" loading="lazy">
+          </div>
+          <div class="t">Headband</div>
+          <div class="s">6 designs · one size</div>
         </div>
-        <figure class="weights-ref" id="weightsRef" tabindex="0" role="button" aria-label="Open weights reference at full size">
-          <img src="assets/hyrox-sim-weights.jpeg" alt="Hyrox Sim weight options for Scaled, Open, and Pro divisions across Sled Push, Sled Pull, Farmers Carry, Sandbag Lunges, and Wall Balls" loading="lazy">
-          <span class="zoom-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            Tap to enlarge
-          </span>
-        </figure>
-        <p class="weights-ref-caption">Reference: weights for each station by division</p>
-      </div>
-
-      </div></div>
-
-      <div class="acc" data-sec="heat">
-      <button type="button" class="acc-head" data-sec="heat"><span class="acc-check">✓</span><span class="acc-title">4) Pick Your Heat</span><span class="acc-sum" id="sum-heat"></span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-      <p class="section-hint">Heats go off every 10 minutes, and each heat has <strong style="color:var(--text)">8 lanes split by division</strong> — your whole crew (single, pair, or relay team) races in one lane. Availability below is for <em>your</em> division. Racing with friends in other crews? Pick the same heat time.</p>
-      <div class="field">
-        <div class="slot-grid" id="slotGrid" role="radiogroup" aria-label="Heat time"></div>
-        <p class="slot-status" id="slotStatus">Checking heat availability…</p>
-      </div>
-
-      </div></div>
-
-      <div class="acc" data-sec="shirts">
-      <button type="button" class="acc-head" data-sec="shirts"><span class="acc-check">✓</span><span class="acc-title">5) Your Shirts</span><span class="acc-sum" id="sum-shirts"></span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-      <p class="section-hint" id="shirtHint">Every athlete gets the event shirt — black tee or black crop, your choice of logo color. The preview updates live.</p>
-      <div id="athleteCards"><!-- built by JS --></div>
-      </div></div>
-
-      <div class="acc" data-sec="gym">
-      <button type="button" class="acc-head" data-sec="gym"><span class="acc-check">✓</span><span class="acc-title">6) Home Gym</span><span class="acc-sum" id="sum-gym"></span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-      <div class="field">
-        <label for="homeGym">What gym do you train at? <span class="req">*</span></label>
-        <input type="text" id="homeGym" name="homeGym" required autocomplete="organization" placeholder="e.g. Koda CrossFit Iron View">
-      </div>
-      </div></div>
-
-      <div class="acc" data-sec="payment">
-      <button type="button" class="acc-head" data-sec="payment"><span class="acc-check">✓</span><span class="acc-title">7) Payment</span><span class="acc-sum" id="sum-payment"></span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-      <div class="bill-line">
-        <span id="billText">1 athlete × $25</span>
-        <span class="amt" id="billAmt">$25</span>
-      </div>
-      <div class="field">
-        <div class="radio-group" role="radiogroup" aria-label="Payment method">
-          <label class="radio-card">
-            <input type="radio" name="payment" value="Venmo" required>
-            <div class="card-inner">
-              <span class="card-title">VENMO</span>
-              <span class="card-sub">@kevin-schuetz-5</span>
-            </div>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="payment" value="Zelle" required>
-            <div class="card-inner">
-              <span class="card-title">ZELLE</span>
-              <span class="card-sub">kodaironview@gmail.com</span>
-            </div>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="payment" value="Credit Card" required>
-            <div class="card-inner">
-              <span class="card-title">CREDIT CARD</span>
-              <span class="card-sub">Secure online checkout</span>
-            </div>
-          </label>
+        <div class="teaser">
+          <div class="teaser-imgs">
+            <img src="assets/gear/hat-script-black.jpg" alt="" loading="lazy">
+            <img src="assets/gear/hat-sunset-columbia.jpg" alt="" loading="lazy">
+            <img src="assets/gear/hat-mountain-graphite.jpg" alt="" loading="lazy">
+          </div>
+          <div class="t">Trucker hat</div>
+          <div class="s">3 patches × 4 hat colors</div>
         </div>
-        <div class="pay-note" id="payNote"></div>
       </div>
 
-      </div></div>
-
-      <div class="acc" data-sec="extra">
-      <button type="button" class="acc-head" data-sec="extra"><span class="acc-check">✓</span><span class="acc-title">Anything Else?</span><span class="acc-sum" id="sum-extra">optional</span><span class="acc-chev">▼</span></button>
-      <div class="acc-body">
-      <div class="field">
-        <label for="comments">Comments or Questions</label>
-        <textarea id="comments" name="comments" placeholder="Optional — let us know if you have any questions or special requests."></textarea>
+      <div class="progress-wrap" id="progressWrap" aria-hidden="true">
+        <span class="progress-label" id="progressLabel"></span>
+        <div class="progress-track" id="progressTrack"></div>
       </div>
-      </div></div>
 
-      <button type="submit" class="submit-btn" id="submitBtn">SIGN ME UP</button>
-      <div class="form-error" id="formError"></div>
-    </form>
+      <form id="signupForm" novalidate>
 
-    <div class="success-msg" id="successMsg">
-      <div class="success-check">✓</div>
-      <h2>YOU'RE IN!</h2>
-      <p id="successLead">Your signup is locked in. One last step — payment.</p>
-      <div class="success-pay" id="successPay"></div>
-      <div class="success-details" id="successDetails"></div>
-      <p style="color:var(--muted);font-size:0.88rem;margin-bottom:24px;" id="successFoot">A confirmation with your heat time and shirt order is on its way to your inbox.</p>
-      <button class="submit-another-btn" onclick="resetForm()">Submit another signup</button>
-    </div>
-  </main>
+        <div class="acc open" data-sec="info">
+          <button type="button" class="acc-head" data-sec="info"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">01</span> Athlete info</span><span class="acc-sum" id="sum-info"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <div class="field-row">
+              <div class="field">
+                <label for="firstName">First name <span class="req">*</span></label>
+                <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+              </div>
+              <div class="field">
+                <label for="lastName">Last name <span class="req">*</span></label>
+                <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+          </div>
+        </div>
+
+        <div class="acc" data-sec="division">
+          <button type="button" class="acc-head" data-sec="division"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">02</span> Division &amp; category</span><span class="acc-sum" id="sum-division"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <div class="field">
+              <span class="label">Division <span class="req">*</span></span>
+              <div class="radio-group" role="radiogroup" aria-label="Division">
+                <label class="radio-card"><input type="radio" name="division" value="Singles" required><div class="card-inner"><span class="card-title">Singles</span><span class="card-sub">Solo athlete</span></div></label>
+                <label class="radio-card"><input type="radio" name="division" value="Doubles" required><div class="card-inner"><span class="card-title">Doubles</span><span class="card-sub">2-person team · $25 each</span></div></label>
+                <label class="radio-card"><input type="radio" name="division" value="Team of 4 Relay" required><div class="card-inner"><span class="card-title">Team relay</span><span class="card-sub">4-person relay · $25 each</span></div></label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Category <span class="req">*</span></span>
+              <div class="radio-group" role="radiogroup" aria-label="Category" id="sexGroup">
+                <label class="radio-card"><input type="radio" name="sex" value="Men's" required><div class="card-inner"><span class="card-title">Men's</span></div></label>
+                <label class="radio-card"><input type="radio" name="sex" value="Women's" required><div class="card-inner"><span class="card-title">Women's</span></div></label>
+                <label class="radio-card" id="mixedCard"><input type="radio" name="sex" value="Mixed" required><div class="card-inner"><span class="card-title">Mixed</span><span class="card-sub">Doubles &amp; relay only</span></div></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc" data-sec="weights">
+          <button type="button" class="acc-head" data-sec="weights"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">03</span> Weight category</span><span class="acc-sum" id="sum-weights"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <div class="field">
+              <div class="radio-group" role="radiogroup" aria-label="Weight category">
+                <label class="radio-card"><input type="radio" name="weights" value="Pro" required><div class="card-inner"><span class="card-title">Pro</span><span class="card-sub">RX weights</span></div></label>
+                <label class="radio-card"><input type="radio" name="weights" value="Open" required><div class="card-inner"><span class="card-title">Open</span><span class="card-sub">Standard</span></div></label>
+                <label class="radio-card"><input type="radio" name="weights" value="Scaled" required><div class="card-inner"><span class="card-title">Scaled</span><span class="card-sub">Modified loads</span></div></label>
+              </div>
+              <figure class="weights-ref" id="weightsRef" tabindex="0" role="button" aria-label="Open the weights reference at full size">
+                <img src="assets/hyrox-sim-weights-oct25.jpg" alt="Hyrox Sim weight options for Scaled, Open, and Pro divisions (men and women) across Sled Push, Sled Pull, Farmers Carry, Sandbag Lunges, and Wall Balls" loading="lazy">
+                <span class="zoom-hint">Tap to enlarge</span>
+              </figure>
+              <p class="weights-ref-caption">Reference: weights for each station by division</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc" data-sec="heat">
+          <button type="button" class="acc-head" data-sec="heat"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">04</span> Pick your heat</span><span class="acc-sum" id="sum-heat"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <p class="section-hint">Heats go off every 10 minutes, and each heat has <strong>8 lanes split by division</strong> — your whole crew (single, pair, or relay team) races in one lane. Availability below is for <em>your</em> division. Racing with friends in other crews? Pick the same heat time.</p>
+            <p class="pro-note" id="proNote"><strong>Men's Pro races every other heat — every 20 minutes.</strong> That keeps the Pro lanes spread out; once these fill up, the in-between heats open automatically.</p>
+            <div class="slot-grid" id="slotGrid" role="radiogroup" aria-label="Heat time"></div>
+            <p class="slot-status" id="slotStatus">Checking heat availability…</p>
+          </div>
+        </div>
+
+        <div class="acc" data-sec="gear">
+          <button type="button" class="acc-head" data-sec="gear"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">05</span> Headband or hat</span><span class="acc-sum" id="sum-gear"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <p class="section-hint" id="gearHint">Every athlete picks one: a custom Koda HYROX headband <em>or</em> a patch trucker hat. Tap one to see the options — the preview updates as you choose.</p>
+            <div id="athleteCards"><!-- built by JS --></div>
+            <button type="button" class="btn btn-dark gear-next" id="gearNext" hidden>Looks good — next step <span class="arr">→</span></button>
+          </div>
+        </div>
+
+        <div class="acc" data-sec="gym">
+          <button type="button" class="acc-head" data-sec="gym"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">06</span> Home gym</span><span class="acc-sum" id="sum-gym"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <div class="field">
+              <label for="homeGym">What gym do you train at? <span class="req">*</span></label>
+              <input type="text" id="homeGym" name="homeGym" required autocomplete="organization" placeholder="e.g. Koda CrossFit Iron View">
+            </div>
+          </div>
+        </div>
+
+        <div class="acc" data-sec="payment">
+          <button type="button" class="acc-head" data-sec="payment"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">07</span> Payment</span><span class="acc-sum" id="sum-payment"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <div class="bill-line"><span id="billText">1 athlete × $25</span><span class="amt" id="billAmt">$25</span></div>
+            <div class="field">
+              <div class="radio-group" role="radiogroup" aria-label="Payment method">
+                <label class="radio-card"><input type="radio" name="payment" value="Venmo" required><div class="card-inner"><span class="card-title">Venmo</span><span class="card-sub">@kevin-schuetz-5</span></div></label>
+                <label class="radio-card"><input type="radio" name="payment" value="Zelle" required><div class="card-inner"><span class="card-title">Zelle</span><span class="card-sub">kodaironview@gmail.com</span></div></label>
+                <label class="radio-card"><input type="radio" name="payment" value="Credit Card" required><div class="card-inner"><span class="card-title">Credit card</span><span class="card-sub">Secure online checkout</span></div></label>
+              </div>
+              <div class="pay-note" id="payNote"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc" data-sec="extra">
+          <button type="button" class="acc-head" data-sec="extra"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title">Anything else?</span><span class="acc-sum" id="sum-extra">optional</span><span class="acc-chev" aria-hidden="true">▼</span></button>
+          <div class="acc-body">
+            <div class="field">
+              <label for="comments">Comments or questions</label>
+              <textarea id="comments" name="comments" placeholder="Optional — let us know if you have any questions or special requests."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark submit-btn" id="submitBtn">Sign me up <span class="arr">→</span></button>
+        <div class="form-error" id="formError" role="alert"></div>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <div class="success-check">✓</div>
+        <h2>You're in!</h2>
+        <p id="successLead" role="status">Your heat is locked in. One last step — payment.</p>
+        <div class="dup-note" id="dupNote"></div>
+        <div class="success-pay" id="successPay"></div>
+        <div class="success-details" id="successDetails"></div>
+        <p style="color:var(--muted);font-size:0.88rem;" id="successFoot">A confirmation with your heat time and gear pick is on its way to your inbox.</p>
+        <div class="success-sponsors">
+          <span class="mono">Presented by</span>
+          <div class="logos">
+            <a href="https://centr.com/" target="_blank" rel="noopener" aria-label="Centr Equipment (opens in a new tab)"><img src="assets/sponsors/centr-logo-black.svg" alt="Centr"></a>
+            <a href="https://www.shopboxbasics.com/" target="_blank" rel="noopener" aria-label="Box Basics (opens in a new tab)"><img src="assets/sponsors/boxbasics-logo.png" alt="Box Basics"></a>
+          </div>
+        </div>
+        <button class="submit-another-btn" type="button" onclick="resetForm()">Submit another signup</button>
+      </div>
+    </main>
+  </section>
 
   <footer>
-    Koda CrossFit Iron View &middot; 740 S Pierce Ave, Louisville, CO 80027<br>
-    Questions? Email <a href="mailto:kevschuetz3@gmail.com">kevschuetz3@gmail.com</a>
+    <div class="wrap foot-grid">
+      <div>
+        <span class="mono">Presented by</span>
+        <div class="foot-logos">
+          <a href="https://centr.com/" target="_blank" rel="noopener" aria-label="Centr Equipment (opens in a new tab)"><img src="assets/sponsors/centr-logo-white.svg" alt="Centr"></a>
+          <a href="https://www.shopboxbasics.com/" target="_blank" rel="noopener" aria-label="Box Basics (opens in a new tab)"><img src="assets/sponsors/boxbasics-logo-white.png" alt="Box Basics"></a>
+        </div>
+      </div>
+      <div>
+        Koda CrossFit Iron View · 740 S Pierce Ave, Louisville, CO 80027<br>
+        Questions? Email <a href="mailto:kevschuetz3@gmail.com">kevschuetz3@gmail.com</a>
+      </div>
+    </div>
   </footer>
 
   <div class="loading" id="loadingOverlay">
@@ -1413,8 +1340,7 @@
     <div id="loadingText">Submitting...</div>
   </div>
 
-  <!-- ═══ LIGHTBOX ═══ -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" tabindex="-1">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="">
   </div>
@@ -1424,40 +1350,61 @@
     // CONFIGURATION
     // ══════════════════════════════════════════════════
     var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwWjHrhE6k3vVPDXD4qi3VLxZVAXMykAFIKocoUiq0BtXdv2XLy7Oo0GRfrP48fHytnyw/exec";
+    var EVENT_TYPE = 'sim1025';
+    var EVENT_SHORT = 'Hyrox Sim 10/25';
     var PRICE = 25;
     var VENMO_USERNAME = 'kevin-schuetz-5';
     var ZELLE_EMAIL = 'kodaironview@gmail.com';
     var ZEN_PLANNER_CHECKOUT_URL = 'https://kodaironview.sites.zenplanner.com/retail-product.cfm?ProductId=5F4A8380-AC28-409B-A664-E088BB910ED0';
 
+    // Preview mode (index.html#test or ?preview=1): decided ONCE at load so an
+    // in-page anchor link can't silently flip a test into a real signup.
+    var PREVIEW = location.hash === '#test' || /[?&]preview=1(&|$)/.test(location.search);
+    if (PREVIEW) {
+      var pb = document.createElement('div');
+      pb.className = 'preview-banner';
+      pb.textContent = 'Preview mode — nothing is saved';
+      document.body.appendChild(pb);
+    }
+
     // Heats every 10 min, 9:00–11:50 AM. 8 lanes per heat, typed by weight
     // setup: 1 Men's Pro lane, 3 lanes for Men's Open / Women's Pro / Mixed,
     // 3 lanes for Women's Open, 1 Scaled lane. One lane per crew.
     var SLOTS = ['9:00','9:10','9:20','9:30','9:40','9:50','10:00','10:10','10:20','10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50'];
+    var BASE_SLOTS = SLOTS.slice();
+    var GROUP_CAPS = { 'Red': 1, 'Green': 3, 'Blue': 3, 'Scaled': 1 };
 
-    // The backend may publish extra heats (e.g. the 12:00 auto-heat once
-    // Women's Open sells out) — anything in the slots response that isn't in
-    // the base list gets appended in time order, and noon is labeled as noon.
+    // Men's Pro (Red lane) only opens every other heat — 9:00, 9:20, 9:40 …
+    // — so the Pro athletes are spread 20 minutes apart. The backend opens
+    // the in-between heats once all of those fill (latched), and its
+    // per-slot caps are the source of truth; this is the offline fallback.
+    function slotMinutes(s) { var p = s.split(':'); return +p[0] * 60 + +p[1]; }
+    function proOnPattern(s) { var m = slotMinutes(s) - 540; return m >= 0 && m % 20 === 0; }
+    var proAllOpen = false;
+
     function heatLabel(h) {
       if (h === '12:00') return '12:00 noon';
       return (+h.split(':')[0] >= 12) ? h + ' PM' : h + ' AM';
     }
     function hasOverflow() { return SLOTS.some(function(s) { return +s.split(':')[0] >= 12; }); }
-    function mergeExtraSlots(counts) {
-      var extra = Object.keys(counts).filter(function(s) { return SLOTS.indexOf(s) === -1; });
-      if (!extra.length) return;
-      SLOTS = SLOTS.concat(extra).sort(function(a, b) {
-        var pa = a.split(':'), pb = b.split(':');
-        return (+pa[0] * 60 + +pa[1]) - (+pb[0] * 60 + +pb[1]);
-      });
-      if (hasOverflow()) {
-        var range = '9:00 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]);
-        var hero = document.getElementById('heroHeats');
-        if (hero) hero.textContent = 'Heats every 10 min · ' + range;
-        var info = document.getElementById('infoHeats');
-        if (info) info.textContent = 'Heats go off every 10 minutes, ' + range + ' — live availability as you book.';
-      }
+
+    // The backend publishes extra heats (12:00, then 12:10) once Green or Blue
+    // sells out. Rebuild from the base list + whatever the server lists NOW, so
+    // a heat it stops publishing drops off the picker too.
+    function syncSlotsFromServer(counts) {
+      var extra = Object.keys(counts).filter(function(s) { return BASE_SLOTS.indexOf(s) === -1; });
+      SLOTS = BASE_SLOTS.concat(extra).sort(function(a, b) { return slotMinutes(a) - slotMinutes(b); });
+      if (selectedSlot && SLOTS.indexOf(selectedSlot) === -1) selectedSlot = '';
+      updateHeatRange();
     }
-    var GROUP_CAPS = { 'Red': 1, 'Green': 3, 'Blue': 3, 'Scaled': 1 };
+
+    function updateHeatRange() {
+      var range = hasOverflow() ? '9:00 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]) : '9:00–11:50 AM';
+      var hero = document.getElementById('heroHeats');
+      if (hero) hero.textContent = 'Every 10 min · ' + range;
+      var info = document.getElementById('infoHeats');
+      if (info) info.textContent = 'Heats go off every 10 minutes, ' + range + ' — live availability as you book.';
+    }
 
     // Which lane type a (category, weights) combo races in — mirrors the backend.
     function weightGroup(sex, weights) {
@@ -1467,85 +1414,92 @@
       return sex === "Women's" ? 'Blue' : 'Green'; // Open
     }
 
-    function currentGroup() {
-      var sex = (document.querySelector('input[name="sex"]:checked') || {}).value || '';
-      var weights = (document.querySelector('input[name="weights"]:checked') || {}).value || '';
-      return weightGroup(sex, weights);
+    // One tab stop per option group (the checked option, else the first
+    // enabled one); arrow keys move to the next option and select it. `attr`
+    // identifies an option across re-renders; choose(key, el) does the pick.
+    function rovingGroup(group, itemSel, attr, choose) {
+      if (!group) return;
+      var items = [].slice.call(group.querySelectorAll(itemSel));
+      var enabled = items.filter(function(el) { return el.getAttribute('aria-disabled') !== 'true'; });
+      items.forEach(function(el) { el.tabIndex = -1; });
+      var cur = enabled.filter(function(el) { return el.getAttribute('aria-checked') === 'true'; })[0] || enabled[0];
+      if (cur) cur.tabIndex = 0;
+      group.onkeydown = function(e) {
+        var d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (!d) return;
+        var i = enabled.indexOf(e.target);
+        if (i === -1) return;
+        e.preventDefault();
+        var next = enabled[(i + d + enabled.length) % enabled.length];
+        choose(next.getAttribute(attr), next);
+      };
     }
 
-    // Vinyl colors — sampled from the exact HTVRONT rolls being ordered.
-    // Gold + Silver are chrome vinyls, rendered as chrome-foil gradients:
-    // bright metal above a crisp dark "horizon" band, flash below.
-    // stops = [position 0..1 across the wordmark, color].
-    var COLORS = [
-      { id: 'gold',     name: 'Gold',
-        stops: [[0, '#FFF9D8'], [0.30, '#FFE58A'], [0.47, '#E2A82F'], [0.53, '#8A5A0B'], [0.60, '#EFC14D'], [0.82, '#FFE9A0'], [1, '#C9942C']] },
-      { id: 'pink',     name: 'Hot Pink',    hex: '#FA5C8F' },
-      { id: 'lime',     name: 'Lime Green',  hex: '#5BF94C' },
-      { id: 'blue',     name: 'Bright Blue', hex: '#3A9EF4' },
-      { id: 'lavender', name: 'Lavender',    hex: '#E6D5FF' },
-      { id: 'red',      name: 'Red',         hex: '#F3222B' },
-      { id: 'orange',   name: 'Orange',      hex: '#FF7244' },
-      { id: 'silver',   name: 'Silver',
-        stops: [[0, '#FDFDFD'], [0.30, '#E9EBED'], [0.47, '#BAC0C6'], [0.53, '#6E747B'], [0.60, '#D6DADE'], [0.82, '#F4F5F6'], [1, '#A7ACB2']] },
-      { id: 'white',    name: 'White',       hex: '#FFFFFF' }
-    ];
+    function checkedVal(name) { return (document.querySelector('input[name="' + name + '"]:checked') || {}).value || ''; }
+    function currentGroup() { return weightGroup(checkedVal('sex'), checkedVal('weights')); }
 
-    // Each garment renders in three layers: the blank black shirt (base), the
-    // HYROX wordmark (mask, tinted to the chosen vinyl), and "KODA CROSSFIT"
-    // (koda, always white). logoY = vertical span of the HYROX line in the
-    // frame, used to place the metallic gradients.
-    var GARMENTS = {
-      tee:  { name: 'Unisex Tee',  sub: 'Bella+Canvas 3001', sizes: ['XS','S','M','L','XL','2XL','3XL'],
-              base: 'assets/mockups/tee-base.jpg',  mask: 'assets/mockups/tee-hyrox.png',
-              koda: 'assets/mockups/tee-koda.png',  logoY: [0.2938, 0.3945] },
-      crop: { name: 'Cropped Tee', sub: 'Bella+Canvas 8882', sizes: ['S','M','L','XL','2XL'],
-              base: 'assets/mockups/crop-base.jpg', mask: 'assets/mockups/crop-hyrox.png',
-              koda: 'assets/mockups/crop-koda.png', logoY: [0.3662, 0.4981] }
-    };
+    // ── Gear catalogue (ids + names MUST match SIM1025_* lists in the backend) ──
+    var HEADBANDS = [
+      { id: 'black-blue', name: 'Black / Blue',   sub: 'Black band · bright blue logo' },
+      { id: 'black-pink', name: 'Black / Pink',   sub: 'Black band · pink logo' },
+      { id: 'camo',       name: 'Black Ops Camo', sub: 'Camo band · white logo' },
+      { id: 'mint',       name: 'Jelly Mint',     sub: 'Mint band · white logo' },
+      { id: 'lilac',      name: 'Lilac',          sub: 'Lilac band · white logo' },
+      { id: 'navy',       name: 'Navy',           sub: 'Navy band · white logo' }
+    ];
+    var PATCHES = [
+      { id: 'script',   name: 'Koda Script',    sub: 'Script logo · Iron View' },
+      { id: 'sunset',   name: 'Sunset Peak',    sub: 'Retro sunset · Iron View' },
+      { id: 'mountain', name: 'Koda Mountains', sub: 'CrossFit Iron View' }
+    ];
+    var HAT_COLORS = [
+      { id: 'black',    name: 'Black' },
+      { id: 'graphite', name: 'Graphite/White' },
+      { id: 'columbia', name: 'Columbia Blue/White' },
+      { id: 'moss',     name: 'Moss Green/Charcoal' }
+    ];
+    var GEAR_ITEMS = { headband: 'Headband', hat: 'Trucker Hat' };
+
+    function byId(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
+    function hbFront(id) { return 'assets/gear/headband-' + id + '-front.jpg'; }
+    function hbSide(id) { return 'assets/gear/headband-' + id + '-side.jpg'; }
+    function hatImg(patch, color) { return 'assets/gear/hat-' + patch + '-' + color + '.jpg'; }
+    function patchImg(patch) { return 'assets/gear/patch-' + patch + '.jpg'; }
 
     var DIVISION_COUNT = { 'Singles': 1, 'Doubles': 2, 'Team of 4 Relay': 4 };
 
     // ── State ──
     var athletes = [ newAthlete() ];
+    function newAthlete() { return { name: '', email: '', item: '', headband: '', patch: '', hatColor: '' }; }
 
-    function newAthlete() {
-      return { name: '', email: '', garment: 'tee', size: '', colorId: 'lime' };
+    function gearComplete(a) {
+      if (a.item === 'headband') return !!byId(HEADBANDS, a.headband);
+      if (a.item === 'hat') return !!(byId(PATCHES, a.patch) && byId(HAT_COLORS, a.hatColor));
+      return false;
     }
 
-    function colorById(id) {
-      for (var i = 0; i < COLORS.length; i++) if (COLORS[i].id === id) return COLORS[i];
-      return COLORS[2];
+    function gearLabel(a) {
+      if (a.item === 'headband') return 'Headband · ' + (byId(HEADBANDS, a.headband) || {}).name;
+      if (a.item === 'hat') return 'Trucker Hat · ' + (byId(PATCHES, a.patch) || {}).name + ' patch · ' + (byId(HAT_COLORS, a.hatColor) || {}).name;
+      return '';
     }
 
-    function cssFill(color, garment) {
-      if (color.stops) {
-        var y = GARMENTS[garment].logoY;
-        var span = y[1] - y[0];
-        var parts = color.stops.map(function(s) {
-          return s[1] + ' ' + ((y[0] + s[0] * span) * 100).toFixed(2) + '%';
-        });
-        return 'linear-gradient(180deg, ' + parts.join(', ') + ')';
-      }
-      return color.hex;
+    function gearShort(a) {
+      if (a.item === 'headband') return 'Headband · ' + (byId(HEADBANDS, a.headband) || {}).name;
+      if (a.item === 'hat') return 'Hat · ' + (byId(PATCHES, a.patch) || {}).name + ' · ' + (byId(HAT_COLORS, a.hatColor) || {}).name;
+      return '';
     }
 
-    function swatchFill(color) {
-      if (!color.stops) return color.hex;
-      var parts = color.stops.map(function(s) {
-        return s[1] + ' ' + (s[0] * 100).toFixed(1) + '%';
-      });
-      return 'linear-gradient(135deg, ' + parts.join(', ') + ')';
+    function gearImage(a) {
+      if (a.item === 'headband' && a.headband) return hbFront(a.headband);
+      if (a.item === 'hat' && a.patch && a.hatColor) return hatImg(a.patch, a.hatColor);
+      return '';
     }
 
     // ── Athlete cards ──
     var cardsWrap = document.getElementById('athleteCards');
 
-    function currentDivision() {
-      var r = document.querySelector('input[name="division"]:checked');
-      return r ? r.value : 'Singles';
-    }
-
+    function currentDivision() { return checkedVal('division') || 'Singles'; }
     function athleteCount() { return DIVISION_COUNT[currentDivision()] || 1; }
 
     function syncAthleteArray() {
@@ -1555,9 +1509,7 @@
     }
 
     function registrantName() {
-      var f = document.getElementById('firstName').value.trim();
-      var l = document.getElementById('lastName').value.trim();
-      return (f + ' ' + l).trim();
+      return (document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim()).trim();
     }
 
     function buildCards() {
@@ -1566,224 +1518,193 @@
       athletes.forEach(function(a, i) {
         var card = document.createElement('div');
         card.className = 'athlete-card';
-        card.dataset.idx = i;
 
         var head = document.createElement('div');
         head.className = 'athlete-head';
-        var label = document.createElement('span');
-        label.className = 'athlete-num';
-        label.id = 'athleteLabel' + i;
-        head.appendChild(label);
-        if (i === 0) {
-          var you = document.createElement('span');
-          you.className = 'athlete-you';
-          you.textContent = "That's you";
-          head.appendChild(you);
-        }
+        head.innerHTML = '<span class="athlete-num" id="athleteLabel' + i + '"></span>' +
+          (i === 0 ? '<span class="athlete-you">That\'s you</span>' : '');
         card.appendChild(head);
 
-        // teammate name input (athlete 1 uses the form's name fields)
         if (i > 0) {
+          var partner = currentDivision() === 'Doubles';
           var nf = document.createElement('div');
           nf.className = 'field';
-          nf.innerHTML = '<label for="athleteName' + i + '">' +
-            (currentDivision() === 'Doubles' ? "Partner's Name" : 'Teammate ' + i + ' Name') +
-            ' <span class="req">*</span></label>';
+          nf.innerHTML = '<label for="athleteName' + i + '">' + (partner ? "Partner's name" : 'Teammate ' + i + ' name') + ' <span class="req">*</span></label>';
           var inp = document.createElement('input');
-          inp.type = 'text';
-          inp.id = 'athleteName' + i;
-          inp.placeholder = 'Full name';
-          inp.value = a.name;
-          inp.addEventListener('input', function() {
-            a.name = inp.value.trim();
-            updateLabel(i);
-            accRender();
-          });
-          inp.addEventListener('change', accPing);
-          inp.addEventListener('blur', accPing);
+          inp.type = 'text'; inp.id = 'athleteName' + i; inp.placeholder = 'Full name'; inp.value = a.name;
+          inp.addEventListener('input', function() { a.name = inp.value.trim(); updateLabel(i); accRender(); });
+          inp.addEventListener('blur', accPingOnLeave);
           nf.appendChild(inp);
           card.appendChild(nf);
 
-          // Optional teammate email — if given, they're copied on the
-          // confirmation (heat time + payment instructions).
+          // Optional teammate email — copied on the confirmation if given.
           var ef = document.createElement('div');
           ef.className = 'field';
-          ef.innerHTML = '<label for="athleteEmail' + i + '">' +
-            (currentDivision() === 'Doubles' ? "Partner's Email" : 'Teammate ' + i + ' Email') +
-            ' <span class="optional-tag">optional</span></label>';
+          ef.innerHTML = '<label for="athleteEmail' + i + '">' + (partner ? "Partner's email" : 'Teammate ' + i + ' email') + ' <span class="optional-tag">optional</span></label>';
           var einp = document.createElement('input');
-          einp.type = 'email';
-          einp.id = 'athleteEmail' + i;
-          einp.placeholder = 'So they get the heat time + payment info';
-          einp.autocomplete = 'off';
-          einp.value = a.email;
+          einp.type = 'email'; einp.id = 'athleteEmail' + i; einp.placeholder = 'So they get the heat time + payment info';
+          einp.autocomplete = 'off'; einp.value = a.email;
           einp.addEventListener('input', function() { a.email = einp.value.trim(); });
+          einp.addEventListener('blur', accPingOnLeave);
           ef.appendChild(einp);
           card.appendChild(ef);
         }
 
-        var grid = document.createElement('div');
-        grid.className = 'shirt-grid';
-
-        // mockup
-        var mockWrap = document.createElement('div');
-        mockWrap.className = 'mock-wrap';
-        mockWrap.innerHTML =
-          '<div class="mock" id="mock' + i + '">' +
-            '<img class="base" id="mockBase' + i + '" alt="Shirt mockup">' +
-            '<div class="ink" id="mockInk' + i + '"></div>' +
-            '<div class="ink koda" id="mockKoda' + i + '"></div>' +
-            '<div class="sheen" id="mockSheen' + i + '"></div>' +
+        var gl = document.createElement('div');
+        gl.className = 'field';
+        gl.innerHTML = '<span class="label">Pick your gear <span class="req">*</span></span>';
+        var opts = document.createElement('div');
+        opts.className = 'gear-opts';
+        opts.setAttribute('role', 'radiogroup');
+        opts.setAttribute('aria-label', 'Headband or hat for athlete ' + (i + 1));
+        opts.innerHTML =
+          '<div class="gear-opt" data-item="headband" role="radio" tabindex="0">' +
+            '<div class="gear-thumbs bands">' +
+              '<img src="' + hbFront('camo') + '" alt="" loading="lazy">' +
+              '<img src="' + hbFront('black-blue') + '" alt="" loading="lazy">' +
+              '<img src="' + hbFront('lilac') + '" alt="" loading="lazy">' +
+            '</div>' +
+            '<div class="nm">Headband</div><div class="sb">6 designs · one size</div>' +
           '</div>' +
-          '<span class="mock-caption" id="mockCap' + i + '"></span>';
-        grid.appendChild(mockWrap);
-
-        // controls
-        var controls = document.createElement('div');
-        controls.className = 'shirt-controls';
-
-        // garment
-        var gf = document.createElement('div');
-        gf.className = 'field';
-        gf.innerHTML = '<label>Garment <span class="req">*</span></label>';
-        var gg = document.createElement('div');
-        gg.className = 'garment-group';
-        Object.keys(GARMENTS).forEach(function(gid) {
-          var g = GARMENTS[gid];
-          var lab = document.createElement('label');
-          lab.className = 'radio-card';
-          lab.innerHTML =
-            '<input type="radio" name="garment' + i + '" value="' + gid + '"' + (a.garment === gid ? ' checked' : '') + '>' +
-            '<div class="card-inner"><span class="card-title">' + g.name.toUpperCase() + '</span>' +
-            '<span class="card-sub">' + g.sub + ' &middot; Black</span></div>';
-          lab.querySelector('input').addEventListener('change', function() {
-            a.garment = gid;
-            if (GARMENTS[gid].sizes.indexOf(a.size) === -1) a.size = '';
-            renderSizes(i);
-            paintMock(i);
-          });
-          gg.appendChild(lab);
-        });
-        gf.appendChild(gg);
-        controls.appendChild(gf);
-
-        // size
-        var sf = document.createElement('div');
-        sf.className = 'field';
-        sf.innerHTML = '<label for="size' + i + '">Size <span class="req">*</span></label>';
-        var sel = document.createElement('select');
-        sel.id = 'size' + i;
-        sel.addEventListener('change', function() { a.size = sel.value; accPing(); });
-        sf.appendChild(sel);
-        controls.appendChild(sf);
-
-        // color swatches
-        var cf = document.createElement('div');
-        cf.className = 'field';
-        cf.innerHTML = '<label>Logo Color <span class="req">*</span></label>';
-        var row = document.createElement('div');
-        row.className = 'swatch-row';
-        COLORS.forEach(function(c) {
-          var sw = document.createElement('div');
-          sw.className = 'swatch' + (a.colorId === c.id ? ' sel' : '');
-          sw.dataset.color = c.id;
-          sw.title = c.name;
-          sw.setAttribute('role', 'button');
-          sw.setAttribute('aria-label', c.name);
-          sw.tabIndex = 0;
-          sw.style.background = swatchFill(c);
-          var dark = (c.id === 'white' || c.id === 'silver' || c.id === 'lavender' || c.id === 'gold');
-          sw.innerHTML = '<span class="tick" style="color:' + (dark ? '#000' : '#fff') + '">✓</span>';
+          '<div class="gear-opt" data-item="hat" role="radio" tabindex="0">' +
+            '<div class="gear-thumbs">' +
+              '<img src="' + hatImg('script', 'black') + '" alt="" loading="lazy">' +
+              '<img src="' + hatImg('sunset', 'columbia') + '" alt="" loading="lazy">' +
+              '<img src="' + hatImg('mountain', 'moss') + '" alt="" loading="lazy">' +
+            '</div>' +
+            '<div class="nm">Trucker hat</div><div class="sb">3 patches × 4 colors</div>' +
+          '</div>';
+        opts.querySelectorAll('.gear-opt').forEach(function(el) {
           function pick() {
-            a.colorId = c.id;
-            row.querySelectorAll('.swatch').forEach(function(el) { el.classList.remove('sel'); });
-            sw.classList.add('sel');
-            nameEl.innerHTML = 'Selected: <strong>' + c.name + '</strong>';
-            paintMock(i);
+            if (a.item !== el.dataset.item) a.item = el.dataset.item;
+            renderGear(i);
+            accPing();
           }
-          sw.addEventListener('click', pick);
-          sw.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
-          row.appendChild(sw);
+          el.addEventListener('click', pick);
+          el.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); el.focus(); } });
         });
-        cf.appendChild(row);
-        var nameEl = document.createElement('div');
-        nameEl.className = 'swatch-name';
-        nameEl.innerHTML = 'Selected: <strong>' + colorById(a.colorId).name + '</strong>';
-        cf.appendChild(nameEl);
-        controls.appendChild(cf);
+        gl.appendChild(opts);
+        card.appendChild(gl);
 
-        grid.appendChild(controls);
-        card.appendChild(grid);
+        var sub = document.createElement('div');
+        sub.className = 'gear-sub';
+        sub.id = 'gearSub' + i;
+        card.appendChild(sub);
+
         cardsWrap.appendChild(card);
-
-        renderSizes(i);
-        paintMock(i);
         updateLabel(i);
+        renderGear(i);
       });
       updateBill();
     }
 
-    function renderSizes(i) {
+    function pickCard(opts) {
+      // opts: { sel, key, img, name, sub }
+      return '<div class="pick' + (opts.sel ? ' sel' : '') + '" role="radio" tabindex="0" aria-checked="' + (opts.sel ? 'true' : 'false') + '" data-k="' + opts.key + '">' +
+        '<img src="' + opts.img + '" alt="" loading="lazy">' +
+        '<span class="pnm">' + escapeHtml(opts.name) + '</span>' +
+        (opts.sub ? '<span class="psb">' + escapeHtml(opts.sub) + '</span>' : '') +
+      '</div>';
+    }
+
+    // Picks re-render their grid, so a keyboard pick re-focuses the new copy
+    // of the same card instead of dropping focus to <body>.
+    function wirePicks(root, sel, fn) {
+      rovingGroup(root.querySelector(sel), '.pick', 'data-k', function(k) {
+        fn(k);
+        var again = root.querySelector(sel + ' .pick[data-k="' + k + '"]');
+        if (again) again.focus();
+      });
+      root.querySelectorAll(sel + ' .pick').forEach(function(el) {
+        function go() { fn(el.dataset.k); }
+        el.addEventListener('click', go);
+        el.addEventListener('keydown', function(e) {
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          e.preventDefault();
+          var k = el.dataset.k;
+          go();
+          var again = root.querySelector(sel + ' .pick[data-k="' + k + '"]');
+          if (again) again.focus();
+        });
+      });
+    }
+
+    function renderGear(i) {
       var a = athletes[i];
-      var sel = document.getElementById('size' + i);
-      var g = GARMENTS[a.garment];
-      sel.innerHTML = '<option value="">— Select size —</option>' +
-        g.sizes.map(function(s) { return '<option value="' + s + '"' + (a.size === s ? ' selected' : '') + '>' + s + '</option>'; }).join('');
+      var sub = document.getElementById('gearSub' + i);
+      if (!sub) return;
+      var card = sub.parentNode;
+      card.querySelectorAll('.gear-opt').forEach(function(el) {
+        var on = el.dataset.item === a.item;
+        el.classList.toggle('sel', on);
+        el.setAttribute('aria-checked', on ? 'true' : 'false');
+      });
+      rovingGroup(card.querySelector('.gear-opts'), '.gear-opt', 'data-item', function(item) {
+        a.item = item;
+        renderGear(i);
+        accPing();
+        var again = card.querySelector('.gear-opt[data-item="' + item + '"]');
+        if (again) again.focus();
+      });
+
+      if (a.item === 'headband') {
+        var hb = byId(HEADBANDS, a.headband);
+        var previewHtml = hb
+          ? '<div class="gear-preview"><img class="front" src="' + hbFront(hb.id) + '" alt="Headband preview — ' + escapeHtml(hb.name) + ', front"><img class="side" src="' + hbSide(hb.id) + '" alt="Headband preview — ' + escapeHtml(hb.name) + ', side"><span class="gear-cap">Headband · ' + escapeHtml(hb.name) + '</span></div>'
+          : '<div class="gear-preview empty">Pick a design to preview it here.</div>';
+        sub.innerHTML =
+          '<div class="gear-layout">' +
+            '<div class="sub-block"><div class="sub-label">Preview</div>' + previewHtml + '<p class="one-size">One size · moisture-wicking stretch headband by JUNK Brands.</p></div>' +
+            '<div class="sub-block"><div class="sub-label">Pick a design <small>' + (hb ? hb.name : '6 options') + '</small></div>' +
+              '<div class="pick-grid hb" role="radiogroup" aria-label="Headband design">' +
+                HEADBANDS.map(function(h) { return pickCard({ sel: a.headband === h.id, key: h.id, img: hbFront(h.id), name: h.name, sub: h.sub }); }).join('') +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        wirePicks(sub, '.pick-grid.hb', function(k) { a.headband = k; renderGear(i); accPing(); });
+      } else if (a.item === 'hat') {
+        var p = byId(PATCHES, a.patch), c = byId(HAT_COLORS, a.hatColor);
+        var showPatch = p ? p.id : 'script', showColor = c ? c.id : 'black';
+        var cap = p && c ? 'Hat · ' + p.name + ' · ' + c.name
+                : p ? p.name + ' patch — now pick a hat color'
+                : c ? c.name + ' — now pick a patch'
+                : 'Pick a patch + hat color';
+        sub.innerHTML =
+          '<div class="gear-layout">' +
+            '<div class="sub-block"><div class="sub-label">Preview</div>' +
+              '<div class="gear-preview"><img class="hatprev" src="' + hatImg(showPatch, showColor) + '" alt="Trucker hat preview — ' + escapeHtml(byId(PATCHES, showPatch).name + ' patch on ' + byId(HAT_COLORS, showColor).name) + '"><span class="gear-cap">' + escapeHtml(cap) + '</span></div>' +
+              '<p class="one-size">One size · adjustable snapback trucker with a woven patch.</p></div>' +
+            '<div class="sub-block">' +
+              '<div class="sub-label">1 · Pick a patch <small>' + (p ? p.name : '3 options') + '</small></div>' +
+              '<div class="pick-grid patch" role="radiogroup" aria-label="Hat patch">' +
+                PATCHES.map(function(x) { return pickCard({ sel: a.patch === x.id, key: x.id, img: patchImg(x.id), name: x.name }); }).join('') +
+              '</div>' +
+              '<div class="sub-label" style="margin-top:14px">2 · Pick a hat color <small>' + (c ? c.name : '4 options') + '</small></div>' +
+              '<div class="pick-grid color" role="radiogroup" aria-label="Hat color">' +
+                HAT_COLORS.map(function(x) { return pickCard({ sel: a.hatColor === x.id, key: x.id, img: hatImg(showPatch, x.id), name: x.name }); }).join('') +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        wirePicks(sub, '.pick-grid.patch', function(k) { a.patch = k; renderGear(i); accPing(); });
+        wirePicks(sub, '.pick-grid.color', function(k) { a.hatColor = k; renderGear(i); accPing(); });
+        preloadHats();
+      } else {
+        sub.innerHTML = '';
+      }
+    }
+
+    var hatsPreloaded = false;
+    function preloadHats() {
+      if (hatsPreloaded) return;
+      hatsPreloaded = true;
+      PATCHES.forEach(function(p) { HAT_COLORS.forEach(function(c) { loadImg(hatImg(p.id, c.id)).catch(function() {}); }); });
     }
 
     function updateLabel(i) {
-      var a = athletes[i];
       var el = document.getElementById('athleteLabel' + i);
       if (!el) return;
-      var nm = i === 0 ? registrantName() : a.name;
-      el.textContent = 'ATHLETE ' + (i + 1) + (nm ? ' — ' + nm.toUpperCase() : '');
-    }
-
-    // Garment swaps wait for the new layers to arrive before repainting: an
-    // unloaded CSS mask-image hides its layer entirely, so painting eagerly
-    // would flash the OLD garment with no logo on it. Same-garment colour
-    // changes hit the cache and repaint in the same tick.
-    var paintToken = [];
-
-    function paintMock(i) {
-      var a = athletes[i];
-      var g = GARMENTS[a.garment];
-      var c = colorById(a.colorId);
-      var token = (paintToken[i] = (paintToken[i] || 0) + 1);
-      var mockEl = document.getElementById('mock' + i);
-      var ready = !!(imgCache[g.base] && imgCache[g.mask] && imgCache[g.koda]);
-      if (!ready && mockEl) mockEl.classList.add('loading');
-
-      Promise.all([loadImg(g.base), loadImg(g.mask), loadImg(g.koda)])
-        .catch(function() { return null; })   // paint anyway if a layer 404s
-        .then(function() {
-          if (paintToken[i] !== token) return; // a newer pick superseded this one
-          if (mockEl) mockEl.classList.remove('loading');
-          document.getElementById('mockBase' + i).src = g.base;
-          var ink = document.getElementById('mockInk' + i);
-          ink.style.webkitMaskImage = 'url(' + g.mask + ')';
-          ink.style.maskImage = 'url(' + g.mask + ')';
-          ink.style.background = cssFill(c, a.garment);
-          var koda = document.getElementById('mockKoda' + i);
-          koda.style.webkitMaskImage = 'url(' + g.koda + ')';
-          koda.style.maskImage = 'url(' + g.koda + ')';
-          koda.style.background = '#ffffff';
-          var sheen = document.getElementById('mockSheen' + i);
-          sheen.style.webkitMaskImage = 'url(' + g.mask + ')';
-          sheen.style.maskImage = 'url(' + g.mask + ')';
-          sheen.classList.toggle('on', !!c.stops);
-          document.getElementById('mockCap' + i).textContent = g.name + ' · ' + c.name;
-        });
-
-      if (typeof accPing === 'function') accPing();
-    }
-
-    // Warm every garment's layers up front so the first swap is instant.
-    function preloadMockAssets() {
-      Object.keys(GARMENTS).forEach(function(gid) {
-        var g = GARMENTS[gid];
-        loadImg(g.base); loadImg(g.mask); loadImg(g.koda);
-      });
+      var nm = i === 0 ? registrantName() : athletes[i].name;
+      el.textContent = 'Athlete ' + (i + 1) + (nm ? ' — ' + nm : '');
     }
 
     // ── Bill + payment note ──
@@ -1797,14 +1718,14 @@
 
     function updatePayNote() {
       var note = document.getElementById('payNote');
-      var sel = document.querySelector('input[name="payment"]:checked');
+      var sel = checkedVal('payment');
       if (!sel) { note.classList.remove('show'); return; }
       var n = athleteCount();
       var each = n > 1 ? 'Each of your ' + n + ' athletes pays their own $' + PRICE + '. ' : '';
-      var html = '';
-      if (sel.value === 'Venmo') {
+      var html;
+      if (sel === 'Venmo') {
         html = each + 'After you submit, you\'ll get a one-tap Venmo link to <code>@' + VENMO_USERNAME + '</code> with the amount and note pre-filled' + (n > 1 ? ' — share it with your crew' : '') + '.';
-      } else if (sel.value === 'Zelle') {
+      } else if (sel === 'Zelle') {
         html = each + 'Send via Zelle to <code>' + ZELLE_EMAIL + '</code> with your name' + (n > 1 ? 's' : '') + ' in the note. Full instructions after you submit.';
       } else {
         html = each + 'You\'ll get a secure Zen Planner checkout link after you submit' + (n > 1 ? ' — each athlete completes their own $' + PRICE + ' checkout' : '') + '.';
@@ -1816,12 +1737,25 @@
     // ── Heat slot picker ──
     var selectedSlot = '';
     var slotCounts = null;   // per-slot per-group counts; null = not loaded (fail open — the backend enforces caps)
+    var slotCaps = null;     // per-slot per-group caps from the backend (Men's Pro gating lives here)
     var slotsLoaded = false;
 
+    function capFor(slot, group) {
+      if (slotsLoaded && slotCaps && !slotCaps[slot]) return 0;  // not published by the server → closed
+      if (slotCaps && slotCaps[slot] && slotCaps[slot][group] != null) return slotCaps[slot][group];
+      if (group === 'Red') return (proAllOpen || proOnPattern(slot)) ? 1 : 0;
+      return GROUP_CAPS[group] || 0;
+    }
+
+    // -1 = not offered for this division yet (Men's Pro in-between heat),
+    // null = unknown (counts not loaded), else lanes left.
     function groupLeft(slot, group) {
-      if (!slotCounts || !group) return null; // unknown
+      if (!group) return null;
+      var cap = capFor(slot, group);
+      if (cap === 0) return -1;
+      if (!slotCounts) return null;
       var taken = (slotCounts[slot] || {})[group] || 0;
-      return Math.max(0, (GROUP_CAPS[group] || 0) - taken);
+      return Math.max(0, cap - taken);
     }
 
     function renderSlots() {
@@ -1829,66 +1763,97 @@
       var status = document.getElementById('slotStatus');
       var group = currentGroup();
       grid.innerHTML = '';
-      if (selectedSlot && group && groupLeft(selectedSlot, group) === 0) selectedSlot = '';
+      if (selectedSlot && group && groupLeft(selectedSlot, group) !== null && groupLeft(selectedSlot, group) <= 0) selectedSlot = '';
+      document.getElementById('proNote').classList.toggle('show', group === 'Red' && !proAllOpen);
       SLOTS.forEach(function(s) {
-        var left = group ? groupLeft(s, group) : null; // null = unknown
-        var isFull = left === 0;
-        var pickable = !!group && !isFull;
+        var left = group ? groupLeft(s, group) : null;
+        var locked = left === -1, isFull = left === 0;
+        var pickable = !!group && !locked && !isFull;
         var el = document.createElement('div');
-        el.className = 'slot' + (selectedSlot === s ? ' sel' : '') + (isFull ? ' full' : '');
+        el.className = 'slot' + (selectedSlot === s ? ' sel' : '') + (isFull ? ' full' : '') + (locked ? ' locked' : '');
         el.setAttribute('role', 'radio');
         el.setAttribute('aria-checked', selectedSlot === s ? 'true' : 'false');
-        el.tabIndex = pickable ? 0 : -1;
+        el.setAttribute('aria-disabled', pickable || !group ? 'false' : 'true');
+        el.setAttribute('data-slot', s);
         var leftTxt, warn = '';
         if (!group) leftTxt = '&nbsp;';
-        else if (isFull) leftTxt = 'FULL';
+        else if (locked) leftTxt = 'opens later';
+        else if (isFull) leftTxt = 'full';
         else if (left === null) leftTxt = 'open';
         else { leftTxt = left + (left === 1 ? ' lane' : ' lanes') + ' left'; if (left === 1) warn = ' warn'; }
         el.innerHTML = '<span class="t">' + s + '</span><span class="left' + warn + '">' + leftTxt + '</span>';
+        el.setAttribute('aria-label', heatLabel(s) + ' — ' + (group ? leftTxt.replace('&nbsp;', '') : 'pick your division first'));
         function pick() {
           if (!group) {
-            showError('Pick your category and weight class first — lane availability depends on them.', 'division');
+            showError('Pick your category and weight class first — lane availability depends on them.', checkedVal('sex') ? 'weights' : 'division');
             return;
           }
-          if (isFull) return;
+          if (locked || isFull) return;
           clearError();
           selectedSlot = s;
           renderSlots();
           accPing();
         }
         el.addEventListener('click', pick);
-        el.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+        el.addEventListener('keydown', function(e) {
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          e.preventDefault();
+          pick();
+          // the grid was rebuilt — if we're still on this step, keep focus on the pick
+          var again = accOpen === 'heat' && grid.querySelector('.slot.sel');
+          if (again) again.focus();
+        });
         grid.appendChild(el);
+      });
+      rovingGroup(grid, '.slot', 'data-slot', function(key, el) {
+        if (!group) {
+          grid.querySelectorAll('.slot').forEach(function(x) { x.tabIndex = -1; });
+          el.tabIndex = 0; el.focus(); return;
+        }
+        clearError();
+        selectedSlot = key;
+        renderSlots();
+        accRender();
+        var again = grid.querySelector('.slot[data-slot="' + key + '"]');
+        if (again) again.focus();
       });
       if (!group) {
         status.textContent = 'Choose your division, category, and weight class first to see lane availability.';
-      } else {
-        var capTxt = { Red: "Men's Pro has 1 lane per heat", Green: 'your division shares 3 lanes per heat',
-                       Blue: 'your division shares 3 lanes per heat', Scaled: 'Scaled has 1 lane per heat' }[group];
-        var openCount = 0;
-        SLOTS.forEach(function(s) { if (groupLeft(s, group) !== 0) openCount++; });
-        status.textContent = (hasOverflow() ? 'Heats 9:00 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]) + ' · ' : 'All times are AM · ') + capTxt +
-          (slotsLoaded ? ' · ' + openCount + ' of ' + SLOTS.length + ' heats open for your division' : '');
+        return;
       }
+      var offered = 0, openCount = 0;
+      SLOTS.forEach(function(s) {
+        var l = groupLeft(s, group);
+        if (l !== -1) offered++;
+        if (l !== -1 && l !== 0) openCount++;
+      });
+      var capTxt = { Red: "Men's Pro has 1 lane per heat", Green: 'your division shares 3 lanes per heat',
+                     Blue: 'your division shares 3 lanes per heat', Scaled: 'Scaled has 1 lane per heat' }[group];
+      if (group === 'Red' && !proAllOpen) capTxt = "Men's Pro runs every 20 minutes (1 lane)";
+      var range = hasOverflow() ? 'Heats 9:00 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]) : 'All times are AM';
+      status.innerHTML = range + ' · ' + capTxt +
+        (slotsLoaded ? ' · <strong>' + openCount + ' of ' + offered + '</strong> heats open for your division' : '');
     }
 
     function fetchSlots() {
-      fetch(SCRIPT_URL + '?action=sim0913Slots')
+      fetch(SCRIPT_URL + '?action=' + EVENT_TYPE + 'Slots')
         .then(function(r) { return r.json(); })
         .then(function(resp) {
-          if (resp.status !== 'ok') throw new Error('bad response');
-          slotCounts = resp.counts || {};
-          mergeExtraSlots(slotCounts);
+          if (resp.status !== 'ok' || !resp.counts) throw new Error('bad response');
+          slotCounts = resp.counts;
+          slotCaps = resp.slotCaps || null;
+          proAllOpen = !!resp.proAllOpen;
+          syncSlotsFromServer(slotCounts);
           slotsLoaded = true;
           renderSlots();
+          accRender();
         })
-        .catch(function() {
-          renderSlots();
-        });
+        .catch(function() { renderSlots(); });
     }
 
     // ── Accordion sections (kit-builder style) ──
-    var SECTIONS = ['info', 'division', 'weights', 'heat', 'shirts', 'gym', 'payment', 'extra'];
+    var SECTIONS = ['info', 'division', 'weights', 'heat', 'gear', 'gym', 'payment', 'extra'];
+    var REQUIRED_SECTIONS = SECTIONS.slice(0, 7);
     var accOpen = 'info';
     var accLastDone = {};
 
@@ -1899,16 +1864,15 @@
         case 'info': return !!(document.getElementById('firstName').value.trim() &&
                                document.getElementById('lastName').value.trim() &&
                                validEmail(document.getElementById('email').value.trim()));
-        case 'division': return !!(document.querySelector('input[name="division"]:checked') &&
-                                   document.querySelector('input[name="sex"]:checked'));
-        case 'shirts': return athletes.every(function(a, i) {
-                         var nm = i === 0 ? registrantName() : a.name;
-                         return nm && a.size;
-                       });
-        case 'weights': return !!document.querySelector('input[name="weights"]:checked');
+        case 'division': return !!(checkedVal('division') && checkedVal('sex'));
+        case 'weights': return !!checkedVal('weights');
         case 'heat': return !!selectedSlot;
+        case 'gear': return athletes.every(function(a, i) {
+                         var nm = i === 0 ? registrantName() : a.name;
+                         return nm && gearComplete(a);
+                       });
         case 'gym': return !!document.getElementById('homeGym').value.trim();
-        case 'payment': return !!document.querySelector('input[name="payment"]:checked');
+        case 'payment': return !!checkedVal('payment');
         default: return false; // extra is optional, never "done"
       }
     }
@@ -1917,30 +1881,25 @@
       switch (key) {
         case 'info': return registrantName();
         case 'division': {
-          var d = (document.querySelector('input[name="division"]:checked') || {}).value;
-          var s = (document.querySelector('input[name="sex"]:checked') || {}).value;
+          var d = checkedVal('division'), s = checkedVal('sex');
           return d ? ((s ? s + ' ' : '') + d) : '';
         }
-        case 'shirts': {
-          if (!secDone('shirts')) return '';
-          if (athletes.length === 1) {
-            var a = athletes[0];
-            return GARMENTS[a.garment].name + ' · ' + a.size + ' · ' + colorById(a.colorId).name;
-          }
-          return athletes.length + ' shirts picked';
-        }
-        case 'weights': return (document.querySelector('input[name="weights"]:checked') || {}).value || '';
+        case 'weights': return checkedVal('weights');
         case 'heat': return selectedSlot ? heatLabel(selectedSlot) : '';
+        case 'gear': {
+          var picked = athletes.filter(gearComplete).length;
+          if (!picked) return '';
+          if (athletes.length === 1) return gearShort(athletes[0]);
+          return picked + ' of ' + athletes.length + ' picked';
+        }
         case 'gym': return document.getElementById('homeGym').value.trim();
         case 'payment': {
-          var p = (document.querySelector('input[name="payment"]:checked') || {}).value;
+          var p = checkedVal('payment');
           return p ? p + ' — $' + (athleteCount() * PRICE) : '';
         }
         default: return 'optional';
       }
     }
-
-    var REQUIRED_SECTIONS = SECTIONS.slice(0, 7); // everything except the optional last card
 
     function renderProgress() {
       var track = document.getElementById('progressTrack');
@@ -1952,9 +1911,7 @@
         });
       }
       var done = REQUIRED_SECTIONS.filter(secDone).length;
-      Array.prototype.forEach.call(track.children, function(seg, i) {
-        seg.classList.toggle('on', i < done);
-      });
+      Array.prototype.forEach.call(track.children, function(seg, i) { seg.classList.toggle('on', i < done); });
       document.getElementById('progressLabel').innerHTML = done === REQUIRED_SECTIONS.length
         ? '<strong>Ready to submit ✓</strong>'
         : '<strong>' + done + ' of ' + REQUIRED_SECTIONS.length + '</strong> steps done';
@@ -1964,38 +1921,67 @@
       SECTIONS.forEach(function(k) {
         var card = document.querySelector('.acc[data-sec="' + k + '"]');
         if (!card) return;
-        card.classList.toggle('done', secDone(k));
+        var done = secDone(k);
+        card.classList.toggle('done', done);
         card.classList.toggle('open', accOpen === k);
+        var head = card.querySelector('.acc-head');
+        head.setAttribute('aria-expanded', accOpen === k ? 'true' : 'false');
         var sum = document.getElementById('sum-' + k);
         if (sum) sum.textContent = secSummary(k);
+        var title = card.querySelector('.acc-title').textContent.replace(/\s+/g, ' ').trim();
+        head.setAttribute('aria-label', title + (done ? ' — done' : '') + (sum && sum.textContent && k !== 'extra' ? ': ' + sum.textContent : ''));
       });
+      document.getElementById('gearNext').hidden = !(accOpen === 'gear' && secDone('gear'));
       renderProgress();
     }
+
+    // Keyboard vs pointer: keyboard users get focus moved to the step that
+    // opens; radio groups only auto-advance on a click/tap (arrow keys move
+    // between options inside the group, so advancing would strand them).
+    var lastPointer = 0, lastKey = 0;
+    document.addEventListener('pointerdown', function() { lastPointer = Date.now(); }, true);
+    document.addEventListener('keydown', function() { lastKey = Date.now(); }, true);
+    function pointerRecent() { return Date.now() - lastPointer < 800 && lastPointer >= lastKey; }
 
     function openSec(key) {
       accOpen = key;
       accRender();
       if (key) {
         var card = document.querySelector('.acc[data-sec="' + key + '"]');
-        if (card) setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 60);
+        if (card) setTimeout(function() {
+          card.scrollIntoView({ block: 'nearest' });
+          if (lastKey > lastPointer && !card.contains(document.activeElement)) card.querySelector('.acc-head').focus({ preventScroll: true });
+        }, 60);
       }
     }
 
+    function nextIncomplete() {
+      for (var i = 0; i < SECTIONS.length; i++) if (!secDone(SECTIONS[i])) return SECTIONS[i];
+      return '';
+    }
+
     // Recompute done-flags; when the open section just completed, advance
-    // to the first incomplete one (the kit-builder flow).
+    // to the first incomplete one (the kit-builder flow). The gear step is the
+    // exception: it stays open so the finished preview is seen, and its
+    // "Looks good — next step" button moves on.
     function accPing() {
       var openWasDone = accLastDone[accOpen];
       var flags = {};
       SECTIONS.forEach(function(k) { flags[k] = secDone(k); });
-      var justFinished = accOpen && !openWasDone && flags[accOpen];
+      var justFinished = accOpen && accOpen !== 'gear' && !openWasDone && flags[accOpen];
       accLastDone = flags;
-      if (justFinished) {
-        var next = null;
-        for (var i = 0; i < SECTIONS.length; i++) if (!flags[SECTIONS[i]]) { next = SECTIONS[i]; break; }
-        openSec(next || '');
-        return;
-      }
+      if (justFinished) { openSec(nextIncomplete()); return; }
       accRender();
+    }
+
+    // Text fields: advance only when focus actually LEAVES the section —
+    // clicking/tabbing into another field of the same step (e.g. back to fix a
+    // typo, or on to the partner's email) must not collapse it mid-edit.
+    function accPingOnLeave(e) {
+      var sec = e.target.closest('.acc');
+      setTimeout(function() {
+        if (sec && sec.contains(document.activeElement)) accRender(); else accPing();
+      }, 0);
     }
 
     document.querySelectorAll('.acc-head').forEach(function(h) {
@@ -2003,6 +1989,12 @@
         var k = h.getAttribute('data-sec');
         openSec(accOpen === k ? '' : k);
       });
+    });
+
+    document.getElementById('gearNext').addEventListener('click', function() {
+      accLastDone = {};
+      SECTIONS.forEach(function(k) { accLastDone[k] = secDone(k); });
+      openSec(nextIncomplete());
     });
 
     // ── Category (Mixed is doubles/relay only) ──
@@ -2014,29 +2006,28 @@
     }
 
     // ── Wiring ──
+    function radioPing() { if (pointerRecent()) accPing(); else accRender(); }
     document.querySelectorAll('input[name="division"]').forEach(function(r) {
-      r.addEventListener('change', function() { buildCards(); syncMixedCard(); renderSlots(); accPing(); });
+      r.addEventListener('change', function() { buildCards(); syncMixedCard(); renderSlots(); radioPing(); });
     });
-    document.querySelectorAll('input[name="sex"]').forEach(function(r) {
-      r.addEventListener('change', function() { renderSlots(); accPing(); });
-    });
-    document.querySelectorAll('input[name="weights"]').forEach(function(r) {
-      r.addEventListener('change', function() { renderSlots(); accPing(); });
+    ['sex', 'weights'].forEach(function(n) {
+      document.querySelectorAll('input[name="' + n + '"]').forEach(function(r) {
+        r.addEventListener('change', function() { renderSlots(); radioPing(); });
+      });
     });
     document.querySelectorAll('input[name="payment"]').forEach(function(r) {
-      r.addEventListener('change', function() { updatePayNote(); accPing(); });
+      r.addEventListener('change', function() { updatePayNote(); radioPing(); });
     });
-    // Text fields: live re-render on keystrokes, but only auto-advance on
-    // blur/change — advancing mid-typing would collapse the field under
-    // the user's cursor and truncate what they typed.
+    // Text fields: live re-render on keystrokes, but only auto-advance once
+    // focus leaves the step — advancing mid-typing would collapse the field
+    // under the user's cursor and truncate what they typed.
     ['firstName', 'lastName', 'email', 'homeGym'].forEach(function(id) {
       var el = document.getElementById(id);
-      el.addEventListener('input', function() { if (id !== 'email' && id !== 'homeGym') updateLabel(0); accRender(); });
-      el.addEventListener('change', accPing);
-      el.addEventListener('blur', accPing);
+      el.addEventListener('input', function() { if (id === 'firstName' || id === 'lastName') updateLabel(0); accRender(); });
+      el.addEventListener('blur', accPingOnLeave);
     });
 
-    // ── Canvas mockup render (for confirmation email) ──
+    // ── Images (preview swaps + confirmation-email JPEGs) ──
     var imgCache = {};
     function loadImg(src) {
       return new Promise(function(ok, err) {
@@ -2048,38 +2039,16 @@
       });
     }
 
-    function renderMockJpeg(athlete) {
-      var g = GARMENTS[athlete.garment];
-      var c = colorById(athlete.colorId);
-      return Promise.all([loadImg(g.base), loadImg(g.mask), loadImg(g.koda)]).then(function(imgs) {
-        var base = imgs[0], mask = imgs[1], kodaMask = imgs[2];
-        var W = 640, H = Math.round(base.height * (W / base.width));
-        // HYROX wordmark in the chosen vinyl
-        var mc = document.createElement('canvas'); mc.width = W; mc.height = H;
-        var mx = mc.getContext('2d');
-        mx.drawImage(mask, 0, 0, W, H);
-        mx.globalCompositeOperation = 'source-in';
-        if (c.stops) {
-          var gr = mx.createLinearGradient(0, g.logoY[0] * H, 0, g.logoY[1] * H);
-          c.stops.forEach(function(s) { gr.addColorStop(s[0], s[1]); });
-          mx.fillStyle = gr;
-        } else {
-          mx.fillStyle = c.hex;
-        }
-        mx.fillRect(0, 0, W, H);
-        // KODA CROSSFIT always white
-        var kc = document.createElement('canvas'); kc.width = W; kc.height = H;
-        var kx = kc.getContext('2d');
-        kx.drawImage(kodaMask, 0, 0, W, H);
-        kx.globalCompositeOperation = 'source-in';
-        kx.fillStyle = '#ffffff';
-        kx.fillRect(0, 0, W, H);
-
+    // Re-encode the athlete's gear picture small for the confirmation email.
+    function renderGearJpeg(a) {
+      var src = gearImage(a);
+      if (!src) return Promise.resolve('');
+      return loadImg(src).then(function(im) {
+        var W = 480, H = Math.round(im.height * (W / im.width));
         var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
         var cx = cv.getContext('2d');
-        cx.drawImage(base, 0, 0, W, H);
-        cx.drawImage(mc, 0, 0);
-        cx.drawImage(kc, 0, 0);
+        cx.fillStyle = '#ffffff'; cx.fillRect(0, 0, W, H);
+        cx.drawImage(im, 0, 0, W, H);
         return cv.toDataURL('image/jpeg', 0.85).split(',')[1];
       });
     }
@@ -2089,12 +2058,13 @@
     var submitBtn = document.getElementById('submitBtn');
     var formError = document.getElementById('formError');
     var loadingOverlay = document.getElementById('loadingOverlay');
+    var SUBMIT_LABEL = submitBtn.innerHTML;
 
     function showError(msg, sec) {
       if (sec) { accOpen = sec; accRender(); }
       formError.textContent = msg;
       formError.classList.add('show');
-      formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      formError.scrollIntoView({ block: 'center' });
     }
 
     function clearError() {
@@ -2102,60 +2072,73 @@
       formError.textContent = '';
     }
 
+    function resetSubmit() {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = SUBMIT_LABEL;
+    }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       clearError();
 
-      var division = currentDivision();
-      var payment = (document.querySelector('input[name="payment"]:checked') || {}).value || '';
+      var division = checkedVal('division');
       var data = {
-        type: 'sim0913',
+        type: EVENT_TYPE,
         firstName: document.getElementById('firstName').value.trim(),
         lastName: document.getElementById('lastName').value.trim(),
         email: document.getElementById('email').value.trim(),
-        division: (document.querySelector('input[name="division"]:checked') || {}).value || '',
-        sex: (document.querySelector('input[name="sex"]:checked') || {}).value || '',
-        weights: (document.querySelector('input[name="weights"]:checked') || {}).value || '',
+        division: division,
+        sex: checkedVal('sex'),
+        weights: checkedVal('weights'),
         heat: selectedSlot,
         homeGym: document.getElementById('homeGym').value.trim(),
-        payment: payment,
+        payment: checkedVal('payment'),
         comments: document.getElementById('comments').value.trim(),
         pricePerAthlete: PRICE
       };
 
-      // Validate basics
       if (!data.firstName || !data.lastName) return showError('Please enter your first and last name.', 'info');
       if (!data.email || !validEmail(data.email)) return showError('Please enter a valid email address.', 'info');
       if (!data.division) return showError('Please choose a division.', 'division');
       if (!data.sex) return showError("Please choose a category (Men's, Women's" + (division === 'Singles' ? ')' : ', or Mixed)') + '.', 'division');
-
       if (!data.weights) return showError('Please choose a weight category.', 'weights');
       if (!data.heat) return showError('Please pick your heat time.', 'heat');
-      if (groupLeft(data.heat, weightGroup(data.sex, data.weights)) === 0) {
-        return showError('That heat has no more lanes for your division — please pick another time.', 'heat');
+      var leftNow = groupLeft(data.heat, weightGroup(data.sex, data.weights));
+      if (leftNow === 0 || leftNow === -1) {
+        selectedSlot = '';
+        renderSlots();
+        return showError('That heat has no open lane for your division — please pick another time.', 'heat');
       }
 
-      // Athletes + shirts
+      syncAthleteArray();
       athletes[0].name = registrantName();
       athletes[0].email = data.email;
       for (var i = 0; i < athletes.length; i++) {
         var a = athletes[i];
-        if (!a.name) return showError('Please enter a name for Athlete ' + (i + 1) + '.', 'shirts');
-        if (!a.size) return showError('Please pick a shirt size for ' + (i === 0 ? 'yourself' : a.name) + '.', 'shirts');
-        // Teammate emails are optional — but if one is filled in, it has to be valid.
+        var who = i === 0 ? 'yourself' : (a.name || 'Athlete ' + (i + 1));
+        if (!a.name) return showError('Please enter a name for Athlete ' + (i + 1) + '.', 'gear');
         if (i > 0 && a.email && !validEmail(a.email)) {
-          return showError("That doesn't look like a valid email for " + a.name + " — fix it or leave it blank.", 'shirts');
+          return showError("That doesn't look like a valid email for " + a.name + ' — fix it or leave it blank.', 'gear');
         }
+        if (!a.item) return showError('Pick a headband or a hat for ' + who + '.', 'gear');
+        if (a.item === 'headband' && !byId(HEADBANDS, a.headband)) return showError('Pick a headband design for ' + who + '.', 'gear');
+        if (a.item === 'hat' && !byId(PATCHES, a.patch)) return showError('Pick a hat patch for ' + who + '.', 'gear');
+        if (a.item === 'hat' && !byId(HAT_COLORS, a.hatColor)) return showError('Pick a hat color for ' + who + '.', 'gear');
       }
       data.athletes = athletes.map(function(a) {
+        var hat = a.item === 'hat';
         return {
           name: a.name,
           email: a.email || '',
-          garment: GARMENTS[a.garment].name,
-          garmentId: a.garment,
-          size: a.size,
-          color: colorById(a.colorId).name,
-          colorId: a.colorId
+          item: GEAR_ITEMS[a.item],
+          itemId: a.item,
+          headband: hat ? '' : byId(HEADBANDS, a.headband).name,
+          headbandId: hat ? '' : a.headband,
+          patch: hat ? byId(PATCHES, a.patch).name : '',
+          patchId: hat ? a.patch : '',
+          hatColor: hat ? byId(HAT_COLORS, a.hatColor).name : '',
+          hatColorId: hat ? a.hatColor : '',
+          gear: gearLabel(a)
         };
       });
       data.total = athletes.length * PRICE;
@@ -2164,27 +2147,23 @@
       if (!data.payment) return showError('Please choose how you\'ll pay.', 'payment');
 
       submitBtn.disabled = true;
-      submitBtn.textContent = 'SUBMITTING...';
-      document.getElementById('loadingText').textContent = 'Rendering your shirts...';
+      submitBtn.textContent = 'Submitting…';
+      document.getElementById('loadingText').textContent = 'Saving your gear picks…';
       loadingOverlay.classList.add('active');
 
-      // Render shirt mockups for the confirmation email
-      Promise.all(athletes.map(renderMockJpeg)).then(function(jpegs) {
-        data.mockups = jpegs.map(function(b64, i) {
-          return { name: data.athletes[i].name, jpeg: b64 };
-        });
+      var snapshot = athletes.map(function(a) { return JSON.parse(JSON.stringify(a)); });
+      Promise.all(athletes.map(renderGearJpeg)).then(function(jpegs) {
+        data.gearImages = jpegs.map(function(b64, i) { return { name: data.athletes[i].name, jpeg: b64 }; })
+          .filter(function(m) { return m.jpeg; });
       }).catch(function() {
-        data.mockups = []; // email just goes without images
+        data.gearImages = []; // email just goes without images
       }).then(function() {
-        document.getElementById('loadingText').textContent = 'Submitting...';
+        document.getElementById('loadingText').textContent = 'Submitting…';
 
-        // Local preview mode (hash #test) — log instead of POST
-        if (location.hash.indexOf('test') !== -1) {
+        // Preview mode — log instead of POST
+        if (PREVIEW) {
           console.log('Form data (preview mode):', JSON.parse(JSON.stringify(data, function(k, v) { return k === 'jpeg' ? '[' + v.length + ' b64 chars]' : v; })));
-          setTimeout(function() {
-            loadingOverlay.classList.remove('active');
-            showSuccess(data);
-          }, 600);
+          setTimeout(function() { loadingOverlay.classList.remove('active'); showSuccess(data, snapshot, {}); }, 500);
           return;
         }
 
@@ -2193,86 +2172,136 @@
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(data)
         })
-        .then(function(r) { return r.json(); })
+        .then(function(r) {
+          return r.text().then(function(t) {
+            try { return JSON.parse(t); }
+            catch (e) { throw new Error("we couldn't reach the signup system"); }
+          });
+        })
         .then(function(resp) {
           loadingOverlay.classList.remove('active');
-          // Require the explicit saved marker. A bare {status:"ok"} is what the
-          // health check returns, so a POST that gets turned into a GET (302
-          // redirect, some mobile browsers) would otherwise read as a signup.
+          // Require the explicit saved marker. A bare {status:"ok"} is what a
+          // health check looks like, so a POST that got turned into a GET
+          // (302 redirect, some mobile browsers) must never read as a signup.
           if (resp.status === 'ok' && resp.saved === true) {
-            showSuccess(data);
+            showSuccess(data, snapshot, resp);
           } else if (resp.status === 'slot_full') {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'SIGN ME UP';
+            resetSubmit();
             selectedSlot = '';
+            if (resp.reason === 'heat_closed' && BASE_SLOTS.indexOf(data.heat) === -1) {
+              SLOTS = SLOTS.filter(function(s) { return s !== data.heat; });
+              updateHeatRange();
+              renderSlots();
+            }
             fetchSlots();
-            showError('The ' + heatLabel(data.heat) + ' heat just ran out of lanes for your division — please pick another time.', 'heat');
-            document.getElementById('slotGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            showError(resp.reason === 'pro_locked'
+              ? "Men's Pro isn't open in the " + heatLabel(data.heat) + ' heat yet — please pick one of the open heats.'
+              : resp.reason === 'heat_closed'
+              ? 'The ' + heatLabel(data.heat) + ' heat is no longer available — please pick another time.'
+              : 'The ' + heatLabel(data.heat) + ' heat just ran out of lanes for your division — please pick another time.', 'heat');
           } else {
-            throw new Error(resp.error || "your signup didn't save — please try again");
+            var se = String(resp.error || '');
+            throw new Error(/^(Missing|Invalid|Expected|Athlete \d|Mixed is)/.test(se) ? se : 'the signup system hit a temporary problem');
           }
         })
         .catch(function(err) {
           loadingOverlay.classList.remove('active');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'SIGN ME UP';
-          showError('Something went wrong — please try again. (' + err.message + ')');
+          resetSubmit();
+          var msg = err && err.name === 'TypeError' ? "we couldn't reach the signup system" : String((err && err.message) || err);
+          showError("Your signup didn't save — " + msg.replace(/\.$/, '') + '. Please try again.');
         });
       });
     });
 
     function payInstructionsHtml(data) {
       var n = data.athletes.length;
-      var total = data.total;
-      var note = 'Hyrox Sim 9/13 — ' + data.firstName + ' ' + data.lastName;
+      var note = EVENT_SHORT + ' — ' + data.firstName + ' ' + data.lastName;
       var each = n > 1
-        ? '<p><strong>Each athlete pays their own $' + PRICE + '</strong> (total for your crew: $' + total + '). Share these instructions with your teammates.</p>'
+        ? '<p><strong>Each athlete pays their own $' + PRICE + '</strong> (total for your crew: $' + data.total + '). Share these instructions with your teammates.</p>'
         : '';
       if (data.payment === 'Venmo') {
         var venmoUrl = 'https://venmo.com/?txn=pay&audience=public&recipients=' + VENMO_USERNAME + '&amount=' + PRICE + '&note=' + encodeURIComponent(note);
         return '<h3>Pay with Venmo</h3>' + each +
-          '<p>Send <strong>$' + PRICE + '</strong> to <code>@' + VENMO_USERNAME + '</code> with the note <code>' + escapeHtml(note) + '</code>' + (n > 1 ? ' (teammates: use your own name in the note)' : '') + '.</p>' +
-          '<a class="pay-btn" href="' + venmoUrl + '" target="_blank" rel="noopener">Pay $' + PRICE + ' on Venmo →</a>';
+          '<p>Send <strong>$' + PRICE + '</strong> to <code>@' + VENMO_USERNAME + '</code> with the note <code class="memo">' + escapeHtml(note) + '</code>' + (n > 1 ? ' (teammates: use your own name in the note)' : '') + '.</p>' +
+          '<a class="btn btn-dark" style="margin-top:8px" href="' + venmoUrl + '" target="_blank" rel="noopener">Pay $' + PRICE + ' on Venmo <span class="arr">→</span></a>';
       }
       if (data.payment === 'Zelle') {
         return '<h3>Pay with Zelle</h3>' + each +
-          '<p>Send <strong>$' + PRICE + '</strong> via Zelle to <code>' + ZELLE_EMAIL + '</code>. Put <code>' + escapeHtml(note) + '</code> in the memo' + (n > 1 ? ' (teammates: use your own name)' : '') + '.</p>';
+          '<p>Send <strong>$' + PRICE + '</strong> via Zelle to <code>' + ZELLE_EMAIL + '</code>. Put <code class="memo">' + escapeHtml(note) + '</code> in the memo' + (n > 1 ? ' (teammates: use your own name)' : '') + '.</p>';
       }
-      return '<h3>Pay by Credit Card</h3>' + each +
+      return '<h3>Pay by credit card</h3>' + each +
         '<p>Complete a <strong>$' + PRICE + '</strong> checkout on our secure Zen Planner store' + (n > 1 ? ' — one checkout per athlete' : '') + '.</p>' +
-        '<a class="pay-btn" href="' + ZEN_PLANNER_CHECKOUT_URL + '" target="_blank" rel="noopener">Pay $' + PRICE + ' on Zen Planner →</a>';
+        '<a class="btn btn-dark" style="margin-top:8px" href="' + ZEN_PLANNER_CHECKOUT_URL + '" target="_blank" rel="noopener">Pay $' + PRICE + ' on Zen Planner <span class="arr">→</span></a>';
     }
 
-    function showSuccess(data) {
-      document.getElementById('signupForm').style.display = 'none';
-      document.getElementById('infoCard').style.display = 'none';
-      document.getElementById('progressWrap').style.display = 'none';
-      document.getElementById('successPay').innerHTML = payInstructionsHtml(data);
-      var details = document.getElementById('successDetails');
-      var rows = [
-        ['Heat Time', heatLabel(data.heat)],
-        ['Division', data.sex + ' ' + data.division],
-        ['Weights', data.weights],
-        ['Home Gym', data.homeGym],
-        ['Payment', data.payment + ' — $' + data.total + (data.athletes.length > 1 ? ' ($' + PRICE + ' each)' : '')]
-      ];
-      data.athletes.forEach(function(a, i) {
-        rows.push(['Athlete ' + (i + 1), a.name + ' · ' + a.garment + ' · ' + a.size + ' · ' + a.color + ' logo']);
-      });
-      details.innerHTML = rows.map(function(r) {
-        return '<div class="row"><span class="label-k">' + r[0] + '</span><span class="val">' + escapeHtml(r[1]) + '</span></div>';
+    function showSuccess(data, snapshot, resp) {
+      ['signupForm', 'infoCard', 'progressWrap'].forEach(function(id) { document.getElementById(id).style.display = 'none'; });
+      document.querySelector('.gear-teaser').style.display = 'none';
+      var kept = resp && resp.duplicate ? (resp.kept || {}) : null;
+      var heat = kept ? (kept.heat || resp.heat || data.heat) : data.heat;
+      var dup = document.getElementById('dupNote');
+      var lead = document.getElementById('successLead');
+      if (kept) {
+        // A resubmit of a registration we already have: show what's SAVED
+        // (the server's copy), not what was just re-sent.
+        lead.textContent = "You're already registered.";
+        dup.innerHTML = '<strong>We already had this registration from a few minutes ago</strong>, so nothing new was booked — your ' +
+          escapeHtml(heatLabel(heat)) + ' heat is locked in. Need a change, or meant to register a second crew? Just reply to your confirmation email.';
+        dup.classList.add('show');
+      } else {
+        lead.textContent = PREVIEW ? 'Preview only — nothing was saved.' : 'Your heat is locked in. One last step — payment.';
+        dup.classList.remove('show');
+      }
+      document.getElementById('successPay').innerHTML = payInstructionsHtml(kept && kept.payment ? Object.assign({}, data, { payment: kept.payment }) : data);
+      var rows;
+      if (kept) {
+        rows = [
+          ['Heat time', escapeHtml(heatLabel(heat))],
+          ['Division', escapeHtml((kept.sex || data.sex) + ' ' + (kept.division || data.division))],
+          ['Weights', escapeHtml(kept.weights || data.weights)],
+          ['Payment', escapeHtml((kept.payment || data.payment) + (kept.total ? ' — ' + String(kept.total).replace(/^\$?/, '$') : ''))]
+        ];
+        (kept.gear || []).forEach(function(line, i) {
+          var parts = String(line).split(' — ');
+          rows.push(['Athlete ' + (i + 1), '<span class="gear-row"><span>' + escapeHtml(parts[0]) + '<br><span style="color:var(--muted);font-size:0.86em">' + escapeHtml(parts.slice(1).join(' — ')) + '</span></span></span>']);
+        });
+      } else {
+        rows = [
+          ['Heat time', escapeHtml(heatLabel(heat))],
+          ['Division', escapeHtml(data.sex + ' ' + data.division)],
+          ['Weights', escapeHtml(data.weights)],
+          ['Home gym', escapeHtml(data.homeGym)],
+          ['Payment', escapeHtml(data.payment + ' — $' + data.total + (data.athletes.length > 1 ? ' ($' + PRICE + ' each)' : ''))]
+        ];
+        data.athletes.forEach(function(a, i) {
+          var img = gearImage(snapshot[i] || {});
+          rows.push(['Athlete ' + (i + 1), '<span class="gear-row"><span>' + escapeHtml(a.name) + '<br><span style="color:var(--muted);font-size:0.86em">' + escapeHtml(a.gear) + '</span></span>' +
+            (img ? '<img src="' + img + '" alt="">' : '') + '</span>']);
+        });
+      }
+      document.getElementById('successDetails').innerHTML = rows.map(function(r) {
+        return '<div class="row"><span class="label-k">' + r[0] + '</span><span class="val">' + r[1] + '</span></div>';
       }).join('');
       var cc = data.athletes.slice(1).filter(function(a) { return a.email; }).length;
-      document.getElementById('successFoot').textContent = cc
-        ? 'A confirmation with your heat time and shirt order is on its way to your inbox — ' +
+      document.getElementById('successFoot').textContent = kept && resp.healed
+        ? 'A confirmation with your heat time, gear and payment details is on its way to your inbox.'
+        : kept
+        ? 'Your confirmation email from that first signup has your heat time, gear and payment details.'
+        : PREVIEW ? 'Preview mode: no email was sent.'
+        : cc
+        ? 'A confirmation with your heat time and gear picks is on its way to your inbox — ' +
           (cc === 1 ? 'your teammate is' : 'your ' + cc + ' teammates are') + ' copied on it too.'
-        : 'A confirmation with your heat time and shirt order is on its way to your inbox.';
+        : 'A confirmation with your heat time and gear pick' + (data.athletes.length > 1 ? 's' : '') + ' is on its way to your inbox.';
       document.getElementById('successMsg').classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('signup').scrollIntoView({ block: 'start' });
+      var h2 = document.querySelector('#successMsg h2');
+      h2.setAttribute('tabindex', '-1');
+      h2.setAttribute('aria-describedby', 'successLead');
+      h2.focus({ preventScroll: true });
     }
 
     function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, function(c) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
         return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
       });
     }
@@ -2280,8 +2309,9 @@
     function resetForm() {
       document.getElementById('successMsg').classList.remove('show');
       document.getElementById('signupForm').style.display = 'block';
-      document.getElementById('infoCard').style.display = 'block';
+      document.getElementById('infoCard').style.display = '';
       document.getElementById('progressWrap').style.display = '';
+      document.querySelector('.gear-teaser').style.display = '';
       form.reset();
       athletes = [ newAthlete() ];
       buildCards();
@@ -2291,47 +2321,43 @@
       accOpen = 'info';
       accLastDone = {};
       accRender();
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'SIGN ME UP';
+      resetSubmit();
       clearError();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('signup').scrollIntoView({ block: 'start' });
+      document.getElementById('firstName').focus({ preventScroll: true });
     }
 
-    // ── Lightbox for weights reference ──
+    // ── Lightbox for the weights reference ──
     var lightbox = document.getElementById('lightbox');
     var lightboxImg = document.getElementById('lightboxImg');
-    var lightboxClose = document.getElementById('lightboxClose');
     var weightsRef = document.getElementById('weightsRef');
     var weightsImgEl = weightsRef.querySelector('img');
 
+    var lbReturn = null;
     function openLightbox() {
       lightboxImg.src = weightsImgEl.src;
       lightboxImg.alt = weightsImgEl.alt;
       lightbox.classList.add('show');
       document.body.style.overflow = 'hidden';
+      lbReturn = document.activeElement;
+      document.getElementById('lightboxClose').focus();
     }
-
     function closeLightbox() {
       lightbox.classList.remove('show');
       document.body.style.overflow = '';
+      if (lbReturn && lbReturn.focus) lbReturn.focus();
+      lbReturn = null;
     }
-
-    weightsRef.addEventListener('click', openLightbox);
-    weightsRef.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(); }
-    });
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) closeLightbox();
-    });
-
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && lightbox.classList.contains('show')) closeLightbox();
+      if (e.key === 'Tab' && lightbox.classList.contains('show')) { e.preventDefault(); document.getElementById('lightboxClose').focus(); }
     });
+    weightsRef.addEventListener('click', openLightbox);
+    weightsRef.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(); } });
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && lightbox.classList.contains('show')) closeLightbox(); });
 
     // ── Init ──
-    preloadMockAssets();
     buildCards();
     syncMixedCard();
     renderSlots();
