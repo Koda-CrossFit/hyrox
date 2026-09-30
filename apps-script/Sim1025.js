@@ -252,16 +252,22 @@ function sim1025HeatLabel(slot) {
   return slot + " AM";
 }
 
-// Lane-type strings match Sept's "Heat Times" legend (sled push/pull total incl.
-// the sled / farmers per hand / sandbag / wall ball · target). Scaled = Kevin's 9/8 loads.
+// Lane type (first word = Red/Green/Blue/Scaled, used for lane caps) + the
+// loads, in the same terms as the site's weights chart (Kevin 9/30): sled push
+// and pull are plates ADDED to a 110 lb sled; farmers per hand; target by sex.
 function sim1025WeightSetup(sex, weights) {
-  if (weights === "Scaled") return "Scaled — 135/90/26/12/4 · 9ft";
-  if (weights === "Pro") {
-    return sex === "Men's" ? "Red — 445/337/70/66/20 · 10ft" : "Green — 335/227/53/44/14 · 10ft";
+  var tgt = sex === "Women's" ? "9 ft" : sex === "Men's" ? "10 ft" : "10 ft men / 9 ft women";
+  if (weights === "Scaled") {
+    return "Scaled — sled push 25 lbs added · sled pull sled only · farmers 2×26 lbs · sandbag 12 lbs · wall ball 4 lbs @ 9 ft";
   }
-  if (weights === "Open") {
-    if (sex === "Women's") return "Blue — 225/172/35/22/9 · 9ft";
-    return "Green — 335/227/53/44/14 · 10ft" + (sex === "Mixed" ? " (mixed*)" : "");
+  if (weights === "Pro" && sex === "Men's") {
+    return "Red — sled push 335 / pull 227 lbs added · farmers 2×70 lbs · sandbag 66 lbs · wall ball 20 lbs @ 10 ft";
+  }
+  if (weights === "Open" && sex === "Women's") {
+    return "Blue — sled push 115 / pull 62 lbs added · farmers 2×35 lbs · sandbag 22 lbs · wall ball 9 lbs @ 9 ft";
+  }
+  if (weights === "Pro" || weights === "Open") {
+    return "Green — sled push 225 / pull 117 lbs added · farmers 2×53 lbs · sandbag 44 lbs · wall ball 14 lbs @ " + tgt;
   }
   return "";
 }

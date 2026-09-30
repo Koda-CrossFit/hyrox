@@ -737,6 +737,16 @@
     .wt .wt-wide td, .wt .wt-wide tr.sub th { text-align: center; }
     .wt .wt-wide tr.sub th:first-child, .wt .wt-wide tbody th { text-align: left; padding-left: 0; }
     .wt .wt-wide tr.grp th { padding: 4px 12px 8px; }
+    .wt .wt-wide th, .wt .wt-wide td { padding: 9px 7px; }
+    .wt .wt-wide td { font-size: 1.12rem; }
+    .wt .wt-wide tbody th { font-size: 0.92rem; }
+    .wt .wt-wide tr.grp th { padding: 4px 7px 8px; vertical-align: bottom; }
+    .wt .wt-wide tr.grp .wt-tag { display: block; width: fit-content; margin: 8px 0 0; line-height: 1.4; vertical-align: baseline; }
+    @media (max-width: 359px) { .wt { padding: 16px 10px 12px; } .wt-card { padding: 12px 10px 6px; } .wt td { font-size: 1.05rem; padding-left: 6px; } }
+    .wt td .u { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.62em; letter-spacing: 0; color: var(--sand-2); }
+    .wt td .a { display: block; font-family: var(--mono); font-weight: 500; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sand-2); margin-top: 1px; }
+    .wt td .v.s { font-size: 0.8em; }
+    .wt td.me .u, .wt td.me .a { color: var(--yellow); }
     .wt-note { font-size: 0.84rem; color: var(--muted-dark); margin-top: 10px; }
 
     /* heat picker */
@@ -1244,18 +1254,18 @@
                 <label class="radio-card"><input type="radio" name="weights" value="Scaled" required><div class="card-inner"><span class="card-title">Scaled</span><span class="card-sub">Modified loads</span></div></label>
               </div>
               <div class="wt" id="weightsChart">
-                <div class="wt-title"><h3>Weight <span class="hl">options</span></h3><span class="mono">All loads in lb · pick yours above</span></div>
+                <div class="wt-title"><h3>Weight <span class="hl">options</span></h3><span class="mono">Pick yours above</span></div>
                 <table class="wt-wide">
                   <thead>
                     <tr class="grp"><th scope="col"><span class="sr-only">Station</span></th><th scope="colgroup" data-w="Scaled" class="g0">Scaled <span class="wt-tag">Beginner</span></th><th scope="colgroup" colspan="2" data-w="Open" class="g0">Open <span class="wt-tag">Standard</span></th><th scope="colgroup" colspan="2" data-w="Pro" class="g0">Pro <span class="wt-tag">Elite</span></th></tr>
                     <tr class="sub"><th scope="col">Station</th><th scope="col" data-w="Scaled" class="g0">All</th><th scope="col" data-w="Open" class="g0">Men</th><th scope="col" data-w="Open">Women</th><th scope="col" data-w="Pro" class="g0">Men</th><th scope="col" data-w="Pro">Women</th></tr>
                   </thead>
                   <tbody>
-                    <tr><th scope="row">Sled push</th><td data-w="Scaled" data-c="a" class="g0">135</td><td data-w="Open" data-c="m" class="g0">335</td><td data-w="Open" data-c="w">225</td><td data-w="Pro" data-c="m" class="g0">445</td><td data-w="Pro" data-c="w">335</td></tr>
-                    <tr><th scope="row">Sled pull</th><td data-w="Scaled" data-c="a" class="g0">90</td><td data-w="Open" data-c="m" class="g0">227</td><td data-w="Open" data-c="w">172</td><td data-w="Pro" data-c="m" class="g0">337</td><td data-w="Pro" data-c="w">227</td></tr>
-                    <tr><th scope="row">Farmers carry</th><td data-w="Scaled" data-c="a" class="g0">2 × 26</td><td data-w="Open" data-c="m" class="g0">2 × 53</td><td data-w="Open" data-c="w">2 × 35</td><td data-w="Pro" data-c="m" class="g0">2 × 70</td><td data-w="Pro" data-c="w">2 × 53</td></tr>
-                    <tr><th scope="row">Sandbag lunges</th><td data-w="Scaled" data-c="a" class="g0">12</td><td data-w="Open" data-c="m" class="g0">44</td><td data-w="Open" data-c="w">22</td><td data-w="Pro" data-c="m" class="g0">66</td><td data-w="Pro" data-c="w">44</td></tr>
-                    <tr><th scope="row">Wall balls</th><td data-w="Scaled" data-c="a" class="g0">4</td><td data-w="Open" data-c="m" class="g0">14</td><td data-w="Open" data-c="w">9</td><td data-w="Pro" data-c="m" class="g0">20</td><td data-w="Pro" data-c="w">14</td></tr>
+                    <tr><th scope="row">Sled push</th><td data-w="Scaled" data-c="a" class="g0"><span class="v">25</span><span class="u"> lbs</span><span class="a">added</span></td><td data-w="Open" data-c="m" class="g0"><span class="v">225</span><span class="u"> lbs</span><span class="a">added</span></td><td data-w="Open" data-c="w"><span class="v">115</span><span class="u"> lbs</span><span class="a">added</span></td><td data-w="Pro" data-c="m" class="g0"><span class="v">335</span><span class="u"> lbs</span><span class="a">added</span></td><td data-w="Pro" data-c="w"><span class="v">225</span><span class="u"> lbs</span><span class="a">added</span></td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-w="Scaled" data-c="a" class="g0"><span class="v s">Sled only</span></td><td data-w="Open" data-c="m" class="g0"><span class="v">117</span><span class="u"> lbs</span><span class="a">added</span></td><td data-w="Open" data-c="w"><span class="v">62</span><span class="u"> lbs</span><span class="a">added</span></td><td data-w="Pro" data-c="m" class="g0"><span class="v">227</span><span class="u"> lbs</span><span class="a">added</span></td><td data-w="Pro" data-c="w"><span class="v">117</span><span class="u"> lbs</span><span class="a">added</span></td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-w="Scaled" data-c="a" class="g0"><span class="v">2 × 26</span><span class="u"> lbs</span></td><td data-w="Open" data-c="m" class="g0"><span class="v">2 × 53</span><span class="u"> lbs</span></td><td data-w="Open" data-c="w"><span class="v">2 × 35</span><span class="u"> lbs</span></td><td data-w="Pro" data-c="m" class="g0"><span class="v">2 × 70</span><span class="u"> lbs</span></td><td data-w="Pro" data-c="w"><span class="v">2 × 53</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-w="Scaled" data-c="a" class="g0"><span class="v">12</span><span class="u"> lbs</span></td><td data-w="Open" data-c="m" class="g0"><span class="v">44</span><span class="u"> lbs</span></td><td data-w="Open" data-c="w"><span class="v">22</span><span class="u"> lbs</span></td><td data-w="Pro" data-c="m" class="g0"><span class="v">66</span><span class="u"> lbs</span></td><td data-w="Pro" data-c="w"><span class="v">44</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-w="Scaled" data-c="a" class="g0"><span class="v">4</span><span class="u"> lbs</span></td><td data-w="Open" data-c="m" class="g0"><span class="v">14</span><span class="u"> lbs</span></td><td data-w="Open" data-c="w"><span class="v">9</span><span class="u"> lbs</span></td><td data-w="Pro" data-c="m" class="g0"><span class="v">20</span><span class="u"> lbs</span></td><td data-w="Pro" data-c="w"><span class="v">14</span><span class="u"> lbs</span></td></tr>
                     <tr class="tgt"><th scope="row">Target</th><td data-w="Scaled" data-c="a" class="g0">9 ft</td><td data-w="Open" data-c="m" class="g0">10 ft</td><td data-w="Open" data-c="w">9 ft</td><td data-w="Pro" data-c="m" class="g0">10 ft</td><td data-w="Pro" data-c="w">9 ft</td></tr>
                   </tbody>
                 </table>
@@ -1266,11 +1276,11 @@
                 <table>
                   <thead><tr><th scope="col">Station</th><th scope="col">All</th></tr></thead>
                   <tbody>
-                    <tr><th scope="row">Sled push</th><td data-c="a">135</td></tr>
-                    <tr><th scope="row">Sled pull</th><td data-c="a">90</td></tr>
-                    <tr><th scope="row">Farmers carry</th><td data-c="a">2 × 26</td></tr>
-                    <tr><th scope="row">Sandbag lunges</th><td data-c="a">12</td></tr>
-                    <tr><th scope="row">Wall balls</th><td data-c="a">4</td></tr>
+                    <tr><th scope="row">Sled push</th><td data-c="a"><span class="v">25</span><span class="u"> lbs</span><span class="a">added</span></td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-c="a"><span class="v s">Sled only</span></td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-c="a"><span class="v">2 × 26</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-c="a"><span class="v">12</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-c="a"><span class="v">4</span><span class="u"> lbs</span></td></tr>
                     <tr class="tgt"><th scope="row">Target</th><td data-c="a">9 ft</td></tr>
                   </tbody>
                 </table>
@@ -1281,11 +1291,11 @@
                 <table>
                   <thead><tr><th scope="col">Station</th><th scope="col">Men</th><th scope="col">Women</th></tr></thead>
                   <tbody>
-                    <tr><th scope="row">Sled push</th><td data-c="m">335</td><td data-c="w">225</td></tr>
-                    <tr><th scope="row">Sled pull</th><td data-c="m">227</td><td data-c="w">172</td></tr>
-                    <tr><th scope="row">Farmers carry</th><td data-c="m">2 × 53</td><td data-c="w">2 × 35</td></tr>
-                    <tr><th scope="row">Sandbag lunges</th><td data-c="m">44</td><td data-c="w">22</td></tr>
-                    <tr><th scope="row">Wall balls</th><td data-c="m">14</td><td data-c="w">9</td></tr>
+                    <tr><th scope="row">Sled push</th><td data-c="m"><span class="v">225</span><span class="u"> lbs</span><span class="a">added</span></td><td data-c="w"><span class="v">115</span><span class="u"> lbs</span><span class="a">added</span></td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-c="m"><span class="v">117</span><span class="u"> lbs</span><span class="a">added</span></td><td data-c="w"><span class="v">62</span><span class="u"> lbs</span><span class="a">added</span></td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-c="m"><span class="v">2 × 53</span><span class="u"> lbs</span></td><td data-c="w"><span class="v">2 × 35</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-c="m"><span class="v">44</span><span class="u"> lbs</span></td><td data-c="w"><span class="v">22</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-c="m"><span class="v">14</span><span class="u"> lbs</span></td><td data-c="w"><span class="v">9</span><span class="u"> lbs</span></td></tr>
                     <tr class="tgt"><th scope="row">Target</th><td data-c="m">10 ft</td><td data-c="w">9 ft</td></tr>
                   </tbody>
                 </table>
@@ -1296,17 +1306,17 @@
                 <table>
                   <thead><tr><th scope="col">Station</th><th scope="col">Men</th><th scope="col">Women</th></tr></thead>
                   <tbody>
-                    <tr><th scope="row">Sled push</th><td data-c="m">445</td><td data-c="w">335</td></tr>
-                    <tr><th scope="row">Sled pull</th><td data-c="m">337</td><td data-c="w">227</td></tr>
-                    <tr><th scope="row">Farmers carry</th><td data-c="m">2 × 70</td><td data-c="w">2 × 53</td></tr>
-                    <tr><th scope="row">Sandbag lunges</th><td data-c="m">66</td><td data-c="w">44</td></tr>
-                    <tr><th scope="row">Wall balls</th><td data-c="m">20</td><td data-c="w">14</td></tr>
+                    <tr><th scope="row">Sled push</th><td data-c="m"><span class="v">335</span><span class="u"> lbs</span><span class="a">added</span></td><td data-c="w"><span class="v">225</span><span class="u"> lbs</span><span class="a">added</span></td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-c="m"><span class="v">227</span><span class="u"> lbs</span><span class="a">added</span></td><td data-c="w"><span class="v">117</span><span class="u"> lbs</span><span class="a">added</span></td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-c="m"><span class="v">2 × 70</span><span class="u"> lbs</span></td><td data-c="w"><span class="v">2 × 53</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-c="m"><span class="v">66</span><span class="u"> lbs</span></td><td data-c="w"><span class="v">44</span><span class="u"> lbs</span></td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-c="m"><span class="v">20</span><span class="u"> lbs</span></td><td data-c="w"><span class="v">14</span><span class="u"> lbs</span></td></tr>
                     <tr class="tgt"><th scope="row">Target</th><td data-c="m">10 ft</td><td data-c="w">9 ft</td></tr>
                   </tbody>
                 </table>
               </section>
                 </div>
-                <p class="wt-note">Sled weights include the sled. Farmers carry is one kettlebell per hand. Mixed teams race the Men's Open / Women's Pro loads.</p>
+                <p class="wt-note">Sled push and pull list the plates added to the sled — the sled itself weighs 110 lbs. Farmers carry is one kettlebell per hand. Mixed teams race the Men's Open / Women's Pro loads.</p>
               </div>
             </div>
           </div>
