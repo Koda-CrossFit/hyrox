@@ -1055,8 +1055,8 @@
       .gear-opt.sel::after { top: -9px; right: 6px; font-size: 0.58rem; }
       .gear-thumbs { grid-template-columns: minmax(0, 1fr); }
       .gear-thumbs img:not(:first-child) { display: none; }
-      .gear-thumbs img { aspect-ratio: 4 / 3; }
-      .gear-thumbs.bands img { aspect-ratio: 2 / 1; object-fit: cover; }
+      .gear-thumbs img { aspect-ratio: 16 / 10; object-fit: cover; }
+      .gear-thumbs.bands img { aspect-ratio: 16 / 10; object-fit: contain; background: #fff; }
       .pick-grid.hb { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
@@ -1177,8 +1177,8 @@
       <div class="gear-teaser" aria-hidden="true">
         <div class="teaser">
           <div class="teaser-imgs bands">
-            <img src="assets/gear/headband-camo-front.jpg" alt="" loading="lazy">
             <img src="assets/gear/headband-black-pink-front.jpg" alt="" loading="lazy">
+            <img src="assets/gear/headband-camo-front.jpg" alt="" loading="lazy">
             <img src="assets/gear/headband-mint-front.jpg" alt="" loading="lazy">
           </div>
           <div class="t">Headband</div>
@@ -1639,9 +1639,9 @@
         opts.innerHTML =
           '<div class="gear-opt" data-item="headband" role="radio" tabindex="0">' +
             '<div class="gear-thumbs bands">' +
+              '<img src="' + hbFront('black-pink') + '" alt="" loading="lazy">' +   // first = the one phones show
               '<img src="' + hbFront('camo') + '" alt="" loading="lazy">' +
-              '<img src="' + hbFront('black-blue') + '" alt="" loading="lazy">' +
-              '<img src="' + hbFront('lilac') + '" alt="" loading="lazy">' +
+              '<img src="' + hbFront('mint') + '" alt="" loading="lazy">' +
             '</div>' +
             '<div class="nm">Headband</div><div class="sb">6 designs · one size</div>' +
           '</div>' +
