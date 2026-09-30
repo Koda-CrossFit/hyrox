@@ -1,5 +1,7 @@
 # Koda Hyrox Simulation — Signup Site
 
+**Live at https://koda-crossfit.github.io/hyrox/** (repo Koda-CrossFit/hyrox, moved from kevschuetz3-lgtm/koda-hyrox-signup on 2026-09-30; the old address forwards here).
+
 Single-page signup for the Hyrox Simulation at Koda CrossFit Iron View on **Sunday, October 25, 2026**, **presented by Centr Equipment and Box Basics** (heats every 10 min, 9:00–11:50 AM). **$25 per athlete — each athlete picks a custom headband OR a hat.** Payment: Venmo / Zelle / credit card (Zen Planner, same $25 product as Sept). The Sept 13 version of `index.html` is in git history (the last commit before the Oct 25 rebuild).
 
 ## October 25, 2026 event — how it works

@@ -32,7 +32,7 @@ var SIM1025_PRICE = 25;
 var SIM1025_VENMO = "kevin-schuetz-5";
 var SIM1025_ZELLE = "kodaironview@gmail.com";
 var SIM1025_ZP_URL = "https://kodaironview.sites.zenplanner.com/retail-product.cfm?ProductId=5F4A8380-AC28-409B-A664-E088BB910ED0";
-var SIM1025_SITE = "https://kevschuetz3-lgtm.github.io/koda-hyrox-signup/";
+var SIM1025_SITE = "https://koda-crossfit.github.io/hyrox/";
 
 var SIM1025_SLOTS = [
   "9:00", "9:10", "9:20", "9:30", "9:40", "9:50",
