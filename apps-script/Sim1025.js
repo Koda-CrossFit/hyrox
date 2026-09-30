@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════════
 // OCTOBER 25, 2026 SIMULATION  (posted from index.html with type:"sim1025")
 // Presented by Centr Equipment + Box Basics. $25/athlete, and every athlete
-// picks a custom HEADBAND (6 JUNK Brands designs) or a TRUCKER HAT (3 patches
+// picks a custom HEADBAND (6 JUNK Brands designs) or a HAT (3 patches
 // x 4 hat colors). Own spreadsheet: "Signups" (one row per submission),
 // "Gear" (one row per athlete, for the order) + on-demand "Gear Tally".
 //
@@ -252,10 +252,10 @@ function sim1025HeatLabel(slot) {
   return slot + " AM";
 }
 
-// Lane-type strings match Sept's "Heat Times" legend. Scaled loads are shown
-// on the weights chart, so the setup string doesn't repeat numbers.
+// Lane-type strings match Sept's "Heat Times" legend (sled push/pull total incl.
+// the sled / farmers per hand / sandbag / wall ball · target). Scaled = Kevin's 9/8 loads.
 function sim1025WeightSetup(sex, weights) {
-  if (weights === "Scaled") return "Scaled — custom loads";
+  if (weights === "Scaled") return "Scaled — 135/90/26/12/4 · 9ft";
   if (weights === "Pro") {
     return sex === "Men's" ? "Red — 445/337/70/66/20 · 10ft" : "Green — 335/227/53/44/14 · 10ft";
   }
@@ -391,7 +391,7 @@ function sim1025NormalizeGear(a) {
     var c = sim1025Lookup(SIM1025_HAT_COLORS, a.hatColorId || a.hatColor);
     if (!p) return { error: "unknown hat patch" };
     if (!c) return { error: "unknown hat color" };
-    return { item: "Trucker Hat", headband: "", patch: p.name, hatColor: c.name };
+    return { item: "Hat", headband: "", patch: p.name, hatColor: c.name };
   }
   return { error: "pick a headband or a hat" };
 }
@@ -848,7 +848,7 @@ function sim1025GearTally() {
       var d = String(r[C.hb] || "").trim();
       if (hbNames.indexOf(d) === -1) { unknown.push({ row: i + 2, athlete: ath, value: d }); return; }
       hb[d] = (hb[d] || 0) + 1; nHb++;
-    } else if (item === "Trucker Hat") {
+    } else if (item === "Hat" || item === "Trucker Hat") {
       var p = String(r[C.patch] || "").trim(), c = String(r[C.color] || "").trim();
       if (patchNames.indexOf(p) === -1 || colorNames.indexOf(c) === -1) { unknown.push({ row: i + 2, athlete: ath, value: p + " / " + c }); return; }
       hat[p + "|" + c] = (hat[p + "|" + c] || 0) + 1; nHat++;
@@ -864,7 +864,7 @@ function sim1025GearTally() {
   out.push(pad(["Total headbands", nHb]));
   out.push(pad([]));
   var hatHeadRow = out.length + 1;
-  out.push(["TRUCKER HATS — patch \\ hat color"].concat(colorNames).concat(["Total"]));
+  out.push(["HATS — patch \\ hat color"].concat(colorNames).concat(["Total"]));
   patchNames.forEach(function(p) {
     var line = [p], sum = 0;
     colorNames.forEach(function(c) { var n = hat[p + "|" + c] || 0; line.push(n); sum += n; });
@@ -1169,7 +1169,7 @@ function sim1025Audit() {
     var owner = activeRegs.some(function(a) { return sim1025SameReg(a, { reg: reg, heat: r[M.heat], ts: r[M.ts], ref: r[M.ref] }); });
     if (!owner) add("error", "orphan-gear", "Gear row has no active registration (" + reg + " / " + ath + ")", i + 2);
     var item = String(r[M.item] || "").trim();
-    if (item !== "Headband" && item !== "Trucker Hat") add("error", "bad-item", "Unrecognised item \"" + item + "\": " + ath, i + 2);
+    if (item !== "Headband" && item !== "Hat" && item !== "Trucker Hat") add("error", "bad-item", "Unrecognised item \"" + item + "\": " + ath, i + 2);
   });
   return { status: "ok", activeRegistrations: active, activeGear: gearCount, proAllOpen: st.proAllOpen,
            openOverflow: st.overflow, issueCount: issues.length, issues: issues };

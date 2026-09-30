@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hyrox Simulation — Koda CrossFit Iron View — October 25, 2026</title>
-  <meta name="description" content="Sign up for the Hyrox Simulation at Koda CrossFit Iron View on Sunday, October 25, 2026 — presented by Centr Equipment and Box Basics. $25 entry includes a custom headband or trucker hat. Heats every 10 minutes, 9:00–11:50 AM.">
+  <meta name="description" content="Sign up for the Hyrox Simulation at Koda CrossFit Iron View on Sunday, October 25, 2026 — presented by Centr Equipment and Box Basics. $25 entry includes a custom headband or hat. Heats every 10 minutes, 9:00–11:50 AM.">
   <meta name="theme-color" content="#1A1818">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Hyrox Simulation — Sunday, Oct 25 · Koda CrossFit Iron View">
-  <meta property="og:description" content="Presented by Centr Equipment &amp; Box Basics. $25 entry — every athlete gets a custom headband or trucker hat. Pick your heat, 9:00–11:50 AM.">
+  <meta property="og:description" content="Presented by Centr Equipment &amp; Box Basics. $25 entry — every athlete gets a custom headband or hat. Pick your heat, 9:00–11:50 AM.">
   <meta property="og:image" content="https://kevschuetz3-lgtm.github.io/koda-hyrox-signup/assets/og-oct25.jpg">
   <meta property="og:url" content="https://kevschuetz3-lgtm.github.io/koda-hyrox-signup/">
   <meta name="twitter:card" content="summary_large_image">
@@ -694,32 +694,50 @@
     .radio-card input:checked + .card-inner .card-title::after { content: ' ✓'; color: var(--yellow); }
 
     /* weights reference */
-    .weights-ref {
-      position: relative;
-      margin-top: 14px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: #000;
-      cursor: zoom-in;
-    }
-
-    .weights-ref img { display: block; width: 100%; height: auto; }
-
-    /* a bar under the chart (the chart's own title fills every corner) */
-    .zoom-hint {
-      display: block;
-      background: var(--yellow);
-      color: var(--ink-0);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 7px 9px 6px;
-      pointer-events: none;
-    }
-
-    .weights-ref-caption { font-size: 0.86rem; color: var(--muted); text-align: center; margin-top: 8px; }
+    /* weights chart (Centr style: charcoal band, yellow accents, big numbers) */
+    .wt { margin-top: 14px; background: var(--ink); color: #fff; padding: 18px 16px 14px; }
+    .wt-title { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .wt-title h3 { font-family: var(--display); font-weight: 900; font-size: 1.45rem; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1; }
+    .wt-title .mono { color: var(--sand-2); font-size: 0.7rem; }
+    /* desktop: one wide table; phones/tablets: a card per weight class */
+    .wt-grid { display: none; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    @media (max-width: 760px) { .wt-grid { display: grid; } .wt-wide { display: none; } }
+    .wt-wide { width: 100%; border-collapse: collapse; }
+    .wt-wide th, .wt-wide td { padding: 9px 10px; border-top: 1px solid rgba(223,213,195,0.18); }
+    .wt-wide .g0 { border-left: 1px solid rgba(223,213,195,0.28); }
+    .wt-wide tr.grp th { border-top: 0; padding: 4px 10px 8px; text-align: left; font-family: var(--display); font-weight: 900; font-size: 1.45rem; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1; white-space: nowrap; color: #fff; }
+    .wt-wide tr.grp th.on { color: var(--yellow); }
+    .wt-wide tr.grp .wt-tag { margin-left: 6px; vertical-align: 3px; }
+    .wt-wide th[data-w="Open"] .wt-tag { background: var(--yellow); border-color: var(--yellow); color: var(--ink-0); }
+    .wt-wide tr.sub th { border-top: 0; padding-top: 0; font-family: var(--mono); font-weight: 500; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--yellow); text-align: right; }
+    .wt-wide tr.sub th:first-child { text-align: left; }
+    .wt-wide tbody th { text-align: left; font-weight: 600; font-size: 0.98rem; color: var(--sand); white-space: nowrap; }
+    .wt-wide td { text-align: right; font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; white-space: nowrap; }
+    .wt-wide tr.tgt td { font-size: 1rem; color: var(--sand-2); font-weight: 700; }
+    .wt-wide .on { background: rgba(255,255,51,0.09); }
+    .wt-wide th.on { color: var(--yellow); }
+    .wt-wide td.me { color: var(--yellow); }
+    .wt-card { border: 1px solid rgba(223,213,195,0.28); padding: 14px 14px 8px; min-width: 0; transition: border-color 0.15s, box-shadow 0.15s; }
+    .wt-card.on { border-color: var(--yellow); box-shadow: inset 0 0 0 1px var(--yellow); }
+    .wt-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .wt-top h4 { font-family: var(--display); font-weight: 900; font-size: 1.6rem; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1; }
+    .wt-tag { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sand-2); border: 1px solid rgba(223,213,195,0.4); border-radius: 999px; padding: 3px 9px 2px; white-space: nowrap; }
+    .wt-card[data-w="Open"] .wt-tag { background: var(--yellow); border-color: var(--yellow); color: var(--ink-0); }
+    .wt-sub { font-size: 0.84rem; color: var(--muted-dark); margin: 6px 0 6px; }
+    .wt table { width: 100%; border-collapse: collapse; }
+    .wt th, .wt td { padding: 8px 0; border-top: 1px solid rgba(223,213,195,0.18); }
+    .wt thead th { border-top: 0; padding: 4px 0 6px; font-family: var(--mono); font-weight: 500; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--yellow); text-align: right; }
+    .wt thead th:first-child { text-align: left; }
+    .wt tbody th { text-align: left; font-weight: 600; font-size: 0.95rem; color: var(--sand); }
+    .wt td { text-align: right; padding-left: 10px; font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; white-space: nowrap; }
+    .wt tr.tgt td { font-size: 0.98rem; color: var(--sand-2); font-weight: 700; }
+    .wt td.me { color: var(--yellow); }
+    /* (placed after the card rules so the wide table wins) */
+    .wt .wt-wide th, .wt .wt-wide td { padding: 9px 12px; }
+    .wt .wt-wide td, .wt .wt-wide tr.sub th { text-align: center; }
+    .wt .wt-wide tr.sub th:first-child, .wt .wt-wide tbody th { text-align: left; padding-left: 0; }
+    .wt .wt-wide tr.grp th { padding: 4px 12px 8px; }
+    .wt-note { font-size: 0.84rem; color: var(--muted-dark); margin-top: 10px; }
 
     /* heat picker */
     .slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 7px; }
@@ -1015,13 +1033,6 @@
     .spinner { width: 42px; height: 42px; border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--yellow); border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* lightbox */
-    .lightbox { position: fixed; inset: 0; background: rgba(14,12,12,0.94); z-index: 1000; display: none; align-items: flex-start; justify-content: flex-start; padding: 24px; overflow: auto; cursor: zoom-out; }
-    .lightbox.show { display: flex; }
-    /* auto margins centre the chart when it fits and let it scroll from its left edge when it doesn't */
-    .lightbox-img { margin: auto; max-width: min(95vw, 100%); max-height: 90vh; object-fit: contain; cursor: default; }
-    @media (max-width: 700px) { .lightbox-img { max-width: none; width: 160vw; max-height: none; } }
-    .lightbox-close { position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; background: var(--yellow); border: none; border-radius: 2px; color: var(--ink-0); font-size: 24px; line-height: 1; cursor: pointer; z-index: 1001; }
 
     @media (max-width: 480px) {
       .signup { padding: 48px 0 60px; }
@@ -1079,7 +1090,7 @@
             <a href="https://www.shopboxbasics.com/" target="_blank" rel="noopener" aria-label="Box Basics (opens in a new tab)"><img src="assets/sponsors/boxbasics-logo-white.png" alt="Box Basics"></a>
           </div>
           <p class="hero-date">Sunday, October 25</p>
-          <p class="hero-sub">Race the full HYROX format — 8 km of running and all 8 stations — on race-day loads. <strong>$25 entry, and every athlete takes home a custom Koda HYROX headband or trucker hat.</strong></p>
+          <p class="hero-sub">Race the full HYROX format — 8 km of running and all 8 stations — on race-day loads. <strong>$25 entry, and every athlete takes home a custom Koda HYROX headband or hat.</strong></p>
           <div class="hero-actions">
             <a class="btn btn-yellow" href="#signup">Pick your heat <span class="arr">→</span></a>
           </div>
@@ -1090,9 +1101,9 @@
           </div>
         </div>
         <div class="collage" aria-hidden="true">
-          <div class="card hat"><img src="assets/gear/hat-sunset-moss.jpg" alt=""></div>
-          <div class="card band"><img src="assets/gear/headband-camo-front.jpg" alt=""></div>
-          <div class="card band2"><img src="assets/gear/headband-black-blue-front.jpg" alt=""></div>
+          <div class="card hat"><img src="assets/gear/hat-script-black.jpg" alt=""></div>
+          <div class="card band"><img src="assets/gear/headband-black-blue-front.jpg" alt=""></div>
+          <div class="card band2"><img src="assets/gear/headband-mint-front.jpg" alt=""></div>
           <div class="tag">Your pick<strong>Headband or hat</strong></div>
         </div>
       </div>
@@ -1141,7 +1152,7 @@
       <div class="info-card" id="infoCard">
         <div class="info-row">
           <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          <div><strong>$25 per athlete — headband or hat included.</strong> <span>Pick a custom Koda HYROX headband or a patch trucker hat when you sign up.</span></div>
+          <div><strong>$25 per athlete — headband or hat included.</strong> <span>Pick a custom Koda HYROX headband or a patch hat when you sign up.</span></div>
         </div>
         <div class="info-row">
           <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -1169,7 +1180,7 @@
             <img src="assets/gear/hat-sunset-columbia.jpg" alt="" loading="lazy">
             <img src="assets/gear/hat-mountain-graphite.jpg" alt="" loading="lazy">
           </div>
-          <div class="t">Trucker hat</div>
+          <div class="t">Hat</div>
           <div class="s">3 patches × 4 hat colors</div>
         </div>
       </div>
@@ -1232,11 +1243,71 @@
                 <label class="radio-card"><input type="radio" name="weights" value="Open" required><div class="card-inner"><span class="card-title">Open</span><span class="card-sub">Standard</span></div></label>
                 <label class="radio-card"><input type="radio" name="weights" value="Scaled" required><div class="card-inner"><span class="card-title">Scaled</span><span class="card-sub">Modified loads</span></div></label>
               </div>
-              <figure class="weights-ref" id="weightsRef" tabindex="0" role="button" aria-label="Open the weights reference at full size">
-                <img src="assets/hyrox-sim-weights-oct25.jpg" alt="Hyrox Sim weight options for Scaled, Open, and Pro divisions (men and women) across Sled Push, Sled Pull, Farmers Carry, Sandbag Lunges, and Wall Balls" loading="lazy">
-                <span class="zoom-hint">Tap to enlarge</span>
-              </figure>
-              <p class="weights-ref-caption">Reference: weights for each station by division</p>
+              <div class="wt" id="weightsChart">
+                <div class="wt-title"><h3>Weight <span class="hl">options</span></h3><span class="mono">All loads in lb · pick yours above</span></div>
+                <table class="wt-wide">
+                  <thead>
+                    <tr class="grp"><th scope="col"><span class="sr-only">Station</span></th><th scope="colgroup" data-w="Scaled" class="g0">Scaled <span class="wt-tag">Beginner</span></th><th scope="colgroup" colspan="2" data-w="Open" class="g0">Open <span class="wt-tag">Standard</span></th><th scope="colgroup" colspan="2" data-w="Pro" class="g0">Pro <span class="wt-tag">Elite</span></th></tr>
+                    <tr class="sub"><th scope="col">Station</th><th scope="col" data-w="Scaled" class="g0">All</th><th scope="col" data-w="Open" class="g0">Men</th><th scope="col" data-w="Open">Women</th><th scope="col" data-w="Pro" class="g0">Men</th><th scope="col" data-w="Pro">Women</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Sled push</th><td data-w="Scaled" data-c="a" class="g0">135</td><td data-w="Open" data-c="m" class="g0">335</td><td data-w="Open" data-c="w">225</td><td data-w="Pro" data-c="m" class="g0">445</td><td data-w="Pro" data-c="w">335</td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-w="Scaled" data-c="a" class="g0">90</td><td data-w="Open" data-c="m" class="g0">227</td><td data-w="Open" data-c="w">172</td><td data-w="Pro" data-c="m" class="g0">337</td><td data-w="Pro" data-c="w">227</td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-w="Scaled" data-c="a" class="g0">2 × 26</td><td data-w="Open" data-c="m" class="g0">2 × 53</td><td data-w="Open" data-c="w">2 × 35</td><td data-w="Pro" data-c="m" class="g0">2 × 70</td><td data-w="Pro" data-c="w">2 × 53</td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-w="Scaled" data-c="a" class="g0">12</td><td data-w="Open" data-c="m" class="g0">44</td><td data-w="Open" data-c="w">22</td><td data-w="Pro" data-c="m" class="g0">66</td><td data-w="Pro" data-c="w">44</td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-w="Scaled" data-c="a" class="g0">4</td><td data-w="Open" data-c="m" class="g0">14</td><td data-w="Open" data-c="w">9</td><td data-w="Pro" data-c="m" class="g0">20</td><td data-w="Pro" data-c="w">14</td></tr>
+                    <tr class="tgt"><th scope="row">Target</th><td data-w="Scaled" data-c="a" class="g0">9 ft</td><td data-w="Open" data-c="m" class="g0">10 ft</td><td data-w="Open" data-c="w">9 ft</td><td data-w="Pro" data-c="m" class="g0">10 ft</td><td data-w="Pro" data-c="w">9 ft</td></tr>
+                  </tbody>
+                </table>
+                <div class="wt-grid">
+              <section class="wt-card" data-w="Scaled">
+                <div class="wt-top"><h4>Scaled</h4><span class="wt-tag">Beginner</span></div>
+                <p class="wt-sub">First-timers · finish strong</p>
+                <table>
+                  <thead><tr><th scope="col">Station</th><th scope="col">All</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Sled push</th><td data-c="a">135</td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-c="a">90</td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-c="a">2 × 26</td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-c="a">12</td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-c="a">4</td></tr>
+                    <tr class="tgt"><th scope="row">Target</th><td data-c="a">9 ft</td></tr>
+                  </tbody>
+                </table>
+              </section>
+              <section class="wt-card" data-w="Open">
+                <div class="wt-top"><h4>Open</h4><span class="wt-tag">Standard</span></div>
+                <p class="wt-sub">Race-day HYROX · most athletes</p>
+                <table>
+                  <thead><tr><th scope="col">Station</th><th scope="col">Men</th><th scope="col">Women</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Sled push</th><td data-c="m">335</td><td data-c="w">225</td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-c="m">227</td><td data-c="w">172</td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-c="m">2 × 53</td><td data-c="w">2 × 35</td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-c="m">44</td><td data-c="w">22</td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-c="m">14</td><td data-c="w">9</td></tr>
+                    <tr class="tgt"><th scope="row">Target</th><td data-c="m">10 ft</td><td data-c="w">9 ft</td></tr>
+                  </tbody>
+                </table>
+              </section>
+              <section class="wt-card" data-w="Pro">
+                <div class="wt-top"><h4>Pro</h4><span class="wt-tag">Elite</span></div>
+                <p class="wt-sub">Heavy · advanced athletes only</p>
+                <table>
+                  <thead><tr><th scope="col">Station</th><th scope="col">Men</th><th scope="col">Women</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Sled push</th><td data-c="m">445</td><td data-c="w">335</td></tr>
+                    <tr><th scope="row">Sled pull</th><td data-c="m">337</td><td data-c="w">227</td></tr>
+                    <tr><th scope="row">Farmers carry</th><td data-c="m">2 × 70</td><td data-c="w">2 × 53</td></tr>
+                    <tr><th scope="row">Sandbag lunges</th><td data-c="m">66</td><td data-c="w">44</td></tr>
+                    <tr><th scope="row">Wall balls</th><td data-c="m">20</td><td data-c="w">14</td></tr>
+                    <tr class="tgt"><th scope="row">Target</th><td data-c="m">10 ft</td><td data-c="w">9 ft</td></tr>
+                  </tbody>
+                </table>
+              </section>
+                </div>
+                <p class="wt-note">Sled weights include the sled. Farmers carry is one kettlebell per hand. Mixed teams race the Men's Open / Women's Pro loads.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1254,7 +1325,7 @@
         <div class="acc" data-sec="gear">
           <button type="button" class="acc-head" data-sec="gear"><span class="acc-check" aria-hidden="true">✓</span><span class="acc-title"><span class="acc-num">05</span> Headband or hat</span><span class="acc-sum" id="sum-gear"></span><span class="acc-chev" aria-hidden="true">▼</span></button>
           <div class="acc-body">
-            <p class="section-hint" id="gearHint">Every athlete picks one: a custom Koda HYROX headband <em>or</em> a patch trucker hat. Tap one to see the options — the preview updates as you choose.</p>
+            <p class="section-hint" id="gearHint">Every athlete picks one: a custom Koda HYROX headband <em>or</em> a patch hat. Tap one to see the options — the preview updates as you choose.</p>
             <div id="athleteCards"><!-- built by JS --></div>
             <button type="button" class="btn btn-dark gear-next" id="gearNext" hidden>Looks good — next step <span class="arr">→</span></button>
           </div>
@@ -1340,10 +1411,6 @@
     <div id="loadingText">Submitting...</div>
   </div>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" tabindex="-1">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="">
-  </div>
 
   <script>
     // ══════════════════════════════════════════════════
@@ -1458,7 +1525,7 @@
       { id: 'columbia', name: 'Columbia Blue/White' },
       { id: 'moss',     name: 'Moss Green/Charcoal' }
     ];
-    var GEAR_ITEMS = { headband: 'Headband', hat: 'Trucker Hat' };
+    var GEAR_ITEMS = { headband: 'Headband', hat: 'Hat' };
 
     function byId(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
     function hbFront(id) { return 'assets/gear/headband-' + id + '-front.jpg'; }
@@ -1480,7 +1547,7 @@
 
     function gearLabel(a) {
       if (a.item === 'headband') return 'Headband · ' + (byId(HEADBANDS, a.headband) || {}).name;
-      if (a.item === 'hat') return 'Trucker Hat · ' + (byId(PATCHES, a.patch) || {}).name + ' patch · ' + (byId(HAT_COLORS, a.hatColor) || {}).name;
+      if (a.item === 'hat') return 'Hat · ' + (byId(PATCHES, a.patch) || {}).name + ' patch · ' + (byId(HAT_COLORS, a.hatColor) || {}).name;
       return '';
     }
 
@@ -1572,7 +1639,7 @@
               '<img src="' + hatImg('sunset', 'columbia') + '" alt="" loading="lazy">' +
               '<img src="' + hatImg('mountain', 'moss') + '" alt="" loading="lazy">' +
             '</div>' +
-            '<div class="nm">Trucker hat</div><div class="sb">3 patches × 4 colors</div>' +
+            '<div class="nm">Hat</div><div class="sb">3 patches × 4 colors</div>' +
           '</div>';
         opts.querySelectorAll('.gear-opt').forEach(function(el) {
           function pick() {
@@ -1672,8 +1739,8 @@
         sub.innerHTML =
           '<div class="gear-layout">' +
             '<div class="sub-block"><div class="sub-label">Preview</div>' +
-              '<div class="gear-preview"><img class="hatprev" src="' + hatImg(showPatch, showColor) + '" alt="Trucker hat preview — ' + escapeHtml(byId(PATCHES, showPatch).name + ' patch on ' + byId(HAT_COLORS, showColor).name) + '"><span class="gear-cap">' + escapeHtml(cap) + '</span></div>' +
-              '<p class="one-size">One size · adjustable snapback trucker with a woven patch.</p></div>' +
+              '<div class="gear-preview"><img class="hatprev" src="' + hatImg(showPatch, showColor) + '" alt="Hat preview — ' + escapeHtml(byId(PATCHES, showPatch).name + ' patch on ' + byId(HAT_COLORS, showColor).name) + '"><span class="gear-cap">' + escapeHtml(cap) + '</span></div>' +
+              '<p class="one-size">One size · adjustable, with a woven patch.</p></div>' +
             '<div class="sub-block">' +
               '<div class="sub-label">1 · Pick a patch <small>' + (p ? p.name : '3 options') + '</small></div>' +
               '<div class="pick-grid patch" role="radiogroup" aria-label="Hat patch">' +
@@ -2012,7 +2079,7 @@
     });
     ['sex', 'weights'].forEach(function(n) {
       document.querySelectorAll('input[name="' + n + '"]').forEach(function(r) {
-        r.addEventListener('change', function() { renderSlots(); radioPing(); });
+        r.addEventListener('change', function() { renderSlots(); syncWeightsChart(); radioPing(); });
       });
     });
     document.querySelectorAll('input[name="payment"]').forEach(function(r) {
@@ -2323,39 +2390,26 @@
       accRender();
       resetSubmit();
       clearError();
+      syncWeightsChart();
       document.getElementById('signup').scrollIntoView({ block: 'start' });
       document.getElementById('firstName').focus({ preventScroll: true });
     }
 
-    // ── Lightbox for the weights reference ──
-    var lightbox = document.getElementById('lightbox');
-    var lightboxImg = document.getElementById('lightboxImg');
-    var weightsRef = document.getElementById('weightsRef');
-    var weightsImgEl = weightsRef.querySelector('img');
-
-    var lbReturn = null;
-    function openLightbox() {
-      lightboxImg.src = weightsImgEl.src;
-      lightboxImg.alt = weightsImgEl.alt;
-      lightbox.classList.add('show');
-      document.body.style.overflow = 'hidden';
-      lbReturn = document.activeElement;
-      document.getElementById('lightboxClose').focus();
+    // ── Weights chart: highlight the athlete's weight category + column ──
+    function syncWeightsChart() {
+      var w = checkedVal('weights'), sex = checkedVal('sex');
+      var col = sex === "Men's" ? 'm' : sex === "Women's" ? 'w' : '';
+      document.querySelectorAll('.wt-card').forEach(function(c) {
+        var on = c.dataset.w === w;
+        c.classList.toggle('on', on);
+        c.querySelectorAll('td').forEach(function(td) { td.classList.toggle('me', on && !!col && td.dataset.c === col); });
+      });
+      document.querySelectorAll('.wt-wide [data-w]').forEach(function(cell) {
+        var on = cell.dataset.w === w;
+        cell.classList.toggle('on', on);
+        if (cell.tagName === 'TD') cell.classList.toggle('me', on && !!col && cell.dataset.c === col);
+      });
     }
-    function closeLightbox() {
-      lightbox.classList.remove('show');
-      document.body.style.overflow = '';
-      if (lbReturn && lbReturn.focus) lbReturn.focus();
-      lbReturn = null;
-    }
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Tab' && lightbox.classList.contains('show')) { e.preventDefault(); document.getElementById('lightboxClose').focus(); }
-    });
-    weightsRef.addEventListener('click', openLightbox);
-    weightsRef.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(); } });
-    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && lightbox.classList.contains('show')) closeLightbox(); });
 
     // ── Init ──
     buildCards();

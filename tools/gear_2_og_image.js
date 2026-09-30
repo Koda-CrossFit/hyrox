@@ -33,9 +33,9 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
   .tag b { display: block; font-family: 'Inter Tight'; font-weight: 900; font-size: 30px; letter-spacing: -0.02em; line-height: 1; }
 </style></head><body>
   <div class="glow"></div>
-  <div class="card hat"><img src="${img('assets/gear/hat-sunset-moss.jpg', 'image/jpeg')}"></div>
-  <div class="card band"><img src="${img('assets/gear/headband-camo-front.jpg', 'image/jpeg')}"></div>
-  <div class="card band2"><img src="${img('assets/gear/headband-black-blue-front.jpg', 'image/jpeg')}"></div>
+  <div class="card hat"><img src="${img('assets/gear/hat-script-black.jpg', 'image/jpeg')}"></div>
+  <div class="card band"><img src="${img('assets/gear/headband-black-blue-front.jpg', 'image/jpeg')}"></div>
+  <div class="card band2"><img src="${img('assets/gear/headband-mint-front.jpg', 'image/jpeg')}"></div>
   <div class="tag">$25 entry<b>Headband or hat</b></div>
   <div class="left">
     <div class="mono">Koda CrossFit Iron View</div>
