@@ -462,6 +462,8 @@ function sim1025Validate(data) {
   if (athletes.length !== need) return "Expected " + need + " athlete(s) for " + data.division + ".";
   for (var i = 0; i < athletes.length; i++) {
     if (!String(athletes[i].name || "").trim()) return "Missing name for athlete " + (i + 1) + ".";
+    // Every teammate needs their own email (Kevin 9/30) — they're cc'd on the confirmation.
+    if (i > 0 && !SIM1025_EMAIL_RE.test(String(athletes[i].email || "").trim())) return "Missing or invalid email for athlete " + (i + 1) + ".";
     var g = sim1025NormalizeGear(athletes[i]);
     if (g.error) return "Athlete " + (i + 1) + ": " + g.error + ".";
   }

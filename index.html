@@ -1614,12 +1614,14 @@
           nf.appendChild(inp);
           card.appendChild(nf);
 
-          // Optional teammate email — copied on the confirmation if given.
+          // Teammate email (required, Kevin 9/30) — every teammate is copied on
+          // the confirmation, so the whole crew has the heat time + payment info.
           var ef = document.createElement('div');
           ef.className = 'field';
-          ef.innerHTML = '<label for="athleteEmail' + i + '">' + (partner ? "Partner's email" : 'Teammate ' + i + ' email') + ' <span class="optional-tag">optional</span></label>';
+          ef.innerHTML = '<label for="athleteEmail' + i + '">' + (partner ? "Partner's email" : 'Teammate ' + i + ' email') + ' <span class="req">*</span></label>';
           var einp = document.createElement('input');
-          einp.type = 'email'; einp.id = 'athleteEmail' + i; einp.placeholder = 'So they get the heat time + payment info';
+          einp.type = 'email'; einp.id = 'athleteEmail' + i; einp.placeholder = 'They get the heat time + payment info';
+          einp.required = true;
           einp.autocomplete = 'off'; einp.value = a.email;
           einp.addEventListener('input', function() { a.email = einp.value.trim(); });
           einp.addEventListener('blur', accPingOnLeave);
@@ -1946,7 +1948,7 @@
         case 'heat': return !!selectedSlot;
         case 'gear': return athletes.every(function(a, i) {
                          var nm = i === 0 ? registrantName() : a.name;
-                         return nm && gearComplete(a);
+                         return nm && (i === 0 || validEmail(a.email || '')) && gearComplete(a);
                        });
         case 'gym': return !!document.getElementById('homeGym').value.trim();
         case 'payment': return !!checkedVal('payment');
@@ -2194,9 +2196,8 @@
         var a = athletes[i];
         var who = i === 0 ? 'yourself' : (a.name || 'Athlete ' + (i + 1));
         if (!a.name) return showError('Please enter a name for Athlete ' + (i + 1) + '.', 'gear');
-        if (i > 0 && a.email && !validEmail(a.email)) {
-          return showError("That doesn't look like a valid email for " + a.name + ' — fix it or leave it blank.', 'gear');
-        }
+        if (i > 0 && !a.email) return showError('Please enter an email for ' + a.name + ' — every teammate gets the confirmation.', 'gear');
+        if (i > 0 && !validEmail(a.email)) return showError("That doesn't look like a valid email for " + a.name + '.', 'gear');
         if (!a.item) return showError('Pick a headband or a hat for ' + who + '.', 'gear');
         if (a.item === 'headband' && !byId(HEADBANDS, a.headband)) return showError('Pick a headband design for ' + who + '.', 'gear');
         if (a.item === 'hat' && !byId(PATCHES, a.patch)) return showError('Pick a hat patch for ' + who + '.', 'gear');
