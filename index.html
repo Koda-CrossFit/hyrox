@@ -856,6 +856,12 @@
     .gear-thumbs.bands img { object-fit: contain; background: #fff; }
     .gear-opt .nm { font-family: var(--display); font-weight: 900; font-size: 1.25rem; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.05; }
     .gear-opt .sb { font-size: 0.84rem; color: var(--muted); margin-top: 3px; }
+    /* every headband claimed (stock, Kevin 10/5) — the option stays visible but can't be picked */
+    .gear-opt.out { cursor: not-allowed; background: #f4f3f0; }
+    .gear-opt.out:hover { border-color: #948E85; }
+    .gear-opt.out .gear-thumbs { opacity: 0.4; }
+    .gear-opt.out .sb { color: var(--error); font-weight: 600; }
+    .hb-note { font-size: 0.86rem; font-weight: 600; color: var(--error); margin: 0 0 8px; }
 
     .gear-sub { margin-top: 14px; }
     .gear-sub:empty { display: none; }
@@ -1112,8 +1118,8 @@
         </div>
         <div class="collage" aria-hidden="true">
           <div class="card hat"><img src="assets/gear/hat-script-black.jpg" alt=""></div>
-          <div class="card band"><img src="assets/gear/headband-black-blue-front.jpg" alt=""></div>
-          <div class="card band2"><img src="assets/gear/headband-mint-front.jpg" alt=""></div>
+          <div class="card band"><img src="assets/gear/headband-black-blue-front.jpg" alt="" data-hb="black-blue" data-hb-group="hero"></div>
+          <div class="card band2"><img src="assets/gear/headband-mint-front.jpg" alt="" data-hb="mint" data-hb-group="hero"></div>
           <div class="tag">Your pick<strong>Headband or hat</strong></div>
         </div>
       </div>
@@ -1177,12 +1183,12 @@
       <div class="gear-teaser" aria-hidden="true">
         <div class="teaser">
           <div class="teaser-imgs bands">
-            <img src="assets/gear/headband-black-pink-front.jpg" alt="" loading="lazy">
-            <img src="assets/gear/headband-camo-front.jpg" alt="" loading="lazy">
-            <img src="assets/gear/headband-mint-front.jpg" alt="" loading="lazy">
+            <img src="assets/gear/headband-black-pink-front.jpg" alt="" loading="lazy" data-hb="black-pink" data-hb-group="teaser" data-hb-spare="hide">
+            <img src="assets/gear/headband-camo-front.jpg" alt="" loading="lazy" data-hb="camo" data-hb-group="teaser" data-hb-spare="hide">
+            <img src="assets/gear/headband-mint-front.jpg" alt="" loading="lazy" data-hb="mint" data-hb-group="teaser" data-hb-spare="hide">
           </div>
           <div class="t">Headband</div>
-          <div class="s">6 designs · one size</div>
+          <div class="s" id="teaserHbSub">6 designs · one size</div>
         </div>
         <div class="teaser">
           <div class="teaser-imgs">
@@ -1543,11 +1549,117 @@
     function hatImg(patch, color) { return 'assets/gear/hat-' + patch + '-' + color + '.jpg'; }
     function patchImg(patch) { return 'assets/gear/patch-' + patch + '.jpg'; }
 
+    // ── Headband stock (Kevin 10/5) ──
+    // sim1025Slots reports how many of each design are left; a design with
+    // none left comes off the picker and out of the preview images. The server
+    // re-checks under its lock at submit, so this is the friendly first line.
+    var hbLeft = null;  // design id → headbands left; null until the server answers (then every design shows)
+    var HB_SHOW_ORDER = ['black-pink', 'camo', 'mint', 'black-blue', 'navy', 'lilac'];  // thumbnail order (Pink first = what phones show)
+    function hbStockLeft(id) { return hbLeft && typeof hbLeft[id] === 'number' ? hbLeft[id] : Infinity; }
+    function hbInStock() { return HEADBANDS.filter(function(h) { return hbStockLeft(h.id) > 0; }); }
+    function hbPickedByOthers(id, i) {
+      return athletes.filter(function(a, j) { return j !== i && a.item === 'headband' && a.headband === id; }).length;
+    }
+    // Designs athlete i can still pick once the rest of the crew's picks are
+    // counted (their own current pick always stays visible).
+    function hbChoices(i) {
+      return HEADBANDS.filter(function(h) {
+        return athletes[i].headband === h.id || hbStockLeft(h.id) - hbPickedByOthers(h.id, i) > 0;
+      });
+    }
+    // The first crew member (form order) whose headband is past what's left, or null.
+    function hbShortage() {
+      var want = {};
+      for (var i = 0; i < athletes.length; i++) {
+        var a = athletes[i];
+        if (a.item !== 'headband' || !a.headband) continue;
+        want[a.headband] = (want[a.headband] || 0) + 1;
+        if (want[a.headband] > hbStockLeft(a.headband)) return { i: i, id: a.headband, left: hbStockLeft(a.headband) };
+      }
+      return null;
+    }
+    function hbShortMessage(id, left, who) {
+      var nm = (byId(HEADBANDS, id) || {}).name || 'that';
+      return left > 0 && left !== Infinity
+        ? 'Only ' + left + ' ' + nm + ' headband' + (left === 1 ? ' is' : 's are') + ' left — please pick a different design for ' + who + '.'
+        : 'Sorry — the ' + nm + ' headband just sold out. Please pick another design for ' + who + '.';
+    }
+    function hbCountText() {
+      var n = hbInStock().length;
+      return n ? n + ' design' + (n === 1 ? '' : 's') + ' · one size' : 'Sold out — pick a hat';
+    }
+    function hbOptInner() {
+      var ids = HB_SHOW_ORDER.filter(function(id) { return hbStockLeft(id) > 0; }).slice(0, 3);
+      if (!ids.length) ids = HB_SHOW_ORDER.slice(0, 3);  // all gone: keep the pictures, greyed out
+      return '<div class="gear-thumbs bands">' + ids.map(function(id) { return '<img src="' + hbFront(id) + '" alt="" loading="lazy">'; }).join('') + '</div>' +
+        '<div class="nm">Headband</div><div class="sb">' + hbCountText() + '</div>';
+    }
+    function paintHeadbandOpt(el) {
+      var out = !hbInStock().length;
+      el.innerHTML = hbOptInner();
+      el.classList.toggle('out', out);
+      if (out) el.setAttribute('aria-disabled', 'true'); else el.removeAttribute('aria-disabled');
+    }
+    // Hero + teaser pictures: a sold-out design swaps for the next one in stock
+    // that isn't already showing in the same spot. With too few designs left to
+    // fill every spot, the teaser hides the extra picture (data-hb-spare="hide")
+    // and the hero repeats one that's still available. Only when every design
+    // is gone do the original pictures stay.
+    function syncHeadbandImages() {
+      var inStock = HB_SHOW_ORDER.filter(function(id) { return hbStockLeft(id) > 0; });
+      var groups = {};
+      document.querySelectorAll('img[data-hb]').forEach(function(img) {
+        var g = img.getAttribute('data-hb-group') || '';
+        (groups[g] = groups[g] || []).push(img);
+      });
+      Object.keys(groups).forEach(function(g) {
+        var imgs = groups[g], k = 0;
+        var keep = imgs.map(function(img) { return img.getAttribute('data-hb'); }).filter(function(id) { return hbStockLeft(id) > 0; });
+        var spare = inStock.filter(function(id) { return keep.indexOf(id) === -1; });
+        imgs.forEach(function(img) {
+          var id = img.getAttribute('data-hb'), hide = false;
+          var show = hbStockLeft(id) > 0 ? id : spare.shift();
+          if (!show) {
+            if (!inStock.length) show = id;
+            else if (img.getAttribute('data-hb-spare') === 'hide') hide = true;
+            else show = inStock[k++ % inStock.length];
+          }
+          img.style.display = hide ? 'none' : '';
+          if (show && img.getAttribute('src') !== hbFront(show)) img.setAttribute('src', hbFront(show));
+        });
+      });
+      var t = document.getElementById('teaserHbSub');
+      if (t) t.textContent = hbCountText();
+    }
+    // New stock numbers from the server: repaint the Headband option on every
+    // athlete card and re-render every card — headband pickers (a sold-out
+    // pick is cleared there with a note) and the keyboard tab stops, which
+    // must skip a Headband option that just became unavailable.
+    function syncHeadbandStock() {
+      document.querySelectorAll('.gear-opt[data-item="headband"]').forEach(paintHeadbandOpt);
+      athletes.forEach(function(a, i) { renderGear(i); });
+      syncHeadbandImages();
+      accRender();
+    }
+    // A pick on one athlete can use up (or free) a design for the rest of the
+    // crew — re-render teammates still choosing, so a stale "pick a hat" note clears too.
+    function hbCrewRefresh(except) {
+      if (!hbLeft || athletes.length < 2) return;
+      athletes.forEach(function(a, j) { if (j !== except && a.item !== 'hat') renderGear(j); });
+    }
+    // Coming back to Headband after a hat: a remembered design a teammate has
+    // since taken (the last of it) is dropped, so it can't be double-booked.
+    function hbOnItem(a, i, item) {
+      if (item === 'headband' && a.item !== 'headband' && a.headband &&
+          hbStockLeft(a.headband) - hbPickedByOthers(a.headband, i) <= 0) a.headband = '';
+      a.item = item;
+    }
+
     var DIVISION_COUNT = { 'Singles': 1, 'Doubles': 2, 'Team of 4 Relay': 4 };
 
     // ── State ──
     var athletes = [ newAthlete() ];
-    function newAthlete() { return { name: '', email: '', item: '', headband: '', patch: '', hatColor: '' }; }
+    function newAthlete() { return { name: '', email: '', item: '', headband: '', patch: '', hatColor: '', hbGone: '' }; }
 
     function gearComplete(a) {
       if (a.item === 'headband') return !!byId(HEADBANDS, a.headband);
@@ -1637,14 +1749,7 @@
         opts.setAttribute('role', 'radiogroup');
         opts.setAttribute('aria-label', 'Headband or hat for athlete ' + (i + 1));
         opts.innerHTML =
-          '<div class="gear-opt" data-item="headband" role="radio" tabindex="0">' +
-            '<div class="gear-thumbs bands">' +
-              '<img src="' + hbFront('black-pink') + '" alt="" loading="lazy">' +   // first = the one phones show
-              '<img src="' + hbFront('camo') + '" alt="" loading="lazy">' +
-              '<img src="' + hbFront('mint') + '" alt="" loading="lazy">' +
-            '</div>' +
-            '<div class="nm">Headband</div><div class="sb">6 designs · one size</div>' +
-          '</div>' +
+          '<div class="gear-opt" data-item="headband" role="radio" tabindex="0"></div>' +   // filled by paintHeadbandOpt (stock-aware)
           '<div class="gear-opt" data-item="hat" role="radio" tabindex="0">' +
             '<div class="gear-thumbs">' +
               '<img src="' + hatImg('script', 'black') + '" alt="" loading="lazy">' +
@@ -1653,10 +1758,13 @@
             '</div>' +
             '<div class="nm">Hat</div><div class="sb">3 patches × 4 colors</div>' +
           '</div>';
+        paintHeadbandOpt(opts.querySelector('.gear-opt[data-item="headband"]'));
         opts.querySelectorAll('.gear-opt').forEach(function(el) {
           function pick() {
-            if (a.item !== el.dataset.item) a.item = el.dataset.item;
+            if (el.getAttribute('aria-disabled') === 'true') return;  // headbands sold out
+            if (a.item !== el.dataset.item) hbOnItem(a, i, el.dataset.item);
             renderGear(i);
+            hbCrewRefresh(i);
             accPing();
           }
           el.addEventListener('click', pick);
@@ -1713,14 +1821,26 @@
       var sub = document.getElementById('gearSub' + i);
       if (!sub) return;
       var card = sub.parentNode;
+
+      // Headband stock: a pick whose design has since sold out is cleared (with
+      // a note saying why), and with no design left for this athlete the
+      // headband choice steps back so they pick a hat.
+      if (a.headband && hbStockLeft(a.headband) <= 0) {
+        a.hbGone = (byId(HEADBANDS, a.headband) || {}).name || '';
+        a.headband = '';
+      }
+      var hbNone = a.item === 'headband' && !hbChoices(i).length;
+      if (hbNone) a.item = '';
+
       card.querySelectorAll('.gear-opt').forEach(function(el) {
         var on = el.dataset.item === a.item;
         el.classList.toggle('sel', on);
         el.setAttribute('aria-checked', on ? 'true' : 'false');
       });
       rovingGroup(card.querySelector('.gear-opts'), '.gear-opt', 'data-item', function(item) {
-        a.item = item;
+        hbOnItem(a, i, item);
         renderGear(i);
+        hbCrewRefresh(i);
         accPing();
         var again = card.querySelector('.gear-opt[data-item="' + item + '"]');
         if (again) again.focus();
@@ -1728,19 +1848,21 @@
 
       if (a.item === 'headband') {
         var hb = byId(HEADBANDS, a.headband);
+        var choices = hbChoices(i);
         var previewHtml = hb
           ? '<div class="gear-preview"><img class="front" src="' + hbFront(hb.id) + '" alt="Headband preview — ' + escapeHtml(hb.name) + ', front"><img class="side" src="' + hbSide(hb.id) + '" alt="Headband preview — ' + escapeHtml(hb.name) + ', side"><span class="gear-cap">Headband · ' + escapeHtml(hb.name) + '</span></div>'
           : '<div class="gear-preview empty">Pick a design to preview it here.</div>';
         sub.innerHTML =
           '<div class="gear-layout">' +
             '<div class="sub-block"><div class="sub-label">Preview</div>' + previewHtml + '<p class="one-size">One size · moisture-wicking stretch headband by JUNK Brands.</p></div>' +
-            '<div class="sub-block"><div class="sub-label">Pick a design <small>' + (hb ? hb.name : '6 options') + '</small></div>' +
+            '<div class="sub-block"><div class="sub-label">Pick a design <small>' + (hb ? hb.name : choices.length + ' option' + (choices.length === 1 ? '' : 's')) + '</small></div>' +
+              (a.hbGone && !hb ? '<p class="hb-note" role="status">Sorry — ' + escapeHtml(a.hbGone) + ' just sold out. Please pick another design.</p>' : '') +
               '<div class="pick-grid hb" role="radiogroup" aria-label="Headband design">' +
-                HEADBANDS.map(function(h) { return pickCard({ sel: a.headband === h.id, key: h.id, img: hbFront(h.id), name: h.name, sub: h.sub }); }).join('') +
+                choices.map(function(h) { return pickCard({ sel: a.headband === h.id, key: h.id, img: hbFront(h.id), name: h.name, sub: h.sub }); }).join('') +
               '</div>' +
             '</div>' +
           '</div>';
-        wirePicks(sub, '.pick-grid.hb', function(k) { a.headband = k; renderGear(i); accPing(); });
+        wirePicks(sub, '.pick-grid.hb', function(k) { a.headband = k; a.hbGone = ''; renderGear(i); hbCrewRefresh(i); accPing(); });
       } else if (a.item === 'hat') {
         var p = byId(PATCHES, a.patch), c = byId(HAT_COLORS, a.hatColor);
         var showPatch = p ? p.id : 'script', showColor = c ? c.id : 'black';
@@ -1768,7 +1890,9 @@
         wirePicks(sub, '.pick-grid.color', function(k) { a.hatColor = k; renderGear(i); accPing(); });
         preloadHats();
       } else {
-        sub.innerHTML = '';
+        sub.innerHTML = hbNone
+          ? '<p class="hb-note" role="status">' + (hbInStock().length ? 'Your crew has the last headbands' : 'Headbands are sold out') + ' — please pick a hat.</p>'
+          : '';
       }
     }
 
@@ -1925,6 +2049,10 @@
           syncSlotsFromServer(slotCounts);
           slotsLoaded = true;
           renderSlots();
+          if (resp.headbandsLeft && JSON.stringify(resp.headbandsLeft) !== JSON.stringify(hbLeft)) {
+            hbLeft = resp.headbandsLeft;
+            syncHeadbandStock();
+          }
           accRender();
         })
         .catch(function() { renderSlots(); });
@@ -2203,6 +2331,10 @@
         if (a.item === 'hat' && !byId(PATCHES, a.patch)) return showError('Pick a hat patch for ' + who + '.', 'gear');
         if (a.item === 'hat' && !byId(HAT_COLORS, a.hatColor)) return showError('Pick a hat color for ' + who + '.', 'gear');
       }
+      var hbShort = hbShortage();
+      if (hbShort) {
+        return showError(hbShortMessage(hbShort.id, hbShort.left, hbShort.i === 0 ? 'yourself' : (athletes[hbShort.i].name || 'Athlete ' + (hbShort.i + 1))), 'gear');
+      }
       data.athletes = athletes.map(function(a) {
         var hat = a.item === 'hat';
         return {
@@ -2277,6 +2409,16 @@
               : resp.reason === 'heat_closed'
               ? 'The ' + heatLabel(data.heat) + ' heat is no longer available — please pick another time.'
               : 'The ' + heatLabel(data.heat) + ' heat just ran out of lanes for your division — please pick another time.', 'heat');
+          } else if (resp.gearOut) {
+            // Someone else just claimed the last of a headband design. Take the
+            // server's fresh stock, which drops the design from the pickers
+            // (clearing that pick), then say who needs to choose again.
+            resetSubmit();
+            if (resp.headbandsLeft) hbLeft = resp.headbandsLeft;
+            syncHeadbandStock();
+            var gi = (parseInt(resp.athlete, 10) || 1) - 1;
+            var gwho = gi === 0 ? 'yourself' : ((athletes[gi] || {}).name || 'Athlete ' + (gi + 1));
+            showError(hbShortMessage(resp.design, hbStockLeft(resp.design), gwho), 'gear');
           } else {
             var se = String(resp.error || '');
             throw new Error(/^(Missing|Invalid|Expected|Athlete \d|Mixed is)/.test(se) ? se : 'the signup system hit a temporary problem');

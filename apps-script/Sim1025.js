@@ -4,6 +4,8 @@
 // picks a custom HEADBAND (6 JUNK Brands designs) or a HAT (3 patches
 // x 4 hat colors). Own spreadsheet: "Signups" (one row per submission),
 // "Gear" (one row per athlete, for the order) + on-demand "Gear Tally".
+// Headbands are limited stock per design (SIM1025_HEADBAND_STOCK, Kevin 10/5):
+// a design whose headbands are all claimed disappears from the picker.
 //
 // Same lanes as Sept 13: 8 per heat — 1 Red (Men's Pro), 3 Green (Men's
 // Open / Women's Pro / Mixed), 3 Blue (Women's Open), 1 Scaled. NEW (Kevin
@@ -63,6 +65,14 @@ var SIM1025_PATCHES = { "script": "Koda Script", "sunset": "Sunset Peak", "mount
 var SIM1025_HAT_COLORS = {
   "black": "Black", "graphite": "Graphite/White", "columbia": "Columbia Blue/White", "moss": "Moss Green/Charcoal"
 };
+// Headbands on hand per design (Kevin 10/5). Once every one of a design is
+// claimed it drops off the picker (sim1025Slots reports headbandsLeft) and the
+// POST refuses it under the same lock that books the lane. Hats are unlimited;
+// a design missing here is treated as unlimited too.
+var SIM1025_HEADBAND_STOCK = {
+  "camo": 30, "black-pink": 19, "navy": 19, "black-blue": 13, "lilac": 13, "mint": 6
+};
+var SIM1025_HB_SOLDOUT_PROP = "SIM1025_HB_SOLDOUT_";  // + design id: the sold-out email went out
 
 var SIM1025_SIGNUP_HEADERS = [
   "Timestamp", "Registrant", "Email", "Division", "Sex", "Weights", "Weights Setup",
@@ -366,11 +376,18 @@ function sim1025State(counts) {
 }
 
 function sim1025SlotCounts() {
-  var st = sim1025State();
+  var ss = getOrCreateSim1025Spreadsheet();
+  var st = sim1025State(sim1025CountsAllHeats(ss.getSheetByName("Signups")));
   var counts = {};
   st.slots.forEach(function(s) { counts[s] = st.counts[s] || sim1025EmptyCounts(); });
-  return { status: "ok", caps: SIM1025_GROUP_CAPS, slotCaps: st.slotCaps, counts: counts,
-           proAllOpen: st.proAllOpen, overflow: st.overflow };
+  var out = { status: "ok", caps: SIM1025_GROUP_CAPS, slotCaps: st.slotCaps, counts: counts,
+              proAllOpen: st.proAllOpen, overflow: st.overflow };
+  // Headbands still available per design — sold-out designs drop off the
+  // picker. A Gear read hiccup just leaves this out (the page then shows every
+  // design and the POST still re-checks stock under the lock).
+  try { out.headbandsLeft = sim1025HeadbandLeft(sim1025HeadbandUsed(ss.getSheetByName("Gear"))); }
+  catch (hbErr) { Logger.log("Sim1025 headband stock read failed: " + hbErr); }
+  return out;
 }
 
 // ── Gear ──
@@ -400,6 +417,76 @@ function sim1025NormalizeGear(a) {
     return { item: "Hat", headband: "", patch: p.name, hatColor: c.name };
   }
   return { error: "pick a headband or a hat" };
+}
+
+// Headbands already claimed, by design id: active (non-test, non-cancelled)
+// Gear rows — the same rows the Gear Tally counts, so hand edits and
+// cancellations on the Gear tab flow straight into what's left.
+function sim1025HeadbandUsed(gearSheet) {
+  var m = sim0913HeaderMap(gearSheet);
+  var C = { ath: sim0913Col(m, "athlete", 1), item: sim0913Col(m, "item", 2), hb: sim0913Col(m, "headband design", 3),
+            reg: sim0913Col(m, "registrant", 6), status: sim0913Col(m, "status", -1) };
+  var used = {};
+  Object.keys(SIM1025_HEADBANDS).forEach(function(id) { used[id] = 0; });
+  sim1025Rows(gearSheet).forEach(function(r) {
+    var ath = String(r[C.ath] || "").trim();
+    if (!ath || sim1025IsTest(ath) || sim1025IsTest(r[C.reg])) return;
+    if (C.status >= 0 && sim1025IsCancelled(r[C.status])) return;
+    if (String(r[C.item] || "").trim() !== "Headband") return;
+    var hb = sim1025Lookup(SIM1025_HEADBANDS, r[C.hb]);
+    if (hb) used[hb.id]++;
+  });
+  return used;
+}
+
+// id → headbands still available (never below 0); null = no stock limit.
+function sim1025HeadbandLeft(used) {
+  var left = {};
+  Object.keys(SIM1025_HEADBANDS).forEach(function(id) {
+    var stock = SIM1025_HEADBAND_STOCK[id];
+    left[id] = typeof stock === "number" ? Math.max(0, stock - (used[id] || 0)) : null;
+  });
+  return left;
+}
+
+// The first athlete (form order) whose headband would go past what's left —
+// counts the crew's own picks, so two teammates can't split the last one.
+// athletes[i].gear is a normalized pick. Returns null when everything fits.
+function sim1025HeadbandShortage(athletes, left) {
+  var want = {};
+  for (var i = 0; i < athletes.length; i++) {
+    var g = athletes[i].gear;
+    if (!g || g.item !== "Headband") continue;
+    var hb = sim1025Lookup(SIM1025_HEADBANDS, g.headband);
+    if (!hb || left[hb.id] == null) continue;
+    want[hb.id] = (want[hb.id] || 0) + 1;
+    if (want[hb.id] > left[hb.id]) return { athlete: i + 1, id: hb.id, name: hb.name, left: left[hb.id] };
+  }
+  return null;
+}
+
+// Email Kevin when a registration claims the last headband of a design.
+// leftNow is re-read AFTER the write, so a test booking (not counted) can never
+// trip it. Latched on the stock level it was sent for: a cancellation and a
+// second sell-out at the same stock stays quiet, but raising the stock re-arms it.
+function sim1025HeadbandSoldOutNotice(athletes, leftNow) {
+  var took = {};
+  athletes.forEach(function(a) {
+    if (!a.gear || a.gear.item !== "Headband") return;
+    var hb = sim1025Lookup(SIM1025_HEADBANDS, a.gear.headband);
+    if (hb) took[hb.id] = (took[hb.id] || 0) + 1;
+  });
+  var props = PropertiesService.getScriptProperties();
+  Object.keys(took).forEach(function(id) {
+    if (leftNow[id] == null || leftNow[id] > 0) return;
+    var stock = SIM1025_HEADBAND_STOCK[id];
+    if (Number(props.getProperty(SIM1025_HB_SOLDOUT_PROP + id) || 0) >= stock) return;
+    props.setProperty(SIM1025_HB_SOLDOUT_PROP + id, String(stock));
+    sim1025Notify(SIM1025_SHORT + " — " + SIM1025_HEADBANDS[id] + " headbands are sold out",
+      "All " + SIM1025_HEADBAND_STOCK[id] + " <strong>" + escapeHtml(SIM1025_HEADBANDS[id]) + "</strong> headbands are now claimed, " +
+      "so the signup site has taken that design off the picker. No action needed.<br><br>" +
+      "Got more of them? Ask Claude to raise its number in SIM1025_HEADBAND_STOCK and it will show up again.");
+  });
 }
 
 function sim1025GearText(g) {
@@ -672,6 +759,18 @@ function handleSim1025(data) {
       var taken = ((st.counts[slot] || {})[group]) || 0;
       if (taken >= cap) return sim1025Json({ status: "slot_full", slot: slot, group: group });
 
+      // Headband stock, checked under the lock so two crews can't both get the
+      // last one. The message starts "Athlete N:" so a page loaded before this
+      // check existed still shows it word for word; current pages use gearOut.
+      var hbLeft = sim1025HeadbandLeft(sim1025HeadbandUsed(gearSheet));
+      var hbShort = sim1025HeadbandShortage(athletes, hbLeft);
+      if (hbShort) {
+        return sim1025Json({ status: "error", gearOut: true, design: hbShort.id, athlete: hbShort.athlete, headbandsLeft: hbLeft,
+          error: "Athlete " + hbShort.athlete + ": " + (hbShort.left
+            ? "only " + hbShort.left + " " + hbShort.name + " headband" + (hbShort.left === 1 ? " is" : "s are") + " left"
+            : "the " + hbShort.name + " headband just sold out") + " — please pick another design." });
+      }
+
       var ref = Utilities.getUuid().slice(0, 8);
       savedRow = sim1025Append(signups, {
         "ref": ref,
@@ -724,6 +823,8 @@ function handleSim1025(data) {
       // next page load re-evaluates anyway).
       try { sim1025State(sim1025CountsAllHeats(signups)); }
       catch (gateErr) { Logger.log("Sim1025 post-write gate check failed: " + gateErr); }
+      try { sim1025HeadbandSoldOutNotice(athletes, sim1025HeadbandLeft(sim1025HeadbandUsed(gearSheet))); }
+      catch (hbNoteErr) { Logger.log("Sim1025 sold-out notice failed: " + hbNoteErr); }
     }
   } catch (unexpected) {
     Logger.log("Sim1025 POST failed: " + unexpected);
@@ -843,7 +944,6 @@ function sim1025GearTally() {
   var C = { ath: sim0913Col(m, "athlete", 1), item: sim0913Col(m, "item", 2), hb: sim0913Col(m, "headband design", 3),
             patch: sim0913Col(m, "hat patch", 4), color: sim0913Col(m, "hat color", 5), reg: sim0913Col(m, "registrant", 6),
             status: sim0913Col(m, "status", -1) };
-  var hbNames = Object.keys(SIM1025_HEADBANDS).map(function(k) { return SIM1025_HEADBANDS[k]; });
   var patchNames = Object.keys(SIM1025_PATCHES).map(function(k) { return SIM1025_PATCHES[k]; });
   var colorNames = Object.keys(SIM1025_HAT_COLORS).map(function(k) { return SIM1025_HAT_COLORS[k]; });
   var hb = {}, hat = {}, nHb = 0, nHat = 0, unknown = [];
@@ -853,9 +953,11 @@ function sim1025GearTally() {
     if (C.status >= 0 && sim1025IsCancelled(r[C.status])) return;
     var item = String(r[C.item] || "").trim();
     if (item === "Headband") {
-      var d = String(r[C.hb] || "").trim();
-      if (hbNames.indexOf(d) === -1) { unknown.push({ row: i + 2, athlete: ath, value: d }); return; }
-      hb[d] = (hb[d] || 0) + 1; nHb++;
+      // Same lenient match as the stock count (sim1025HeadbandUsed), so the
+      // Tally's Left column always agrees with what the site enforces.
+      var d = String(r[C.hb] || "").trim(), dHit = sim1025Lookup(SIM1025_HEADBANDS, d);
+      if (!dHit) { unknown.push({ row: i + 2, athlete: ath, value: d }); return; }
+      hb[dHit.name] = (hb[dHit.name] || 0) + 1; nHb++;
     } else if (item === "Hat" || item === "Trucker Hat") {
       var p = String(r[C.patch] || "").trim(), c = String(r[C.color] || "").trim();
       if (patchNames.indexOf(p) === -1 || colorNames.indexOf(c) === -1) { unknown.push({ row: i + 2, athlete: ath, value: p + " / " + c }); return; }
@@ -867,9 +969,16 @@ function sim1025GearTally() {
 
   var width = colorNames.length + 2;
   var pad = function(a) { while (a.length < width) a.push(""); return a; };
-  var out = [pad(["HEADBANDS (JUNK Brands)", "Qty"])];
-  hbNames.forEach(function(d) { out.push(pad([d, hb[d] || 0])); });
-  out.push(pad(["Total headbands", nHb]));
+  var out = [pad(["HEADBANDS (JUNK Brands)", "Qty", "Stock", "Left"])];
+  var stockTot = 0, leftTot = 0, hbStock = {};
+  Object.keys(SIM1025_HEADBANDS).forEach(function(id) {
+    var d = SIM1025_HEADBANDS[id], n = hb[d] || 0, stock = SIM1025_HEADBAND_STOCK[id];
+    var limited = typeof stock === "number", left = limited ? Math.max(0, stock - n) : "";
+    if (limited) { stockTot += stock; leftTot += left; }
+    hbStock[d] = { stock: limited ? stock : null, claimed: n, left: limited ? left : null };
+    out.push(pad([d, n, limited ? stock : "", limited && left === 0 ? "SOLD OUT" : left]));
+  });
+  out.push(pad(["Total headbands", nHb, stockTot, leftTot]));
   out.push(pad([]));
   var hatHeadRow = out.length + 1;
   out.push(["HATS — patch \\ hat color"].concat(colorNames).concat(["Total"]));
@@ -898,7 +1007,7 @@ function sim1025GearTally() {
   });
   tally.setColumnWidth(1, 250);
   for (var ci = 2; ci <= width; ci++) tally.setColumnWidth(ci, 150);
-  return { status: "ok", headbands: nHb, hats: nHat, byHeadband: hb, byHat: hat, unrecognised: unknown };
+  return { status: "ok", headbands: nHb, hats: nHat, byHeadband: hb, byHat: hat, headbandStock: hbStock, unrecognised: unknown };
 }
 
 // A heat that exists on the event schedule at all (base or overflow),
@@ -1116,6 +1225,12 @@ function sim1025SetGear(q, p) {
   });
   var out2 = { status: "ok", athlete: h.athlete, gearRow: h.row, before: cur, after: next, signups: signupChange };
   if (!signupChange) out2.warning = "Gear row updated, but the matching line in the Signups Gear column wasn't found — update it by hand.";
+  // A hand change is an override, so it goes through even past stock — just say so.
+  if (next.item === "Headband") {
+    var hbId = sim1025Lookup(SIM1025_HEADBANDS, next.headband).id, stock = SIM1025_HEADBAND_STOCK[hbId];
+    var claimed = sim1025HeadbandUsed(gs)[hbId];
+    if (typeof stock === "number" && claimed > stock) out2.stockWarning = next.headband + ": " + claimed + " claimed but only " + stock + " in stock.";
+  }
   return out2;
 }
 
@@ -1200,10 +1315,18 @@ function sim1025Status() {
     if (isOpen) active.push(ov.slot);
   });
   var proState = props.getProperty(SIM1025_PRO_PROP);
+  var headbands;
+  try {
+    var hbLeft = sim1025HeadbandLeft(sim1025HeadbandUsed(getOrCreateSim1025Spreadsheet().getSheetByName("Gear")));
+    headbands = { stock: SIM1025_HEADBAND_STOCK, left: hbLeft,
+                  soldOut: Object.keys(hbLeft).filter(function(id) { return hbLeft[id] === 0; }) };
+  } catch (hbErr) {
+    headbands = { stock: SIM1025_HEADBAND_STOCK, error: "Gear tab unreadable: " + hbErr };
+  }
   return { status: "ok",
            pro: { everyMinutes: SIM1025_PRO_EVERY_MIN, onPatternSlots: on, booked: proUsed, of: on.length, allOpen: st.proAllOpen,
                   mode: proState === "1" ? "open" : proState === "0" ? "held closed" : "auto" },
-           overflow: chain, openOverflow: st.overflow };
+           overflow: chain, openOverflow: st.overflow, headbands: headbands };
 }
 
 function sim1025Leftovers() {
