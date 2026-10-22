@@ -37,6 +37,7 @@ var SIM1025_ZP_URL = "https://kodaironview.sites.zenplanner.com/retail-product.c
 var SIM1025_SITE = "https://koda-crossfit.github.io/hyrox/";
 
 var SIM1025_SLOTS = [
+  "8:50",  // added 10/22 (Kevin): early heat; Men's Pro pattern still starts at 9:00
   "9:00", "9:10", "9:20", "9:30", "9:40", "9:50",
   "10:00", "10:10", "10:20", "10:30", "10:40", "10:50",
   "11:00", "11:10", "11:20", "11:30", "11:40", "11:50"
@@ -70,7 +71,7 @@ var SIM1025_HAT_COLORS = {
 // POST refuses it under the same lock that books the lane. Hats are unlimited;
 // a design missing here is treated as unlimited too.
 var SIM1025_HEADBAND_STOCK = {
-  "camo": 30, "black-pink": 19, "navy": 19, "black-blue": 13, "lilac": 13, "mint": 6
+  "camo": 30, "black-pink": 19, "navy": 19, "black-blue": 13, "lilac": 13, "mint": 5  // mint: 6 → 5 on 10/20 (Kevin: Jelly Mint out of stock; 5 already claimed, so none left)
 };
 var SIM1025_HB_SOLDOUT_PROP = "SIM1025_HB_SOLDOUT_";  // + design id: the sold-out email went out
 
@@ -1413,4 +1414,18 @@ function sim1025GetInner(action, e) {
     case "sim1025Leftovers": return sim1025Json(sim1025Leftovers());
   }
   return sim1025Json({ status: "error", error: "unknown action: " + action });
+}
+
+// Admin helpers for the Apps Script editor (select the function, click Run —
+// no admin key needed there). Same effect as ?action=sim1025SetOverflow:
+// open the 12:10 overflow heat by hand (the chain opens in order, so 12:00 is
+// opened too), or put it back on the automatic rule.
+function sim1025AdminOpen1210() {
+  var props = PropertiesService.getScriptProperties();
+  SIM1025_OVERFLOW.forEach(function(o) { props.setProperty(o.prop, "1"); });
+  Logger.log("overflow heats open: " + JSON.stringify(sim1025State().overflow));
+}
+function sim1025AdminAuto1210() {
+  PropertiesService.getScriptProperties().deleteProperty("SIM1025_1210_OPEN");
+  Logger.log("12:10 back on auto; open now: " + JSON.stringify(sim1025State().overflow));
 }

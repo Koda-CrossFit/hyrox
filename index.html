@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hyrox Simulation — Koda CrossFit Iron View — October 25, 2026</title>
-  <meta name="description" content="Sign up for the Hyrox Simulation at Koda CrossFit Iron View on Sunday, October 25, 2026 — presented by Centr Equipment and Box Basics. $25 entry includes a custom headband or hat. Heats every 10 minutes, 9:00–11:50 AM.">
+  <meta name="description" content="Sign up for the Hyrox Simulation at Koda CrossFit Iron View on Sunday, October 25, 2026 — presented by Centr Equipment and Box Basics. $25 entry includes a custom headband or hat. Heats every 10 minutes, 8:50–11:50 AM.">
   <meta name="theme-color" content="#1A1818">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Hyrox Simulation — Sunday, Oct 25 · Koda CrossFit Iron View">
-  <meta property="og:description" content="Presented by Centr Equipment &amp; Box Basics. $25 entry — every athlete gets a custom headband or hat. Pick your heat, 9:00–11:50 AM.">
+  <meta property="og:description" content="Presented by Centr Equipment &amp; Box Basics. $25 entry — every athlete gets a custom headband or hat. Pick your heat, 8:50–11:50 AM.">
   <meta property="og:image" content="https://koda-crossfit.github.io/hyrox/assets/og-oct25.jpg">
   <meta property="og:url" content="https://koda-crossfit.github.io/hyrox/">
   <meta name="twitter:card" content="summary_large_image">
@@ -1111,7 +1111,7 @@
             <a class="btn btn-yellow" href="#signup">Pick your heat <span class="arr">→</span></a>
           </div>
           <div class="hero-facts">
-            <div class="fact"><span class="mono">Heats</span><strong id="heroHeats">Every 10 min · 9:00–11:50 AM</strong></div>
+            <div class="fact"><span class="mono">Heats</span><strong id="heroHeats">Every 10 min · 8:50–11:50 AM</strong></div>
             <div class="fact"><span class="mono">Entry</span><strong>$25 · gear included</strong></div>
             <div class="fact"><span class="mono">Where</span><strong>740 S Pierce Ave, Louisville</strong></div>
           </div>
@@ -1176,7 +1176,7 @@
         </div>
         <div class="info-row">
           <svg class="info-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <div><strong>You choose your heat time.</strong> <span id="infoHeats">Heats go off every 10 minutes, 9:00–11:50 AM — live availability as you book.</span></div>
+          <div><strong>You choose your heat time.</strong> <span id="infoHeats">Heats go off every 10 minutes, 8:50–11:50 AM — live availability as you book.</span></div>
         </div>
       </div>
 
@@ -1453,7 +1453,7 @@
     // Heats every 10 min, 9:00–11:50 AM. 8 lanes per heat, typed by weight
     // setup: 1 Men's Pro lane, 3 lanes for Men's Open / Women's Pro / Mixed,
     // 3 lanes for Women's Open, 1 Scaled lane. One lane per crew.
-    var SLOTS = ['9:00','9:10','9:20','9:30','9:40','9:50','10:00','10:10','10:20','10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50'];
+    var SLOTS = ['8:50','9:00','9:10','9:20','9:30','9:40','9:50','10:00','10:10','10:20','10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50'];
     var BASE_SLOTS = SLOTS.slice();
     var GROUP_CAPS = { 'Red': 1, 'Green': 3, 'Blue': 3, 'Scaled': 1 };
 
@@ -1482,7 +1482,7 @@
     }
 
     function updateHeatRange() {
-      var range = hasOverflow() ? '9:00 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]) : '9:00–11:50 AM';
+      var range = hasOverflow() ? '8:50 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]) : '8:50–11:50 AM';
       var hero = document.getElementById('heroHeats');
       if (hero) hero.textContent = 'Every 10 min · ' + range;
       var info = document.getElementById('infoHeats');
@@ -2033,7 +2033,7 @@
       var capTxt = { Red: "Men's Pro has 1 lane per heat", Green: 'your division shares 3 lanes per heat',
                      Blue: 'your division shares 3 lanes per heat', Scaled: 'Scaled has 1 lane per heat' }[group];
       if (group === 'Red' && !proAllOpen) capTxt = "Men's Pro runs every 20 minutes (1 lane)";
-      var range = hasOverflow() ? 'Heats 9:00 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]) : 'All times are AM';
+      var range = hasOverflow() ? 'Heats 8:50 AM – ' + heatLabel(SLOTS[SLOTS.length - 1]) : 'All times are AM';
       status.innerHTML = range + ' · ' + capTxt +
         (slotsLoaded ? ' · <strong>' + openCount + ' of ' + offered + '</strong> heats open for your division' : '');
     }
