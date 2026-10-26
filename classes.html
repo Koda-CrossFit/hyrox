@@ -260,7 +260,26 @@
     .seg button[aria-pressed="false"]:hover { background: var(--sand); }
     .mode-note { font-size: 0.92rem; color: var(--muted); margin-top: 12px; }
     .mode-note strong { color: var(--ink); }
-    .mode-note .hx { background: var(--yellow); color: var(--ink); padding: 0 4px; font-weight: 700; }
+    .legend { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+    /* Program colors — the ones on kodacrossfitironview.com/Schedule, except
+       HYROX, which keeps this page's yellow. --pc fills the name tag (and the
+       chip once picked), --pc-on is text on that fill, --pc-line is the chip
+       outline (yellow needs a deeper line to show on white), --pc-tint is the
+       chip background. */
+    .pg-HYROX { --pc: var(--yellow); --pc-on: var(--ink); --pc-line: #E0D200; --pc-tint: #FFFFE3; }
+    .pg-CF    { --pc: #1D3747; --pc-on: #fff;       --pc-line: #1D3747; --pc-tint: #F0F3F5; }
+    .pg-KF    { --pc: #7A4A96; --pc-on: #fff;       --pc-line: #7A4A96; --pc-tint: #F6F2F9; }
+    .pg-WS    { --pc: #C27BC3; --pc-on: var(--ink); --pc-line: #C27BC3; --pc-tint: #FBF3FB; }
+    .pg-COMP  { --pc: #4499F7; --pc-on: var(--ink); --pc-line: #4499F7; --pc-tint: #F0F6FF; }
+    .pg-OLY   { --pc: #AE3633; --pc-on: #fff;       --pc-line: #AE3633; --pc-tint: #FBF2F1; }
+    .ptag {
+      display: inline-block; max-width: 100%; background: var(--pc); color: var(--pc-on);
+      font-family: var(--mono); font-weight: 500; font-size: 0.64rem; letter-spacing: 0.05em; text-transform: uppercase;
+      line-height: 1.25; padding: 2px 5px 1px; overflow-wrap: anywhere;
+    }
+    .sw { display: inline-block; width: 11px; height: 11px; margin-right: 7px; background: var(--pc); box-shadow: inset 0 0 0 1.5px var(--pc-line); vertical-align: -1px; }
+    .pn { white-space: nowrap; }
 
     /* week strip */
     .weeks-label { display: block; color: var(--muted); font-size: 0.7rem; margin: 22px 0 8px; }
@@ -309,33 +328,33 @@
     .slot {
       position: relative; display: block; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
       min-height: 60px; padding: 10px 28px 9px 11px;
-      background: #fff; border: 1.5px solid var(--edge); border-radius: 2px;
-      transition: border-color 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+      background: var(--pc-tint); border: 2px solid var(--pc-line); border-radius: 2px;
+      transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
     }
     .slot input { position: absolute; opacity: 0; width: 1px; height: 1px; left: 8px; top: 8px; pointer-events: none; }
-    .slot:hover { border-color: var(--ink); }
-    .slot:has(input:focus-visible) { box-shadow: 0 0 0 3px var(--yellow), 0 0 0 4.5px var(--ink); }
+    .slot:hover { box-shadow: inset 0 0 0 1px var(--pc-line); }
     .slot .t { display: block; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; line-height: 1.15; white-space: nowrap; }
     .slot .t small { font-size: 0.68em; font-weight: 800; letter-spacing: 0.01em; }
-    .slot .p { display: block; margin-top: 4px; font-family: var(--mono); font-weight: 500; font-size: 0.64rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
-    .slot.hx .p span { background: var(--yellow); color: var(--ink); padding: 1px 4px 0; }
+    .slot .p { display: block; margin: 5px -20px 0 0; line-height: 1; }   /* the tag can run under the check circle */
     .slot .ck {
       position: absolute; top: 9px; right: 8px; width: 18px; height: 18px;
-      border: 1.5px solid var(--edge); border-radius: 50%; background: #fff;
+      border: 1.5px solid var(--pc-line); border-radius: 50%; background: #fff;
       transition: background 0.12s ease, border-color 0.12s ease;
     }
     .slot .ck::after {
       content: ''; position: absolute; left: 4.5px; top: 1.5px; width: 4.5px; height: 8.5px;
-      border: solid var(--yellow); border-width: 0 2px 2px 0;
+      border: solid var(--pc); border-width: 0 2px 2px 0;
       transform: rotate(45deg) scale(0); transition: transform 0.12s ease;
     }
-    .slot.on { background: var(--yellow); border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
-    .slot.on .p { color: var(--ink); }
-    .slot.on.hx .p span { background: var(--ink); color: var(--yellow); }
-    .slot.on .ck { background: var(--ink); border-color: var(--ink); }
+    /* picked: the chip fills with its program color */
+    .slot.on { background: var(--pc); border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+    .slot.on .t { color: var(--pc-on); }
+    .slot.on .ptag { background: var(--pc-on); color: var(--pc); }
+    .slot.on .ck { background: var(--pc-on); border-color: var(--pc-on); }
     .slot.on .ck::after { transform: rotate(45deg) scale(1); }
     .slot.off { opacity: 0.38; cursor: not-allowed; }
-    .slot.off:hover { border-color: var(--edge); }
+    .slot.off:hover { box-shadow: none; }
+    .slot:has(input:focus-visible) { box-shadow: 0 0 0 3px var(--yellow), 0 0 0 4.5px var(--ink); }
 
     .empty-week { margin-top: 10px; padding: 26px 18px; border: 1.5px dashed var(--edge); text-align: center; color: var(--muted); }
     .empty-week strong { display: block; color: var(--ink); font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 1.05rem; margin-bottom: 4px; }
@@ -773,6 +792,10 @@
     })();
 
     function classLabel(c) { return DOW[new Date(c.day.ms).getUTCDay()] + ', ' + monthDay(c.day.ms) + ' · ' + c.time + ' · ' + c.prog.name; }
+    function progName(p) {   // color swatch + name; the swatch stays on the line with the first word
+      var w = esc(p.name).split(' ');
+      return '<span class="pn"><i class="sw pg-' + p.id + '"></i>' + w[0] + '</span>' + (w.length > 1 ? ' ' + w.slice(1).join(' ') : '');
+    }
     function weekRange(wk) {
       if (wk.start === wk.end || wk.end - wk.start < DAY_MS) return DOW[new Date(wk.start).getUTCDay()] + ', ' + monthDay(wk.start);
       var a = new Date(wk.start), b = new Date(wk.end);
@@ -857,10 +880,10 @@
     function slotHtml(c) {
       var t = c.time.split(' ');
       var aria = dayLong(c.day.ms) + ' ' + monthDay(c.day.ms) + ', ' + c.time + ', ' + c.prog.name;
-      return '<label class="slot' + (c.prog.id === 'HYROX' ? ' hx' : '') + '" data-id="' + c.id + '">' +
+      return '<label class="slot pg-' + c.prog.id + '" data-id="' + c.id + '">' +
         '<input type="checkbox" value="' + c.id + '" aria-label="' + esc(aria) + '">' +
         '<span class="t">' + t[0] + '<small> ' + t[1] + '</small></span>' +
-        '<span class="p"><span>' + esc(c.prog.name) + '</span></span>' +
+        '<span class="p"><span class="ptag">' + esc(c.prog.name) + '</span></span>' +
         '<span class="ck" aria-hidden="true"></span></label>';
     }
 
@@ -904,7 +927,7 @@
         var c = list[i];
         html += c
           ? '<li class="pk"><span class="pk-n">' + (i + 1) + '</span><div class="pk-main"><strong>' + dayLong(c.day.ms) + ', ' + monthDay(c.day.ms) + '</strong>' +
-            '<span>' + c.time + ' · ' + esc(c.prog.name) + '</span></div>' +
+            '<span>' + c.time + ' · ' + progName(c.prog) + '</span></div>' +
             '<button type="button" class="pk-x" data-remove="' + c.id + '" aria-label="Remove ' + esc(classLabel(c)) + '">×</button></li>'
           : '<li class="pk open"><span class="pk-n">' + (i + 1) + '</span><div class="pk-main"><span>' +
             (i === 0 ? 'No classes yet — <a href="#schedule">pick up to 3 above</a>.' : 'Open spot · optional') + '</span></div></li>';
@@ -946,7 +969,8 @@
         b.setAttribute('aria-pressed', String((b.getAttribute('data-mode') === 'full') === full));
       });
       modeNote.innerHTML = full
-        ? 'Showing every class. <span class="hx">HYROX</span> classes are highlighted in yellow.'
+        ? 'Showing every class, color-coded by program:<span class="legend">' +
+          PROGRAMS.map(function(p) { return '<span class="ptag pg-' + p.id + '">' + esc(p.name) + '</span>'; }).join('') + '</span>'
         : 'Showing <strong>HYROX</strong> classes. Want CrossFit, KodaFit, Women\'s Strength and more? Tap <strong>Full schedule</strong>.';
       renderWeeks();
       renderDays();
@@ -1145,7 +1169,7 @@
         var d = new Date(c.day.ms);
         return '<li' + (b.past ? ' class="past"' : '') + '>' +
           '<span class="bk-date" aria-hidden="true"><span class="m">' + MONTHS[d.getUTCMonth()] + '</span><span class="d">' + d.getUTCDate() + '</span></span>' +
-          '<div class="bk-main"><strong>' + dayLong(c.day.ms) + '</strong><span>' + c.time + ' · ' + esc(c.prog.name) + '</span></div>' +
+          '<div class="bk-main"><strong>' + dayLong(c.day.ms) + '</strong><span>' + c.time + ' · ' + progName(c.prog) + '</span></div>' +
           (b.past ? '<span class="bk-cal">Done</span>'
                   : '<a class="bk-cal" href="' + gcalUrl(c) + '" target="_blank" rel="noopener" aria-label="Add ' + esc(classLabel(c)) + ' to Google Calendar">+ Google Cal</a>') +
           '</li>';
@@ -1178,7 +1202,7 @@
 
     // ── About our classes ──
     $('aboutList').innerHTML = PROGRAMS.map(function(p) {
-      return '<dt>' + esc(p.name) + '</dt><dd>' + esc(p.about) + '</dd>';
+      return '<dt><i class="sw pg-' + p.id + '"></i>' + esc(p.name) + '</dt><dd>' + esc(p.about) + '</dd>';
     }).join('');
 
     // ── Start ──
