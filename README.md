@@ -19,6 +19,20 @@ Single-page signup for the Hyrox Simulation at Koda CrossFit Iron View on **Sund
 
 ---
 
+## Free classes for Sim athletes — Oct 26 – Nov 30, 2026 (`classes.html`)
+
+**Live at https://koda-crossfit.github.io/hyrox/classes.html.** Sim athletes pick **up to 3 free classes** at Koda through Mon Nov 30. The schedule opens on **HYROX classes only**; a **Full schedule** switch adds CrossFit, KodaFit, Women's Strength, Competitor and Kratos Oly (Kids/Teens aren't part of the offer). Specific dates, one week at a time; classes that start within 60 minutes (or already happened) drop off; Thanksgiving (Thu 11/26) shows as holiday hours.
+
+- **Class lineup lives in the page** (`PROGRAMS` in `classes.html`): HYROX = the Oct 5 lineup (Mon/Wed 5, 6, 7, 9 AM, noon, 4, 5:15 PM · Fri 5, 6, 7, 9 AM, noon · Sat 6, 8, 9 AM, as on the coaching schedule); everything else copied from kodacrossfitironview.com/Schedule on 10/26. Change times there and push — the backend only checks a pick's *shape* (real date inside the window, not started yet, program id in `TRIAL1025_PROGRAMS`), so a lineup change needs no redeploy. Adding a **new program** or changing the window/holidays means editing both files (`TRIAL1025_*` in `apps-script/Trial1025.js`).
+- Posts `type: "trial1025"` to the same web app → `apps-script/Trial1025.js` (routed from `Code.js`). Own sheet **"Koda Free Classes — Hyrox Sim Athletes (Oct–Nov 2026)"** (script property `TRIAL1025_SHEET_ID`, created on the first signup):
+  - **Signups** — one row per email. Picking again replaces that athlete's *upcoming* picks; classes already past stay and still count toward the 3 (the page shows "you've already used 1 of 3…"). An identical resubmit changes nothing and sends no email. `Class 1–3` hold labels like `Mon, Nov 2 · 6:00 AM · HYROX` — edit them by hand in that format; Status starting "Cancel…" drops the row (a later signup with that email starts a new row). `Hyrox Sim` = whether the email (or name) is on the Oct 25 / Sept 13 roster. `Emailed` = whether the confirmation went out.
+  - **By Class** — rebuilt on every save (or `?action=trial1025ByClass`): each class, count, and names; past classes turn gray. Don't edit it.
+- **Emails:** the athlete gets a confirmation (from "Koda CrossFit Iron View", replies to kevschuetz3) with Google Calendar links + a `koda-free-classes.ics` attachment; Kevin gets "Free classes: Name booked N (Oct 25)" / "…changed their picks". MailApp's daily cap (~100 recipients on gmail.com): athlete confirmations come first; Kevin's heads-up is skipped when fewer than 25 sends are left that day. Names/emails matching `test` never email Kevin and never count in By Class.
+- **Admin GETs** (`&key=<admin key>`, the sim1025 key): `trial1025Info` (sheet link, athletes, classes booked, mail quota left), `trial1025Roster`, `trial1025ByClass`, `trial1025ClearTests`.
+- Preview without saving: `classes.html#test`. Link-preview card: `assets/og-classes.jpg` (`tools/classes_og_image.js`).
+
+---
+
 ## September 13, 2026 event (previous)
 
 > **Since 2026-09-29 every named GET action on this web app needs `&key=<admin key>`** (the same key as the Oct 25 admin actions — see above). Only `?action=sim0913Slots`, `?action=sim1025Slots` and the bare health check stay public. Add `&key=…` to every `?action=` recipe below.

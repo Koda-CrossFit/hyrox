@@ -168,6 +168,12 @@ function doPost(e) {
       return handleSim1025(data);
     }
 
+    // Free classes for Hyrox Sim athletes, Oct 26 – Nov 30 (classes.html) —
+    // type:"trial1025", lives in Trial1025.js.
+    if (data.type === "trial1025") {
+      return handleTrial1025(data);
+    }
+
     // Auto-create the spreadsheet on first submission if it doesn't exist yet.
     var ss = getOrCreateSpreadsheet();
     PropertiesService.getScriptProperties().setProperty("SHEET_ID", ss.getId());
@@ -2206,6 +2212,9 @@ function doGet(e) {
   var action = e && e.parameter ? e.parameter.action : "";
   if (action && action.indexOf("sim1025") === 0) {
     return sim1025Get(action, e);
+  }
+  if (action && action.indexOf("trial1025") === 0) {
+    return trial1025Get(action, e);  // checks the admin key itself
   }
   // Every other named action (Sept sim0913 / survey0913 / feedback0913 admin
   // tools — rosters with emails, cancels, gear/shirt edits) needs the same

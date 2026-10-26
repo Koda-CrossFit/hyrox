@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 Free Classes — Koda CrossFit Iron View</title>
+  <meta name="description" content="Thanks for racing the Koda Hyrox Simulation! Pick up to 3 free classes at Koda CrossFit Iron View — HYROX, CrossFit and more — now through November 30.">
+  <meta name="theme-color" content="#1A1818">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="3 Free Classes at Koda — for our Hyrox Sim athletes">
+  <meta property="og:description" content="Pick up to 3 free classes — HYROX, CrossFit and more — now through November 30 at Koda CrossFit Iron View.">
+  <meta property="og:image" content="https://koda-crossfit.github.io/hyrox/assets/og-classes.jpg">
+  <meta property="og:url" content="https://koda-crossfit.github.io/hyrox/classes.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/koda-mark.png">
+  <link rel="apple-touch-icon" href="assets/koda-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Same look as the Oct 25 signup (index.html): charcoal #1A1818 bands,
+       sand #EDEBE7 light band, one electric-yellow accent #FFFF33, heavy
+       uppercase display type with a yellow highlight block, mono eyebrows,
+       square corners. */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1A1818;
+      --ink-2: #222121;
+      --ink-0: #0E0C0C;
+      --yellow: #FFFF33;
+      --sand: #EDEBE7;
+      --sand-2: #E5DDCF;
+      --sand-3: #DFD5C3;
+      --line: #D9D4CB;
+      --line-dark: rgba(223,213,195,0.22);
+      --edge: #948E85;         /* chip / control borders on white */
+      --muted: #5E5954;
+      --muted-dark: #BDB6AC;
+      --error: #B42318;
+      --display: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    @media (max-width: 640px) { html { scroll-padding-top: 72px; } }
+    html, body { background: var(--ink); }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; }
+    a { color: inherit; }
+    button { font-family: inherit; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+    .signup a:focus-visible, .signup button:focus-visible { outline-color: var(--ink); }
+
+    .preview-banner {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+      background: #B42318; color: #fff; text-align: center;
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 8px 12px;
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hl {
+      background: linear-gradient(var(--yellow), var(--yellow));
+      color: var(--ink);
+      padding: 0 0.12em 0 0.08em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Floating top bar ── */
+    .topbar {
+      position: sticky; top: 10px; z-index: 50;
+      margin: 10px 16px 0;
+      background: var(--ink-2);
+      border: 1px solid var(--line-dark);
+      color: #fff;
+    }
+    .topbar-inner {
+      max-width: 1180px; margin: 0 auto; height: 58px; padding: 0 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; padding: 7px 0; margin: -7px 0; }
+    .brand img { width: 30px; height: auto; filter: brightness(0) invert(1); flex-shrink: 0; }
+    .brand span { font-family: var(--display); font-weight: 800; font-size: 0.95rem; letter-spacing: 0.02em; text-transform: uppercase; white-space: nowrap; }
+    .top-right { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .top-right .mono { color: var(--muted-dark); font-size: 0.7rem; white-space: nowrap; }
+    .cta-mini {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--yellow); color: var(--ink-0);
+      font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em;
+      padding: 8px 14px; border-radius: 2px; text-decoration: none; white-space: nowrap;
+    }
+    @media (max-width: 860px) { .top-right .mono { display: none; } }
+    @media (max-width: 640px) {
+      .brand span { display: none; }
+      .topbar { margin: 8px 10px 0; top: 8px; }
+      .topbar-inner { height: 52px; padding: 0 12px; }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      color: #fff;
+      padding: 64px 0 76px;
+      overflow: hidden;
+      background:
+        radial-gradient(900px 480px at 85% 30%, rgba(255,255,51,0.07), transparent 60%),
+        var(--ink);
+    }
+    .hero-bgword {
+      position: absolute; right: -2vw; bottom: -0.12em;
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(8rem, 26vw, 22rem); line-height: 0.8; letter-spacing: -0.05em;
+      color: transparent; -webkit-text-stroke: 1px rgba(223,213,195,0.09);
+      pointer-events: none; user-select: none;
+    }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 48px;
+      align-items: center;
+    }
+    .hero .eyebrow { color: var(--sand-2); margin-bottom: 18px; display: block; }
+    h1.hero-title {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(3.1rem, 9vw, 6.4rem); line-height: 0.9; letter-spacing: -0.035em;
+      text-transform: uppercase; margin-bottom: 22px;
+    }
+    h1.hero-title .hl { display: inline-block; padding: 0.02em 0.12em 0 0.06em; margin-left: -0.06em; }
+    .hero-date {
+      font-family: var(--display); font-weight: 800;
+      font-size: clamp(1.35rem, 2.6vw, 1.9rem); letter-spacing: -0.01em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .hero-sub { max-width: 540px; color: var(--sand); font-size: 1.08rem; line-height: 1.65; margin-bottom: 26px; }
+    .hero-sub strong { color: #fff; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; text-transform: uppercase;
+      padding: 15px 34px; border-radius: 2px; border: none; cursor: pointer; text-decoration: none;
+      transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+    }
+    .btn .arr { font-size: 1.1em; line-height: 1; }
+    .btn-yellow { background: var(--yellow); color: var(--ink-0); }
+    .btn-yellow:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,255,51,0.18); }
+    .btn-dark { background: var(--ink-0); color: #fff; }
+    .btn-dark:hover:not(:disabled) { background: #000; transform: translateY(-1px); }
+    .btn-dark .arr { color: var(--yellow); }
+    .btn-line { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); padding: 12px 22px; font-size: 0.85rem; }
+    .btn-line:hover { background: var(--ink); color: #fff; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-bottom: 34px; }
+    .hero-facts { display: flex; flex-wrap: wrap; gap: 12px 30px; }
+    .fact .mono { display: block; color: var(--muted-dark); font-size: 0.7rem; margin-bottom: 2px; }
+    .fact strong { display: block; font-size: 0.98rem; font-weight: 600; color: #fff; white-space: nowrap; }
+
+    /* "How it works" panel (desktop right column) */
+    .how { border: 1px solid var(--line-dark); background: rgba(255,255,255,0.025); padding: 26px 28px 8px; }
+    .how > .mono { color: var(--sand-2); display: block; margin-bottom: 4px; }
+    .how ol { list-style: none; }
+    .how li { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 12px; padding: 18px 0; }
+    .how li + li { border-top: 1px solid var(--line-dark); }
+    .how .n { font-family: var(--display); font-weight: 900; font-size: 1.9rem; line-height: 1; color: var(--yellow); letter-spacing: -0.03em; }
+    .how strong { display: block; font-family: var(--display); font-weight: 800; font-size: 1.12rem; text-transform: uppercase; letter-spacing: -0.005em; line-height: 1.2; margin-bottom: 3px; }
+    .how p { color: var(--muted-dark); font-size: 0.95rem; line-height: 1.5; }
+
+    @media (max-width: 900px) {
+      .hero { padding: 46px 0 54px; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr); }
+      .how { display: none; }
+    }
+    @media (max-width: 480px) {
+      .wrap { padding: 0 18px; }
+      .hero-sub { font-size: 1rem; }
+      .hero-actions .btn { width: 100%; }
+      .hero-facts { gap: 12px 24px; }
+    }
+
+    /* ── Sign-up section (sand band) ── */
+    .signup { background: var(--sand); padding: 70px 0 80px; }
+    .signup-head { max-width: 860px; margin: 0 auto 26px; padding: 0 20px; }
+    .signup-head .mono { color: var(--muted); display: block; margin-bottom: 10px; }
+    .signup-head h2 {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(2.4rem, 6.4vw, 4.2rem); line-height: 0.92; letter-spacing: -0.035em; text-transform: uppercase;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+    .card { background: #fff; border: 1px solid var(--line); margin-bottom: 14px; }
+    .card-head { display: flex; align-items: center; gap: 12px; padding: 18px 24px; border-bottom: 1px solid var(--line); }
+    .card-num { font-family: var(--mono); font-weight: 500; font-size: 0.8rem; color: var(--muted); }
+    .card-title { font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.005em; text-transform: uppercase; line-height: 1.2; }
+    .card-body { padding: 20px 24px 24px; }
+
+    .count-pill {
+      margin-left: auto; flex-shrink: 0;
+      font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.04em;
+      border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px 11px 2px;
+      transition: background 0.15s ease;
+    }
+    .count-pill.full { background: var(--yellow); }
+
+    /* fields */
+    .field-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .field-row .field { flex: 1; min-width: 220px; }
+    .lbl {
+      display: block; font-family: var(--mono); font-size: 0.76rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;
+    }
+    .req { color: var(--error); margin-left: 2px; }
+    input[type="text"], input[type="email"] {
+      width: 100%; padding: 13px 14px; background: #fff;
+      border: 1px solid #8C867F; border-radius: 2px; color: var(--ink);
+      font-family: inherit; font-size: 1rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input[type="text"]:focus, input[type="email"]:focus {
+      outline: none; border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(255,255,51,0.9), 0 0 0 4px var(--ink);
+    }
+    input.bad { border-color: var(--error); }
+    .hint { font-size: 0.9rem; color: var(--muted); margin-top: 12px; }
+
+    /* HYROX / full schedule switch */
+    .seg { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--ink); border-radius: 2px; }
+    .seg button {
+      padding: 12px 10px; border: 0; background: #fff; color: var(--ink); cursor: pointer;
+      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.25;
+      transition: background 0.12s ease, color 0.12s ease;
+    }
+    .seg button + button { border-left: 1.5px solid var(--ink); }
+    .seg button small { display: block; font-family: var(--mono); font-weight: 500; font-size: 0.66rem; letter-spacing: 0.04em; color: var(--muted); margin-top: 2px; }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+    .seg button[aria-pressed="true"] small { color: var(--yellow); }
+    .seg button:focus-visible { outline-offset: -5px; outline-color: var(--yellow); }
+    .seg button[aria-pressed="false"]:hover { background: var(--sand); }
+    .mode-note { font-size: 0.92rem; color: var(--muted); margin-top: 12px; }
+    .mode-note strong { color: var(--ink); }
+    .mode-note .hx { background: var(--yellow); color: var(--ink); padding: 0 4px; font-weight: 700; }
+
+    /* week strip */
+    .weeks-label { display: block; color: var(--muted); font-size: 0.7rem; margin: 22px 0 8px; }
+    .weeks {
+      display: flex; gap: 8px; overflow-x: auto; scroll-behavior: smooth;
+      padding: 10px 2px 8px; margin: -10px -2px 0;
+      scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+    }
+    .wk {
+      position: relative; flex: 0 0 auto; text-align: left; cursor: pointer;
+      padding: 8px 14px 7px; background: #fff; color: var(--ink);
+      border: 1.5px solid var(--edge); border-radius: 2px;
+      transition: border-color 0.12s ease, background 0.12s ease;
+    }
+    .wk:hover { border-color: var(--ink); }
+    .wk-t { display: block; font-family: var(--mono); font-weight: 500; font-size: 0.64rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .wk-d { display: block; font-family: var(--display); font-weight: 800; font-size: 1rem; white-space: nowrap; letter-spacing: -0.005em; }
+    .wk.cur { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .wk.cur .wk-t { color: var(--sand-3); }
+    .wk.none:not(.cur) .wk-d { color: var(--edge); }
+    .wk-n {
+      position: absolute; top: -9px; right: -7px;
+      min-width: 21px; height: 21px; padding: 0 5px; border-radius: 11px;
+      background: var(--yellow); border: 1.5px solid var(--ink); color: var(--ink);
+      font-weight: 700; font-size: 0.72rem; line-height: 18px; text-align: center;
+    }
+
+    .max-note { display: none; margin-top: 16px; background: var(--ink); color: #fff; padding: 11px 14px; font-size: 0.92rem; }
+    .max-note.show { display: block; }
+    .max-note strong { color: var(--yellow); }
+
+    /* days + class chips */
+    .days { margin-top: 6px; }
+    .day { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); }
+    .day:first-child { border-top: 0; }
+    .day-h { padding-top: 4px; }
+    .day-h .dn { display: block; font-family: var(--display); font-weight: 900; font-size: 1.12rem; letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.1; }
+    .day-h .dd { display: block; font-family: var(--mono); font-weight: 500; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+    .day-h .tag {
+      display: inline-block; margin-top: 7px; background: var(--yellow); color: var(--ink);
+      font-family: var(--mono); font-weight: 500; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px 1px;
+    }
+    .closed-note { align-self: center; color: var(--muted); font-size: 0.92rem; }
+
+    .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
+    .slot {
+      position: relative; display: block; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+      min-height: 60px; padding: 10px 28px 9px 11px;
+      background: #fff; border: 1.5px solid var(--edge); border-radius: 2px;
+      transition: border-color 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+    }
+    .slot input { position: absolute; opacity: 0; width: 1px; height: 1px; left: 8px; top: 8px; pointer-events: none; }
+    .slot:hover { border-color: var(--ink); }
+    .slot:has(input:focus-visible) { box-shadow: 0 0 0 3px var(--yellow), 0 0 0 4.5px var(--ink); }
+    .slot .t { display: block; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; line-height: 1.15; white-space: nowrap; }
+    .slot .t small { font-size: 0.68em; font-weight: 800; letter-spacing: 0.01em; }
+    .slot .p { display: block; margin-top: 4px; font-family: var(--mono); font-weight: 500; font-size: 0.64rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
+    .slot.hx .p span { background: var(--yellow); color: var(--ink); padding: 1px 4px 0; }
+    .slot .ck {
+      position: absolute; top: 9px; right: 8px; width: 18px; height: 18px;
+      border: 1.5px solid var(--edge); border-radius: 50%; background: #fff;
+      transition: background 0.12s ease, border-color 0.12s ease;
+    }
+    .slot .ck::after {
+      content: ''; position: absolute; left: 4.5px; top: 1.5px; width: 4.5px; height: 8.5px;
+      border: solid var(--yellow); border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0); transition: transform 0.12s ease;
+    }
+    .slot.on { background: var(--yellow); border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+    .slot.on .p { color: var(--ink); }
+    .slot.on.hx .p span { background: var(--ink); color: var(--yellow); }
+    .slot.on .ck { background: var(--ink); border-color: var(--ink); }
+    .slot.on .ck::after { transform: rotate(45deg) scale(1); }
+    .slot.off { opacity: 0.38; cursor: not-allowed; }
+    .slot.off:hover { border-color: var(--edge); }
+
+    .empty-week { margin-top: 10px; padding: 26px 18px; border: 1.5px dashed var(--edge); text-align: center; color: var(--muted); }
+    .empty-week strong { display: block; color: var(--ink); font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 1.05rem; margin-bottom: 4px; }
+    .empty-week .btn { margin-top: 14px; }
+
+    .week-nav { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .week-nav button {
+      background: none; border: 1.5px solid var(--ink); color: var(--ink); cursor: pointer; border-radius: 2px;
+      padding: 10px 14px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.03em; text-transform: uppercase;
+    }
+    .week-nav button:hover { background: var(--ink); color: #fff; }
+    .week-nav button[hidden] { display: inline-block; visibility: hidden; }
+
+    details.about { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+    details.about summary { cursor: pointer; font-weight: 700; font-size: 0.92rem; width: fit-content; }
+    details.about summary::marker { color: var(--muted); }
+    .about dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 16px; margin-top: 12px; font-size: 0.92rem; }
+    .about dt { font-family: var(--display); font-weight: 800; text-transform: uppercase; white-space: nowrap; }
+    .about dd { color: var(--muted); }
+    .about-foot { margin-top: 12px; font-size: 0.86rem; color: var(--muted); }
+
+    /* review */
+    .picks { list-style: none; }
+    .pk { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid var(--line); }
+    .pk:first-child { border-top: 0; padding-top: 2px; }
+    .pk-n {
+      width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%;
+      background: var(--yellow); border: 1.5px solid var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display); font-weight: 900; font-size: 0.95rem;
+    }
+    .pk-main { flex: 1; min-width: 0; line-height: 1.35; }
+    .pk-main strong { display: block; font-family: var(--display); font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: -0.005em; }
+    .pk-main span { color: var(--muted); font-size: 0.94rem; }
+    .pk-x {
+      width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; cursor: pointer;
+      background: #fff; border: 1px solid var(--line); color: var(--muted); font-size: 1.15rem; line-height: 1;
+    }
+    .pk-x:hover { border-color: var(--ink); color: var(--ink); }
+    .pk.open .pk-n { background: #fff; border: 1.5px dashed var(--edge); color: var(--edge); }
+    .pk.open .pk-main span { font-size: 0.92rem; }
+    .pk.open a { color: var(--ink); font-weight: 600; }
+
+    .submit-btn { width: 100%; margin-top: 18px; padding: 19px; font-size: 1.05rem; }
+    .submit-btn:disabled { background: #8f8a84; color: #eee; cursor: not-allowed; transform: none; }
+    .fine { font-size: 0.86rem; color: var(--muted); margin-top: 14px; text-align: center; }
+
+    .form-error {
+      display: none; margin-top: 14px; padding: 12px 14px;
+      background: #FDECEA; border: 1px solid var(--error); color: var(--error);
+      font-size: 0.92rem; text-align: center; font-weight: 500;
+    }
+    .form-error.show { display: block; }
+
+    /* success */
+    .success { display: none; background: #fff; border: 1px solid var(--ink); padding: 42px 26px 36px; text-align: center; }
+    .success.show { display: block; }
+    .success-check {
+      width: 64px; height: 64px; margin: 0 auto 18px;
+      background: var(--yellow); border: 2px solid var(--ink); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800;
+    }
+    .success h2 { font-family: var(--display); font-weight: 900; font-size: clamp(2rem, 7vw, 2.6rem); letter-spacing: -0.03em; text-transform: uppercase; line-height: 1; margin-bottom: 10px; }
+    .success h2:focus { outline: none; }
+    .success .lead { color: var(--muted); max-width: 520px; margin: 0 auto 22px; }
+    .booked { list-style: none; max-width: 560px; margin: 0 auto 16px; text-align: left; border: 1px solid var(--line); }
+    .booked li { display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+    .booked li + li { border-top: 1px solid var(--line); }
+    .bk-date { width: 54px; flex-shrink: 0; text-align: center; border: 1.5px solid var(--ink); background: #fff; }
+    .bk-date .m { display: block; background: var(--ink); color: var(--yellow); font-family: var(--mono); font-weight: 500; font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 0 1px; }
+    .bk-date .d { display: block; font-family: var(--display); font-weight: 900; font-size: 1.5rem; line-height: 1.25; }
+    .bk-main { flex: 1; min-width: 0; line-height: 1.35; }
+    .bk-main strong { display: block; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 1.02rem; }
+    .bk-main span { color: var(--muted); font-size: 0.92rem; }
+    .bk-cal { flex-shrink: 0; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--yellow); padding: 4px 0 1px; white-space: nowrap; }
+    .bk-cal:hover { border-bottom-color: var(--ink); }
+    .booked li.past { opacity: 0.6; }
+    .booked li.past .bk-cal { border: 0; color: var(--muted); }
+    .cal-all { margin: 0 auto 24px; }
+    .know { max-width: 560px; margin: 0 auto 24px; padding: 18px 20px; text-align: left; background: var(--sand); border-left: 4px solid var(--yellow); }
+    .know h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 1.15rem; margin-bottom: 6px; }
+    .know ul { list-style: none; }
+    .know li { position: relative; padding: 5px 0 5px 22px; font-size: 0.95rem; }
+    .know li::before { content: '→'; position: absolute; left: 0; top: 5px; font-weight: 700; }
+    .know a { font-weight: 600; }
+
+    .ended { background: #fff; border: 1px solid var(--ink); padding: 40px 26px; text-align: center; }
+    .ended h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 1.6rem; margin-bottom: 8px; }
+    .ended p { color: var(--muted); }
+
+    /* sticky pick bar */
+    .pickbar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+      background: var(--ink-2); color: #fff; border-top: 1px solid var(--line-dark);
+      transform: translateY(110%); transition: transform 0.2s ease;
+    }
+    .pickbar.show { transform: none; }
+    .pickbar-in { max-width: 860px; margin: 0 auto; padding: 11px 20px; display: flex; align-items: center; gap: 14px; }
+    .pb-dots { display: flex; gap: 5px; flex-shrink: 0; }
+    .pb-dots i { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--sand-3); }
+    .pb-dots i.on { background: var(--yellow); border-color: var(--yellow); }
+    .pb-text { font-weight: 600; font-size: 0.92rem; white-space: nowrap; }
+    .pb-list { flex: 1; min-width: 0; color: var(--muted-dark); font-size: 0.84rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pb-go { margin-left: auto; padding: 11px 18px; font-size: 0.82rem; flex-shrink: 0; }
+    body.preview .pickbar { bottom: 33px; }
+    body.has-bar footer { padding-bottom: 120px; }
+    @media (max-width: 640px) { .pb-list { display: none; } .pickbar-in { padding: 10px 14px; gap: 10px; } }
+
+    /* ── Footer ── */
+    footer { background: var(--ink-0); color: var(--sand-3); padding: 40px 0 46px; font-size: 0.92rem; }
+    .foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .foot-brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: #fff; }
+    .foot-brand img { width: 34px; filter: brightness(0) invert(1); }
+    footer a { color: var(--yellow); }
+
+    /* loading overlay */
+    .loading { display: none; position: fixed; inset: 0; background: rgba(26,24,24,0.9); z-index: 100; justify-content: center; align-items: center; flex-direction: column; gap: 16px; color: #fff; }
+    .loading.active { display: flex; }
+    .spinner { width: 42px; height: 42px; border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--yellow); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 640px) {
+      .day { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 16px 0; }
+      .day-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; padding-top: 0; }
+      .day-h .dd, .day-h .tag { margin-top: 0; }
+      .slots { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+      .slot { padding: 9px 24px 8px 9px; min-height: 58px; }
+      .slot .t { font-size: 1.02rem; }
+      .slot .ck { top: 8px; right: 6px; width: 16px; height: 16px; }
+      .slot .ck::after { left: 3.8px; top: 1px; width: 4px; height: 7.5px; }
+      .about dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+      .about dd { margin-bottom: 8px; }
+    }
+    @media (max-width: 480px) {
+      .signup { padding: 48px 0 60px; }
+      .container, .signup-head { padding: 0 14px; }
+      .card-head { padding: 15px 16px; }
+      .card-body { padding: 16px 16px 20px; }
+      .success { padding: 34px 16px 28px; }
+      .booked li { padding: 12px; gap: 12px; }
+      .know { padding: 16px; }
+      .week-nav button { padding: 10px 11px; font-size: 0.74rem; }
+    }
+    @media (max-width: 359px) { .slots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html, .weeks { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ TOP BAR ═══ -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Koda CrossFit Iron View">
+        <img src="assets/koda-mark.png" alt="">
+        <span>Koda CrossFit Iron View</span>
+      </a>
+      <div class="top-right">
+        <span class="mono">740 S Pierce Ave · Louisville, CO</span>
+        <a class="cta-mini" href="#pick">Pick classes →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="top">
+    <div class="hero-bgword" aria-hidden="true">KODA</div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow mono">For our Hyrox Simulation athletes</span>
+          <h1 class="hero-title">3 Free<br><span class="hl">Classes</span></h1>
+          <p class="hero-date">Now through Monday, Nov 30</p>
+          <p class="hero-sub">Thanks for racing with us! Keep the momentum going — come train at Koda. Pick up to <strong>three classes, on us</strong>, any time before the end of November.</p>
+          <div class="hero-actions">
+            <a class="btn btn-yellow" href="#pick">Pick your classes <span class="arr">→</span></a>
+          </div>
+          <div class="hero-facts">
+            <div class="fact"><span class="mono">When</span><strong>Now – Nov 30</strong></div>
+            <div class="fact"><span class="mono">Cost</span><strong>Free · up to 3 classes</strong></div>
+            <div class="fact"><span class="mono">Where</span><strong>740 S Pierce Ave, Louisville</strong></div>
+          </div>
+        </div>
+        <div class="how">
+          <span class="mono">How it works</span>
+          <ol>
+            <li><span class="n">01</span><div><strong>Pick up to 3 classes</strong><p>HYROX classes show first. Tap Full schedule for CrossFit, KodaFit and more.</p></div></li>
+            <li><span class="n">02</span><div><strong>Check your inbox</strong><p>Your confirmation comes with calendar invites for every class.</p></div></li>
+            <li><span class="n">03</span><div><strong>Show up &amp; train</strong><p>Get there 10 minutes early — your coach takes it from there.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PICK CLASSES ═══ -->
+  <section class="signup" id="pick">
+    <div class="signup-head">
+      <span class="mono">Free classes · Oct 26 – Nov 30</span>
+      <h2 id="pickHead">Pick <span class="hl">your classes</span></h2>
+    </div>
+
+    <main class="container">
+      <noscript><div class="card"><div class="card-body">This page needs JavaScript to show the class schedule. Email <a href="mailto:kevschuetz3@gmail.com">kevschuetz3@gmail.com</a> and we'll book your classes for you.</div></div></noscript>
+
+      <form id="classForm" novalidate>
+        <!-- 01 · info -->
+        <div class="card">
+          <div class="card-head"><span class="card-num">01</span><h3 class="card-title">Your info</h3></div>
+          <div class="card-body">
+            <div class="field-row">
+              <div class="field">
+                <label class="lbl" for="name">Full name<span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label class="lbl" for="email">Email<span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required>
+              </div>
+            </div>
+            <p class="hint">Use the email you signed up for the Sim with — your confirmation goes there.</p>
+          </div>
+        </div>
+
+        <!-- 02 · classes -->
+        <div class="card" id="schedule">
+          <div class="card-head">
+            <span class="card-num">02</span><h3 class="card-title">Choose your classes</h3>
+            <span class="count-pill" id="countPill" aria-live="polite">0 of 3</span>
+          </div>
+          <div class="card-body">
+            <div class="seg" role="group" aria-label="Which classes to show">
+              <button type="button" data-mode="hyrox" aria-pressed="true">HYROX classes<small>Mon · Wed · Fri · Sat</small></button>
+              <button type="button" data-mode="full" aria-pressed="false">Full schedule<small>CrossFit &amp; more</small></button>
+            </div>
+            <p class="mode-note" id="modeNote"></p>
+
+            <span class="weeks-label mono" id="weeksLabel">Week</span>
+            <div class="weeks" id="weeks" role="group" aria-labelledby="weeksLabel"></div>
+
+            <div class="max-note" id="maxNote" role="status"><strong>That's 3 — you're all set.</strong> Tap one of your picks to swap it out.</div>
+            <div class="days" id="days"></div>
+
+            <div class="week-nav">
+              <button type="button" id="prevWeek">← Prev week</button>
+              <button type="button" id="nextWeek">Next week →</button>
+            </div>
+
+            <details class="about">
+              <summary>About our classes</summary>
+              <dl id="aboutList"></dl>
+              <p class="about-foot">Every class is coached and scales to your level. Classes run 60 minutes; Competitor runs about two hours.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- 03 · review -->
+        <div class="card" id="review">
+          <div class="card-head"><span class="card-num">03</span><h3 class="card-title">Review &amp; reserve</h3></div>
+          <div class="card-body">
+            <ul class="picks" id="picks"></ul>
+            <button type="submit" class="btn btn-dark submit-btn" id="submitBtn">Reserve my classes <span class="arr">→</span></button>
+            <div class="form-error" id="formError" role="alert"></div>
+            <p class="fine">Free for our Hyrox Simulation athletes — up to 3 classes through Nov 30. Need to change a class later? Come back and pick again with the same email; your new picks replace your upcoming ones.</p>
+          </div>
+        </div>
+      </form>
+
+      <div class="success" id="success">
+        <div class="success-check" aria-hidden="true">✓</div>
+        <h2 id="successTitle" tabindex="-1">You're booked!</h2>
+        <p class="lead" id="successLead"></p>
+        <ul class="booked" id="booked"></ul>
+        <a class="btn btn-line cal-all" id="calAll" download="koda-free-classes.ics" href="#">Add all to my calendar</a>
+        <div class="know">
+          <h3>Good to know</h3>
+          <ul>
+            <li>Get there <strong>10 minutes early</strong> so your coach can get you set up.</li>
+            <li>We're at <a href="https://maps.google.com/?q=740+S+Pierce+Ave,+Louisville,+CO+80027" target="_blank" rel="noopener">740 S Pierce Ave, Louisville</a>.</li>
+            <li>Didn't race in the Sim? Please <a href="https://kevschuetz3-lgtm.github.io/koda-waiver/" target="_blank" rel="noopener">sign our waiver</a> before your first class.</li>
+            <li>Plans change? Pick again with the same email — your new picks replace your upcoming ones.</li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-line" id="changeBtn">Change my classes</button>
+      </div>
+
+      <div class="ended" id="ended" hidden>
+        <h3>This offer has ended</h3>
+        <p>The free classes for our Hyrox Simulation athletes ran through November 30. Want to keep training with us? Email <a href="mailto:kevschuetz3@gmail.com">kevschuetz3@gmail.com</a>.</p>
+      </div>
+    </main>
+  </section>
+
+  <div class="pickbar" id="pickbar" aria-hidden="true">
+    <div class="pickbar-in">
+      <span class="pb-dots" id="pbDots"><i></i><i></i><i></i></span>
+      <span class="pb-text" id="pbText">0 of 3 picked</span>
+      <span class="pb-list" id="pbList"></span>
+      <a class="btn btn-yellow pb-go" href="#review" tabindex="-1">Review <span class="arr">→</span></a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="foot-brand"><img src="assets/koda-mark.png" alt="">Koda CrossFit Iron View</div>
+      <div>
+        740 S Pierce Ave, Louisville, CO 80027<br>
+        Questions? Email <a href="mailto:kevschuetz3@gmail.com">kevschuetz3@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="loading" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div>Reserving your classes…</div>
+  </div>
+
+  <script>
+    // ══════════════════════════════════════════════════
+    // CONFIGURATION
+    // Posts type:"trial1025" to the same Apps Script web app as the Sim
+    // signups; the backend (apps-script/Trial1025.js) writes to its own
+    // "Koda Free Classes — Hyrox Sim Athletes" sheet and sends the emails.
+    // ══════════════════════════════════════════════════
+    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwWjHrhE6k3vVPDXD4qi3VLxZVAXMykAFIKocoUiq0BtXdv2XLy7Oo0GRfrP48fHytnyw/exec";
+    var MAX_PICKS = 3;
+    var FIRST_DAY = '2026-10-26';   // offer window, Mountain time (the backend checks the same window)
+    var LAST_DAY = '2026-11-30';
+    var LEAD_MINUTES = 60;          // a class starting sooner than this drops off the picker
+    var CLOSED_DAYS = { '2026-11-26': 'Thanksgiving' };
+
+    // Weekly lineup. HYROX = the lineup since Oct 5 (Mon/Wed/Fri/Sat, as on the
+    // coaching schedule); everything else = kodacrossfitironview.com/Schedule
+    // on 10/26/2026. Kids & Teens classes aren't part of the offer.
+    // Program ids are what the backend accepts (TRIAL1025_PROGRAMS).
+    var CF_WEEKDAY = ['5:00 AM', '5:30 AM', '6:00 AM', '6:30 AM', '7:45 AM', '9:45 AM', '11:00 AM', '12:15 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:15 PM', '5:45 PM', '6:30 PM'];
+    var HYROX_MW = ['5:00 AM', '6:00 AM', '7:00 AM', '9:00 AM', '12:00 PM', '4:00 PM', '5:15 PM'];
+    var WOMENS_TT = ['7:30 AM', '8:45 AM', '9:45 AM', '4:00 PM', '5:00 PM'];
+    var PROGRAMS = [
+      { id: 'HYROX', name: 'HYROX', minutes: 60,
+        about: 'Running plus functional stations — the race format you just did, coached every week.',
+        days: { Mon: HYROX_MW, Wed: HYROX_MW, Fri: ['5:00 AM', '6:00 AM', '7:00 AM', '9:00 AM', '12:00 PM'], Sat: ['6:00 AM', '8:00 AM', '9:00 AM'] } },
+      { id: 'CF', name: 'CrossFit', minutes: 60,
+        about: 'Coached, all-levels group workouts. Every movement scales to you.',
+        days: { Mon: CF_WEEKDAY, Tue: CF_WEEKDAY, Wed: CF_WEEKDAY, Thu: CF_WEEKDAY,
+                Fri: ['5:00 AM', '5:30 AM', '6:00 AM', '6:30 AM', '7:45 AM', '9:45 AM', '11:00 AM', '12:15 PM', '4:00 PM', '5:00 PM', '6:00 PM'],
+                Sat: ['7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM'] } },
+      { id: 'KF', name: 'KodaFit', minutes: 60,
+        about: 'A lighter spin on CrossFit — little rest, lots of fun, no maxes or tests.',
+        days: { Mon: ['8:45 AM'], Wed: ['8:45 AM'], Fri: ['8:45 AM'] } },
+      { id: 'WS', name: "Women's Strength", minutes: 60,
+        about: 'A strength class just for women.',
+        days: { Tue: WOMENS_TT, Thu: WOMENS_TT, Fri: ['7:30 AM', '8:45 AM'] } },
+      { id: 'COMP', name: 'Competitor', minutes: 120,
+        about: 'For competitive CrossFit athletes. Runs about two hours.',
+        days: { Mon: ['1:30 PM'], Tue: ['1:30 PM'], Wed: ['1:30 PM'], Thu: ['1:30 PM'], Fri: ['1:30 PM'], Sat: ['11:15 AM'] } },
+      { id: 'OLY', name: 'Kratos Oly', minutes: 60,
+        about: 'Olympic weightlifting — the snatch and the clean & jerk.',
+        days: { Tue: ['6:00 PM'], Thu: ['6:00 PM'], Sat: ['12:30 PM'] } }
+    ];
+
+    var GYM_NAME = 'Koda CrossFit Iron View';
+    var GYM_ADDRESS = '740 S Pierce Ave, Louisville, CO 80027';
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Preview mode (classes.html#test or ?preview=1): decided once at load;
+    // nothing is posted.
+    var PREVIEW = location.hash === '#test' || /[?&]preview=1(&|$)/.test(location.search);
+    if (PREVIEW) {
+      var pb = document.createElement('div');
+      pb.className = 'preview-banner';
+      pb.textContent = 'Preview mode — nothing is saved';
+      document.body.appendChild(pb);
+      document.body.classList.add('preview');
+    }
+
+    // ── Dates ──
+    // Class times are Mountain time: MDT (UTC−6) until 2:00 AM Sun Nov 1, 2026,
+    // MST (UTC−7) after — fixed for this window, so no time-zone library needed.
+    // A "wall" value is a Mountain clock time stored as if it were UTC.
+    var DAY_MS = 864e5;
+    var FALL_BACK_UTC = Date.UTC(2026, 10, 1, 8);
+    var FALL_BACK_WALL = Date.UTC(2026, 10, 1, 2);
+    var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var DOW_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function nowWall() { var n = Date.now(); return n - (n < FALL_BACK_UTC ? 6 : 7) * 36e5; }
+    function wallToUtc(w) { return w + (w < FALL_BACK_WALL ? 6 : 7) * 36e5; }
+    function todayWall() { var w = nowWall(); return w - w % DAY_MS; }
+    function isoMs(iso) { var p = iso.split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
+    function pad2(n) { return (n < 10 ? '0' : '') + n; }
+    function clockMinutes(t) {   // "5:15 PM" -> 1035
+      var m = /^(\d{1,2}):(\d{2}) ([AP]M)$/.exec(t);
+      return ((+m[1] % 12) + (m[3] === 'PM' ? 12 : 0)) * 60 + +m[2];
+    }
+    function dayLong(ms) { return DOW_LONG[new Date(ms).getUTCDay()]; }
+    function monthDay(ms) { var d = new Date(ms); return MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate(); }
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function(c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    // ── Every class in the window, grouped into Mon–Sun weeks ──
+    var CLASSES = {};   // id -> class; id = "2026-11-02|06:00|HYROX" (what the backend receives)
+    var WEEKS = [];     // { start, end, days: [{ ms, closed, classes }] }
+    PROGRAMS.forEach(function(p, i) { p.order = i; });
+    (function buildSchedule() {
+      var last = isoMs(LAST_DAY);
+      for (var t = isoMs(FIRST_DAY); t <= last; t += DAY_MS) {
+        var date = new Date(t), iso = date.toISOString().slice(0, 10), dow = DOW[date.getUTCDay()];
+        var monday = t - ((date.getUTCDay() + 6) % 7) * DAY_MS;
+        var wk = WEEKS[WEEKS.length - 1];
+        if (!wk || wk.start !== monday) { wk = { start: monday, end: t, days: [] }; WEEKS.push(wk); }
+        wk.end = t;
+        var day = { ms: t, closed: CLOSED_DAYS[iso] || '', classes: [] };
+        wk.days.push(day);
+        if (day.closed) continue;
+        PROGRAMS.forEach(function(p) {
+          (p.days[dow] || []).forEach(function(time) {
+            var min = clockMinutes(time);
+            var c = { id: iso + '|' + pad2(Math.floor(min / 60)) + ':' + pad2(min % 60) + '|' + p.id,
+                      day: day, time: time, prog: p, wall: t + min * 6e4 };
+            CLASSES[c.id] = c;
+            day.classes.push(c);
+          });
+        });
+        day.classes.sort(function(a, b) { return (a.wall - b.wall) || (a.prog.order - b.prog.order); });
+      }
+    })();
+
+    function classLabel(c) { return DOW[new Date(c.day.ms).getUTCDay()] + ', ' + monthDay(c.day.ms) + ' · ' + c.time + ' · ' + c.prog.name; }
+    function weekRange(wk) {
+      if (wk.start === wk.end || wk.end - wk.start < DAY_MS) return DOW[new Date(wk.start).getUTCDay()] + ', ' + monthDay(wk.start);
+      var a = new Date(wk.start), b = new Date(wk.end);
+      return monthDay(wk.start) + ' – ' + (a.getUTCMonth() === b.getUTCMonth() ? b.getUTCDate() : monthDay(wk.end));
+    }
+
+    // ── State ──
+    var state = { full: false, week: 0, picks: [] };
+    var done = false;
+
+    function bookable(c) { return c.wall - nowWall() >= LEAD_MINUTES * 6e4; }
+    function shown(c) { return bookable(c) && (state.full || c.prog.id === 'HYROX'); }
+    function weekHasShown(wk) { return wk.days.some(function(d) { return d.classes.some(shown); }); }
+    function weekIsPast(wk) { return wk.end < todayWall(); }
+    function anyBookable() { for (var id in CLASSES) if (bookable(CLASSES[id])) return true; return false; }
+    function sortedPicks() {
+      return state.picks.map(function(id) { return CLASSES[id]; }).filter(Boolean)
+        .sort(function(a, b) { return a.wall - b.wall; });
+    }
+
+    var $ = function(id) { return document.getElementById(id); };
+    var form = $('classForm'), nameEl = $('name'), emailEl = $('email');
+    var weeksEl = $('weeks'), daysEl = $('days'), picksEl = $('picks');
+    var countPill = $('countPill'), maxNote = $('maxNote'), modeNote = $('modeNote');
+    var prevBtn = $('prevWeek'), nextBtn = $('nextWeek');
+    var formError = $('formError'), submitBtn = $('submitBtn');
+    var pickbar = $('pickbar'), loadingOverlay = $('loadingOverlay');
+
+    // ── Week strip ──
+    function renderWeeks() {
+      var today = todayWall(), html = '';
+      WEEKS.forEach(function(wk, i) {
+        if (weekIsPast(wk)) return;
+        var ahead = Math.round((wk.start - (today - ((new Date(today).getUTCDay() + 6) % 7) * DAY_MS)) / (7 * DAY_MS));
+        var when = ahead <= 0 ? 'This week' : ahead === 1 ? 'Next week' : 'In ' + ahead + ' weeks';
+        var n = state.picks.filter(function(id) {
+          var c = CLASSES[id];
+          return c && c.day.ms >= wk.start && c.day.ms <= wk.end;
+        }).length;
+        html += '<button type="button" class="wk' + (i === state.week ? ' cur' : '') + (weekHasShown(wk) ? '' : ' none') + '"' +
+          ' data-i="' + i + '" aria-pressed="' + (i === state.week) + '">' +
+          '<span class="wk-t">' + when + '</span><span class="wk-d">' + esc(weekRange(wk)) + '</span>' +
+          (n ? '<span class="wk-n" aria-label="' + n + ' picked">' + n + '</span>' : '') + '</button>';
+      });
+      weeksEl.innerHTML = html;
+      var cur = weeksEl.querySelector('.wk.cur');
+      if (cur) {   // keep the current week in view without moving the page
+        var left = cur.offsetLeft - weeksEl.offsetLeft, right = left + cur.offsetWidth;
+        if (left < weeksEl.scrollLeft || right > weeksEl.scrollLeft + weeksEl.clientWidth) {
+          weeksEl.scrollLeft = Math.max(0, left - 24);
+        }
+      }
+    }
+
+    // ── Days + class chips for the selected week ──
+    function renderDays() {
+      var wk = WEEKS[state.week], today = todayWall(), html = '';
+      wk.days.forEach(function(day) {
+        if (day.ms < today) return;
+        if (day.closed) {
+          if (state.full) html += dayRow(day, '<p class="closed-note">' + esc(day.closed) + ' — holiday hours, so no classes to book here.</p>');
+          return;
+        }
+        var list = day.classes.filter(shown);
+        if (list.length) html += dayRow(day, '<div class="slots">' + list.map(slotHtml).join('') + '</div>');
+      });
+      daysEl.innerHTML = html || emptyWeekHtml();
+      syncSlots();
+      var next = neighborWeek(1), prev = neighborWeek(-1);
+      nextBtn.hidden = next < 0;
+      prevBtn.hidden = prev < 0;
+    }
+
+    function dayRow(day, inner) {
+      var today = todayWall();
+      var tag = day.ms === today ? 'Today' : day.ms === today + DAY_MS ? 'Tomorrow' : '';
+      return '<div class="day"><div class="day-h"><span class="dn">' + dayLong(day.ms) + '</span>' +
+        '<span class="dd">' + monthDay(day.ms) + '</span>' + (tag ? '<span class="tag">' + tag + '</span>' : '') +
+        '</div>' + inner + '</div>';
+    }
+
+    function slotHtml(c) {
+      var t = c.time.split(' ');
+      var aria = dayLong(c.day.ms) + ' ' + monthDay(c.day.ms) + ', ' + c.time + ', ' + c.prog.name;
+      return '<label class="slot' + (c.prog.id === 'HYROX' ? ' hx' : '') + '" data-id="' + c.id + '">' +
+        '<input type="checkbox" value="' + c.id + '" aria-label="' + esc(aria) + '">' +
+        '<span class="t">' + t[0] + '<small> ' + t[1] + '</small></span>' +
+        '<span class="p"><span>' + esc(c.prog.name) + '</span></span>' +
+        '<span class="ck" aria-hidden="true"></span></label>';
+    }
+
+    function emptyWeekHtml() {
+      if (!anyBookable()) return '';
+      var next = nextWeekWithClasses(state.week);
+      var what = state.full ? 'classes' : 'HYROX classes';
+      return '<div class="empty-week"><strong>No more ' + what + ' this week</strong>' +
+        (next >= 0 ? 'The next ones are the week of ' + esc(weekRange(WEEKS[next])) + '.' +
+          '<br><button type="button" class="btn btn-dark" data-go-week="' + next + '">See ' + esc(weekRange(WEEKS[next])) + ' <span class="arr">→</span></button>'
+          : (state.full ? '' : 'Open the full schedule to see everything else.')) +
+        '</div>';
+    }
+
+    function neighborWeek(dir) {
+      for (var i = state.week + dir; i >= 0 && i < WEEKS.length; i += dir) if (!weekIsPast(WEEKS[i])) return i;
+      return -1;
+    }
+    function nextWeekWithClasses(from) {
+      for (var i = from + 1; i < WEEKS.length; i++) if (weekHasShown(WEEKS[i])) return i;
+      return -1;
+    }
+
+    function syncSlots() {
+      var full = state.picks.length >= MAX_PICKS;
+      daysEl.querySelectorAll('.slot').forEach(function(el) {
+        var on = state.picks.indexOf(el.getAttribute('data-id')) !== -1;
+        var input = el.querySelector('input');
+        input.checked = on;
+        input.disabled = full && !on;
+        el.classList.toggle('on', on);
+        el.classList.toggle('off', full && !on);
+      });
+      maxNote.classList.toggle('show', full);
+    }
+
+    // ── Review list, counters, sticky bar ──
+    function renderPicks() {
+      var list = sortedPicks(), n = list.length, html = '';
+      for (var i = 0; i < MAX_PICKS; i++) {
+        var c = list[i];
+        html += c
+          ? '<li class="pk"><span class="pk-n">' + (i + 1) + '</span><div class="pk-main"><strong>' + dayLong(c.day.ms) + ', ' + monthDay(c.day.ms) + '</strong>' +
+            '<span>' + c.time + ' · ' + esc(c.prog.name) + '</span></div>' +
+            '<button type="button" class="pk-x" data-remove="' + c.id + '" aria-label="Remove ' + esc(classLabel(c)) + '">×</button></li>'
+          : '<li class="pk open"><span class="pk-n">' + (i + 1) + '</span><div class="pk-main"><span>' +
+            (i === 0 ? 'No classes yet — <a href="#schedule">pick up to 3 above</a>.' : 'Open spot · optional') + '</span></div></li>';
+      }
+      picksEl.innerHTML = html;
+      countPill.textContent = n + ' of ' + MAX_PICKS;
+      countPill.classList.toggle('full', n >= MAX_PICKS);
+      $('pbDots').innerHTML = [0, 1, 2].map(function(i) { return '<i' + (i < n ? ' class="on"' : '') + '></i>'; }).join('');
+      $('pbText').textContent = n + ' of ' + MAX_PICKS + ' picked';
+      $('pbList').textContent = list.map(function(c) { return DOW[new Date(c.day.ms).getUTCDay()] + ' ' + monthDay(c.day.ms) + ', ' + c.time; }).join('  ·  ');
+      updateBar();
+    }
+
+    var reviewInView = false;
+    function updateBar() {
+      var show = !done && state.picks.length > 0 && !reviewInView;
+      pickbar.classList.toggle('show', show);
+      document.body.classList.toggle('has-bar', show);
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries) {
+        reviewInView = entries[0].isIntersecting;
+        updateBar();
+      }, { threshold: 0.2 }).observe($('review'));
+    }
+
+    function picksChanged() {
+      syncSlots();
+      renderWeeks();
+      renderPicks();
+      clearError();
+      saveDraft();
+    }
+
+    // ── Mode + week switching ──
+    function setMode(full) {
+      state.full = full;
+      document.querySelectorAll('.seg button').forEach(function(b) {
+        b.setAttribute('aria-pressed', String((b.getAttribute('data-mode') === 'full') === full));
+      });
+      modeNote.innerHTML = full
+        ? 'Showing every class. <span class="hx">HYROX</span> classes are highlighted in yellow.'
+        : 'Showing <strong>HYROX</strong> classes. Want CrossFit, KodaFit, Women\'s Strength and more? Tap <strong>Full schedule</strong>.';
+      renderWeeks();
+      renderDays();
+      saveDraft();
+    }
+
+    function setWeek(i, scroll) {
+      if (i < 0 || i >= WEEKS.length) return;
+      state.week = i;
+      renderWeeks();
+      renderDays();
+      if (scroll) {
+        var top = weeksEl.getBoundingClientRect().top;
+        if (top < 70 || top > window.innerHeight * 0.6) $('weeksLabel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    document.querySelectorAll('.seg button').forEach(function(b) {
+      b.addEventListener('click', function() { setMode(b.getAttribute('data-mode') === 'full'); });
+    });
+    weeksEl.addEventListener('click', function(e) {
+      var b = e.target.closest('.wk');
+      if (b) setWeek(+b.getAttribute('data-i'), false);
+    });
+    daysEl.addEventListener('click', function(e) {
+      var b = e.target.closest('[data-go-week]');
+      if (b) setWeek(+b.getAttribute('data-go-week'), true);
+    });
+    prevBtn.addEventListener('click', function() { setWeek(neighborWeek(-1), true); });
+    nextBtn.addEventListener('click', function() { setWeek(neighborWeek(1), true); });
+
+    daysEl.addEventListener('change', function(e) {
+      var input = e.target;
+      if (!input || input.type !== 'checkbox') return;
+      var id = input.value, at = state.picks.indexOf(id);
+      if (input.checked) {
+        if (at === -1) {
+          if (state.picks.length >= MAX_PICKS) { input.checked = false; return; }
+          state.picks.push(id);
+        }
+      } else if (at !== -1) {
+        state.picks.splice(at, 1);
+      }
+      picksChanged();
+    });
+
+    picksEl.addEventListener('click', function(e) {
+      var b = e.target.closest('[data-remove]');
+      if (!b) return;
+      var at = state.picks.indexOf(b.getAttribute('data-remove'));
+      if (at !== -1) state.picks.splice(at, 1);
+      picksChanged();
+    });
+
+    // ── Draft (survives a reload or the phone dropping the tab) ──
+    var DRAFT_KEY = 'koda-free-classes';
+    function saveDraft() {
+      try {
+        sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ name: nameEl.value, email: emailEl.value, picks: state.picks, full: state.full }));
+      } catch (e) { /* private mode — fine */ }
+    }
+    function loadDraft() {
+      try {
+        var d = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || 'null');
+        if (!d) return;
+        if (d.name) nameEl.value = d.name;
+        if (d.email) emailEl.value = d.email;
+        state.full = !!d.full;
+        state.picks = (d.picks || []).filter(function(id) { return CLASSES[id] && bookable(CLASSES[id]); }).slice(0, MAX_PICKS);
+      } catch (e) { /* ignore a bad draft */ }
+    }
+    nameEl.addEventListener('input', function() { nameEl.classList.remove('bad'); saveDraft(); });
+    emailEl.addEventListener('input', function() { emailEl.classList.remove('bad'); saveDraft(); });
+
+    // ── Submit ──
+    function showError(msg) {
+      formError.textContent = msg;
+      formError.classList.add('show');
+      formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function clearError() { formError.classList.remove('show'); formError.textContent = ''; }
+    function fieldError(el, msg) {
+      el.classList.add('bad');
+      showError(msg);
+      el.focus({ preventScroll: true });
+    }
+    function setBusy(on) {
+      submitBtn.disabled = on;
+      loadingOverlay.classList.toggle('active', on);
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      clearError();
+      var name = nameEl.value.trim().replace(/\s+/g, ' ');
+      var email = emailEl.value.trim();
+      if (!name) return fieldError(nameEl, 'Please add your name (step 01).');
+      if (!EMAIL_RE.test(email)) return fieldError(emailEl, 'Please enter a valid email address (step 01).');
+
+      // A class can start while the page sits open — drop it before sending.
+      var stale = state.picks.filter(function(id) { return !CLASSES[id] || !bookable(CLASSES[id]); });
+      if (stale.length) {
+        state.picks = state.picks.filter(function(id) { return stale.indexOf(id) === -1; });
+        picksChanged();
+        renderDays();
+        return showError('One of your classes starts too soon to book online, so we took it off your list. Please check your picks.');
+      }
+      if (!state.picks.length) return showError('Pick at least one class — up to 3.');
+
+      var data = { type: 'trial1025', name: name, email: email, classes: sortedPicks().map(function(c) { return c.id; }) };
+      setBusy(true);
+
+      if (PREVIEW) {
+        console.log('Form data (preview mode):', data);
+        setTimeout(function() {
+          setBusy(false);
+          showSuccess({ classes: sortedPicks().map(function(c) { return { id: c.id, label: classLabel(c) }; }) }, data);
+        }, 500);
+        return;
+      }
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(resp) {
+        setBusy(false);
+        // Only a confirmed write counts (saved:true) — see README "Known failure mode".
+        if (resp && resp.status === 'ok' && resp.saved === true) return showSuccess(resp, data);
+        if (resp && resp.code === 'class_past' && resp.id) {
+          state.picks = state.picks.filter(function(id) { return id !== resp.id; });
+          picksChanged();
+          renderDays();
+        }
+        showError((resp && resp.error) || 'Something went wrong — please try again.');
+      })
+      .catch(function() {
+        setBusy(false);
+        showError("We couldn't reach the sign-up system. Check your connection and try again — if it keeps failing, email kevschuetz3@gmail.com.");
+      });
+    });
+
+    // ── Success ──
+    function gcalUrl(c) {
+      var start = wallToUtc(c.wall), end = start + c.prog.minutes * 6e4;
+      var stamp = function(ms) { return new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+      return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+        '&text=' + encodeURIComponent(c.prog.name + ' at Koda (free class)') +
+        '&dates=' + stamp(start) + '/' + stamp(end) +
+        '&location=' + encodeURIComponent(GYM_NAME + ', ' + GYM_ADDRESS) +
+        '&details=' + encodeURIComponent('Your free class for Hyrox Simulation athletes. Get there 10 minutes early. Questions? kevschuetz3@gmail.com');
+    }
+
+    function icsFile(list, email) {
+      var stamp = function(ms) { return new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+      var text = function(s) { return String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n'); };
+      var fold = function(line) {   // RFC 5545: lines over 75 octets continue with a leading space
+        var out = '';
+        while (line.length > 73) { out += line.slice(0, 73) + '\r\n '; line = line.slice(73); }
+        return out + line;
+      };
+      var who = String(email || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      var lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Koda CrossFit Iron View//Free Classes//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+      list.forEach(function(c) {
+        var start = wallToUtc(c.wall);
+        lines.push('BEGIN:VEVENT',
+          'UID:' + c.id.replace(/[^0-9A-Za-z]/g, '') + '-' + who + '@koda-crossfit.github.io',
+          'DTSTAMP:' + stamp(Date.now()),
+          'DTSTART:' + stamp(start),
+          'DTEND:' + stamp(start + c.prog.minutes * 6e4),
+          fold('SUMMARY:' + text(c.prog.name + ' at Koda (free class)')),
+          fold('LOCATION:' + text(GYM_NAME + ', ' + GYM_ADDRESS)),
+          fold('DESCRIPTION:' + text('Your free class for Hyrox Simulation athletes. Get there 10 minutes early.')),
+          'END:VEVENT');
+      });
+      lines.push('END:VCALENDAR');
+      return lines.join('\r\n');
+    }
+
+    function showSuccess(resp, data) {
+      done = true;
+      updateBar();
+      var booked = (resp.classes || []).map(function(k) { return { c: CLASSES[k.id], label: k.label, past: !!k.past }; });
+      var first = data.name.split(' ')[0];
+      $('successTitle').textContent = resp.updated ? 'All set, ' + first + '!' : "You're in, " + first + '!';
+      $('successLead').textContent = resp.duplicate
+        ? 'You were already booked for these classes — nothing changed. Your confirmation email has the details.'
+        : PREVIEW ? 'Preview only — nothing was saved and no email was sent.'
+        : (resp.updated ? 'Your classes are updated. ' : 'Here are your free classes at Koda. ') + 'A confirmation is on its way to ' + data.email + '.';
+
+      $('booked').innerHTML = booked.map(function(b) {
+        var c = b.c;
+        if (!c) return '<li><div class="bk-main"><strong>' + esc(b.label) + '</strong></div></li>';
+        var d = new Date(c.day.ms);
+        return '<li' + (b.past ? ' class="past"' : '') + '>' +
+          '<span class="bk-date" aria-hidden="true"><span class="m">' + MONTHS[d.getUTCMonth()] + '</span><span class="d">' + d.getUTCDate() + '</span></span>' +
+          '<div class="bk-main"><strong>' + dayLong(c.day.ms) + '</strong><span>' + c.time + ' · ' + esc(c.prog.name) + '</span></div>' +
+          (b.past ? '<span class="bk-cal">Done</span>'
+                  : '<a class="bk-cal" href="' + gcalUrl(c) + '" target="_blank" rel="noopener" aria-label="Add ' + esc(classLabel(c)) + ' to Google Calendar">+ Google Cal</a>') +
+          '</li>';
+      }).join('');
+
+      var upcoming = booked.filter(function(b) { return b.c && !b.past; }).map(function(b) { return b.c; });
+      var calAll = $('calAll');
+      calAll.hidden = !upcoming.length;
+      calAll.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsFile(upcoming, data.email));
+      calAll.textContent = upcoming.length > 1 ? 'Add all to my calendar (.ics)' : 'Add to my calendar (.ics)';
+
+      form.style.display = 'none';
+      $('success').classList.add('show');
+      $('pickHead').innerHTML = 'See you <span class="hl">at Koda</span>';
+      state.picks = upcoming.map(function(c) { return c.id; });   // what "Change my classes" starts from
+      saveDraft();
+      $('pick').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(function() { $('successTitle').focus({ preventScroll: true }); }, 400);
+    }
+
+    $('changeBtn').addEventListener('click', function() {
+      done = false;
+      $('success').classList.remove('show');
+      $('pickHead').innerHTML = 'Pick <span class="hl">your classes</span>';
+      form.style.display = '';
+      picksChanged();
+      renderDays();
+      $('schedule').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ── About our classes ──
+    $('aboutList').innerHTML = PROGRAMS.map(function(p) {
+      return '<dt>' + esc(p.name) + '</dt><dd>' + esc(p.about) + '</dd>';
+    }).join('');
+
+    // ── Start ──
+    loadDraft();
+    if (!anyBookable()) {
+      form.style.display = 'none';
+      $('ended').hidden = false;
+      document.querySelectorAll('a[href="#pick"]').forEach(function(a) { a.textContent = 'See details'; });
+    } else {
+      // Open on the week of the first pick (draft), else the first week with HYROX classes left.
+      var startWeek = -1, firstPick = sortedPicks()[0];
+      WEEKS.forEach(function(wk, i) {
+        if (startWeek === -1 && firstPick && firstPick.day.ms >= wk.start && firstPick.day.ms <= wk.end) startWeek = i;
+      });
+      if (startWeek === -1) {
+        for (var i = 0; i < WEEKS.length; i++) {
+          if (!weekIsPast(WEEKS[i]) && WEEKS[i].days.some(function(d) { return d.classes.some(function(c) { return bookable(c) && (state.full || c.prog.id === 'HYROX'); }); })) { startWeek = i; break; }
+        }
+      }
+      state.week = startWeek === -1 ? 0 : startWeek;
+      setMode(state.full);
+      renderPicks();
+    }
+  </script>
+</body>
+</html>
