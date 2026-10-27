@@ -37,7 +37,6 @@ var TRIAL1025_PROGRAMS = {
 };
 var TRIAL1025_MINUTES = { "COMP": 120 };  // class length for calendar invites (default 60)
 var TRIAL1025_PAGE = "https://koda-crossfit.github.io/hyrox/classes.html";
-var TRIAL1025_WAIVER = "https://kevschuetz3-lgtm.github.io/koda-waiver/";
 var TRIAL1025_GYM = "Koda CrossFit Iron View";
 var TRIAL1025_ADDRESS = "740 S Pierce Ave, Louisville, CO 80027";
 var TRIAL1025_MAPS = "https://maps.google.com/?q=740+S+Pierce+Ave,+Louisville,+CO+80027";
@@ -473,8 +472,12 @@ function trial1025ConfirmHtml(first, classes, updated, now) {
   return "<div style='font-family:Arial,Helvetica,sans-serif;max-width:620px;color:#1A1818'>" +
     "<div style='background:#1A1818;color:#fff;padding:22px 24px'>" +
       "<div style='font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#E5DDCF'>Koda CrossFit Iron View · For our Hyrox Sim athletes</div>" +
-      "<div style='font-size:34px;line-height:1;font-weight:900;text-transform:uppercase;margin-top:10px'>3 Free<br>" +
-        "<span style='background:#FFFF33;color:#1A1818;padding:0 6px'>Classes</span></div>" +
+      // Separate blocks: Windows draws Arial 900 as Arial Black, and an inline highlight on a
+      // tight line grew tall enough to cover the bottom of "3 Free".
+      "<div style='font-size:34px;line-height:40px;font-weight:900;text-transform:uppercase;margin-top:10px'>3 Free</div>" +
+      "<table role='presentation' cellpadding='0' cellspacing='0' border='0' style='border-collapse:collapse;margin-top:2px'><tr>" +
+        "<td style='background:#FFFF33;color:#1A1818;font-family:Arial,Helvetica,sans-serif;font-size:34px;line-height:40px;font-weight:900;text-transform:uppercase;padding:0 6px'>Classes</td>" +
+      "</tr></table>" +
       "<div style='font-size:16px;font-weight:bold;text-transform:uppercase;margin-top:12px'>Now through Monday, Nov 30</div>" +
     "</div>" +
     "<div style='padding:20px 4px 0'>" +
@@ -484,9 +487,8 @@ function trial1025ConfirmHtml(first, classes, updated, now) {
       "<p style='margin:0 0 16px;color:#5E5954;font-size:13px'>The attached calendar file (koda-free-classes.ics) adds them all at once.</p>" +
       "<div style='background:#EDEBE7;border-left:4px solid #FFFF33;padding:14px 16px;margin:0 0 16px'>" +
         "<div style='font-weight:900;text-transform:uppercase;margin-bottom:6px'>Good to know</div>" +
-        "<div style='margin:4px 0'>→ Get there <strong>10 minutes early</strong> so your coach can get you set up.</div>" +
+        "<div style='margin:4px 0'>→ Get there <strong>a few minutes early</strong> to meet the coach.</div>" +
         "<div style='margin:4px 0'>→ We're at <a href='" + TRIAL1025_MAPS + "' style='color:#1A1818'>" + TRIAL1025_ADDRESS + "</a>.</div>" +
-        "<div style='margin:4px 0'>→ Didn't race in the Sim? Please <a href='" + TRIAL1025_WAIVER + "' style='color:#1A1818'>sign our waiver</a> before your first class.</div>" +
         "<div style='margin:4px 0'>→ Plans change? <a href='" + TRIAL1025_PAGE + "' style='color:#1A1818'>Pick again</a> with this email — your new picks replace your upcoming ones.</div>" +
       "</div>" +
       "<p style='color:#777;font-size:13px;margin-top:14px'>Questions? Just reply to this email. See you at Koda!</p>" +
@@ -500,7 +502,7 @@ function trial1025GcalUrl(c) {
     "&text=" + encodeURIComponent(c.program + " at Koda (free class)") +
     "&dates=" + trial1025Stamp(c.start) + "/" + trial1025Stamp(c.end) +
     "&location=" + encodeURIComponent(TRIAL1025_GYM + ", " + TRIAL1025_ADDRESS) +
-    "&details=" + encodeURIComponent("Your free class for Hyrox Simulation athletes. Get there 10 minutes early. Questions? kevschuetz3@gmail.com");
+    "&details=" + encodeURIComponent("Your free class for Hyrox Simulation athletes. Get there a few minutes early to meet the coach. Questions? kevschuetz3@gmail.com");
 }
 
 function trial1025Ics(classes, email) {
@@ -520,7 +522,7 @@ function trial1025Ics(classes, email) {
       "DTEND:" + trial1025Stamp(c.end),
       fold("SUMMARY:" + text(c.program + " at Koda (free class)")),
       fold("LOCATION:" + text(TRIAL1025_GYM + ", " + TRIAL1025_ADDRESS)),
-      fold("DESCRIPTION:" + text("Your free class for Hyrox Simulation athletes. Get there 10 minutes early.")),
+      fold("DESCRIPTION:" + text("Your free class for Hyrox Simulation athletes. Get there a few minutes early to meet the coach.")),
       "END:VEVENT");
   });
   lines.push("END:VCALENDAR");
