@@ -13,6 +13,8 @@
 // Emails: a confirmation to the athlete (Google Calendar links + an .ics
 // file) and a heads-up to NOTIFY_EMAIL. "Hyrox Sim" says whether the email
 // (or name) is on the Oct 25 or Sept 13 roster.
+// Leads: every real sign-up is added to (or updates) Kevin's Koda Leads sheet, with the first class
+// as the trial (trial1025ToLeads).
 //
 // The page owns the class lineup. The backend checks each pick's shape
 // (a real date inside the window, still upcoming, a known program) instead
@@ -40,6 +42,14 @@ var TRIAL1025_PAGE = "https://koda-crossfit.github.io/hyrox/classes.html";
 var TRIAL1025_GYM = "Koda CrossFit Iron View";
 var TRIAL1025_ADDRESS = "740 S Pierce Ave, Louisville, CO 80027";
 var TRIAL1025_MAPS = "https://maps.google.com/?q=740+S+Pierce+Ave,+Louisville,+CO+80027";
+// Kevin's "Koda Leads" sheet (2025 Master List tab): every real sign-up becomes a lead there, with the
+// first class in Trial Date / Trial Class (the koda-trial-alerts columns). Kevin, 10/28.
+var TRIAL1025_LEADS_SHEET_ID = "1veZqZSJxUrKoAHM-5vePGfV-Fj5su4Q16L2JB9mXb-I";
+var TRIAL1025_LEADS_GID = 0;
+var TRIAL1025_LEAD_STAGE = "Ready to drop in";
+var TRIAL1025_LEAD_EARLY_RE = /^(|dead|inquiry|new lead.*)$/i;  // stages a booking moves up to TRIAL1025_LEAD_STAGE
+// Trial Class names on the trial-alerts dropdown. Competitor isn't on it, so a Competitor first class leaves the trial blank.
+var TRIAL1025_LEAD_TYPES = { "HYROX": "Hyrox", "CF": "CrossFit", "KF": "KodaFit", "WS": "Women's", "OLY": "Kratos" };
 var TRIAL1025_HEADERS = [
   "Timestamp", "Name", "Email", "Class 1", "Class 2", "Class 3", "Classes", "Hyrox Sim",
   "Emailed", "Last Change", "Changes", "Status", "Notes"
@@ -296,7 +306,7 @@ function handleTrial1025(data) {
   try { lock.waitLock(25000); }
   catch (lockErr) { return sim1025Json(TRIAL1025_BUSY); }
 
-  var rowNum, existing, final, previous = [];
+  var rowNum, existing, final, previous = [], leadsNote = "";
   try {
     var hm = sim0913HeaderMap(sheet);
     existing = trial1025FindByEmail(sheet, hm, v.email);
@@ -345,6 +355,11 @@ function handleTrial1025(data) {
     // The booking is committed — a By Class hiccup must not fail it (the next save rebuilds it).
     try { trial1025RebuildByClass(ss); }
     catch (byErr) { Logger.log("Trial1025 By Class rebuild failed: " + byErr); }
+    // Same for Kevin's leads sheet; the outcome goes into his heads-up email.
+    if (!isTest) {
+      try { leadsNote = trial1025ToLeads(v, final, previous, simMatch, now); }
+      catch (leadErr) { leadsNote = "update FAILED: " + leadErr; Logger.log("Trial1025 leads sheet update failed: " + leadErr); }
+    }
   } catch (unexpected) {
     Logger.log("Trial1025 POST failed: " + unexpected);
     return sim1025Json(TRIAL1025_BUSY);
@@ -352,7 +367,7 @@ function handleTrial1025(data) {
     lock.releaseLock();
   }
 
-  var emailed = trial1025SendEmails(ss, v, final, previous, !!existing, simMatch, isTest, now);
+  var emailed = trial1025SendEmails(ss, v, final, previous, !!existing, simMatch, isTest, now, leadsNote);
   try {
     var hm2 = sim0913HeaderMap(sheet);
     if (hm2["emailed"] !== undefined) sheet.getRange(rowNum, hm2["emailed"] + 1).setValue(emailed);
@@ -403,9 +418,86 @@ function trial1025RebuildByClass(ss) {
   return values;
 }
 
+// ── Koda Leads sheet ──
+// Adds the athlete to Kevin's leads sheet, or updates their row (matched by email, else by a first +
+// last name that only one row has). Members ("Converted …") are left alone. A trial Kevin typed by
+// hand is never overwritten: Trial Date / Trial Class only change when blank or still holding the
+// first class this flow wrote last time. New people go in at row 2, like the waiver backend's leads.
+// Returns a short note for Kevin's heads-up email.
+function trial1025ToLeads(v, classes, previous, simMatch, now) {
+  var own = [NOTIFY_EMAIL, "kodaironview@gmail.com"].some(function(e) { return sim1025Norm(e) === sim1025Norm(v.email); });
+  if (own) return "skipped (Koda address)";
+  var sh = SpreadsheetApp.openById(TRIAL1025_LEADS_SHEET_ID).getSheets()
+    .filter(function(s) { return s.getSheetId() === TRIAL1025_LEADS_GID; })[0];
+  if (!sh) throw new Error("leads tab (gid " + TRIAL1025_LEADS_GID + ") not found");
+
+  var trial = classes.length ? trial1025LeadTrial(classes[0]) : null;
+  var was = previous.length ? trial1025LeadTrial(previous[0]) : null;
+  var day = Utilities.formatDate(now, "America/Denver", "M/d");
+  var sim = String(simMatch || "").replace(/\s*\(name match\)/g, "");
+  var note = (/^(not found|\?)?$/i.test(sim) ? "" : "Hyrox Sim athlete (" + sim + "). ") +
+    (previous.length ? "Changed" : "Booked") + " free classes on " + day + ": " + classes.map(function(c) {
+      return c.day.split(",")[0] + " " + (TRIAL1025_MONTHS.indexOf(c.month) + 1) + "/" + c.date + " " + c.time + " " + c.program;
+    }).join(", ") + ".";
+
+  var last = sh.getLastRow();
+  var rows = last > 1 ? sh.getRange(2, 1, last - 1, 9).getDisplayValues() : [];
+  var em = sim1025Norm(v.email), nm = sim1025Norm(v.name).split(" ");
+  var idx = -1, byName = [];
+  rows.forEach(function(r, i) {
+    if (idx < 0 && sim1025Norm(r[3]) === em) idx = i;
+    if (sim1025Norm(r[1]).split(" ")[0] === nm[0] && sim1025Norm(r[2]).split(" ").pop() === nm[nm.length - 1]) byName.push(i);
+  });
+  if (idx < 0 && nm.length > 1 && byName.length === 1) idx = byName[0];
+
+  if (idx < 0) {
+    var parts = v.name.split(" ");
+    sh.insertRowsBefore(2, 1);
+    sh.getRange(2, 1, 1, sh.getMaxColumns()).clearFormat();  // don't inherit the header's look
+    sh.getRange(2, 1, 1, 9).setValues([[TRIAL1025_LEAD_STAGE, sim1025Cell(parts[0]),
+      sim1025Cell(parts.length > 1 ? parts[parts.length - 1] : ""), sim1025Cell(v.email), "", note, day,
+      trial ? trial.date : "", trial ? trial.cls : ""]]);
+    return "added at the top" + (trial ? ", trial " + trial.date + " " + trial.cls : "");
+  }
+
+  var r = rows[idx], rowNum = idx + 2, stage = r[0].trim();
+  if (/^converted/i.test(stage)) return "already " + stage + " (row " + rowNum + "), left alone";
+  // Still the row we read? (The waiver backend inserts its leads at row 2, shifting everything down.)
+  if (sh.getRange(rowNum, 1, 1, 4).getDisplayValues()[0].join("|") !== r.slice(0, 4).join("|")) {
+    throw new Error("the sheet shifted mid-update, row " + rowNum + " not touched");
+  }
+  var done = [];
+  if (TRIAL1025_LEAD_EARLY_RE.test(stage)) { sh.getRange(rowNum, 1).setValue(TRIAL1025_LEAD_STAGE); done.push("stage " + TRIAL1025_LEAD_STAGE); }
+  sh.getRange(rowNum, 6).setValue(sim1025Cell((r[5].trim() ? r[5].trim() + " | " : "") + note));
+  var blank = !r[7].trim() && !r[8].trim();
+  var ours = was && trial1025SameDay(r[7], was.date) && sim1025Norm(r[8]) === sim1025Norm(was.cls);
+  if (trial && (blank || ours)) {
+    if (!(ours && trial.date === was.date && trial.cls === was.cls)) {
+      sh.getRange(rowNum, 8, 1, 2).setValues([[trial.date, trial.cls]]);
+      done.push("trial " + trial.date + " " + trial.cls);
+    }
+  } else if (!blank && !ours) {
+    done.push("kept its trial (" + r[7] + " " + r[8] + ")");
+  }
+  return "updated row " + rowNum + (done.length ? ": " + done.join(", ") : "");
+}
+
+// A class as the leads sheet's Trial Date / Trial Class, or null when it isn't on the Trial Class list.
+function trial1025LeadTrial(c) {
+  var type = TRIAL1025_LEAD_TYPES[c.code];
+  return type ? { date: (TRIAL1025_MONTHS.indexOf(c.month) + 1) + "/" + c.date + "/" + TRIAL1025_FIRST_DAY.slice(0, 4),
+                  cls: c.time + " " + type } : null;
+}
+
+// Whether a Trial Date cell ("Fri 10/30/2026", "10/30/2026") is the same day as "10/30/2026".
+function trial1025SameDay(cell, mdy) {
+  var a = /(\d{1,2})\/(\d{1,2})/.exec(String(cell)), b = /(\d{1,2})\/(\d{1,2})/.exec(mdy);
+  return !!(a && b && +a[1] === +b[1] && +a[2] === +b[2]);
+}
+
 // ── Emails ──
 // Returns what lands in the Emailed column.
-function trial1025SendEmails(ss, v, classes, previous, updated, simMatch, isTest, now) {
+function trial1025SendEmails(ss, v, classes, previous, updated, simMatch, isTest, now, leadsNote) {
   var first = v.name.split(" ")[0];
   var upcoming = classes.filter(function(c) { return c.start.getTime() > now.getTime(); });
   var status = "Yes";
@@ -443,7 +535,8 @@ function trial1025SendEmails(ss, v, classes, previous, updated, simMatch, isTest
             "<div style='font-family:Arial,Helvetica,sans-serif;color:#1A1818'>" +
             "<h3 style='margin:0 0 8px'>" + escapeHtml(v.name) + (updated ? " changed their free classes" : " booked free classes") + "</h3>" +
             "<table style='border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px'>" +
-            row("Name", v.name) + row("Email", v.email) + row("Hyrox Sim", simMatch) + row("Confirmation", status) + "</table>" +
+            row("Name", v.name) + row("Email", v.email) + row("Hyrox Sim", simMatch) + row("Confirmation", status) +
+            (leadsNote ? row("Leads sheet", leadsNote) : "") + "</table>" +
             "<h4 style='margin:14px 0 0'>Classes</h4>" + list(classes) +
             (updated ? "<h4 style='margin:4px 0 0'>Before</h4>" + list(previous) : "") +
             "<p><a href='" + ss.getUrl() + "'>Open the sheet</a> (the By Class tab shows who's coming to each class).</p></div>"
